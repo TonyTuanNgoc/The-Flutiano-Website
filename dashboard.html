@@ -153,23 +153,29 @@
 
   .timeline-layout {
     display: grid;
-    grid-template-columns: 196px minmax(0, 1fr);
-    gap: 28px;
+    grid-template-columns: 264px minmax(0, 1fr);
+    gap: 32px;
     align-items: start;
   }
 
   .timeline-side {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
   }
 
   .timeline-year-block,
   .timeline-count-block {
-    padding: 18px 18px 20px;
+    min-height: 134px;
+    padding: 20px 20px 22px;
     border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.04);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
 
   .timeline-mini-label {
@@ -183,31 +189,28 @@
 
   .timeline-year-value {
     display: block;
-    margin-top: 10px;
+    margin-top: 12px;
     font-family: "Sora", "Manrope", sans-serif;
-    font-size: 52px;
-    line-height: 0.96;
+    font-size: 56px;
+    line-height: 0.92;
     letter-spacing: -0.08em;
-    color: #FFFFFF;
+    color: var(--gold-hi);
     font-weight: 600;
   }
 
   .timeline-side-title {
     font-family: "Sora", "Manrope", sans-serif;
-    font-size: 30px;
+    font-size: clamp(23px, 2vw, 29px);
     line-height: 1.05;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.045em;
     color: #FFFFFF;
     font-weight: 600;
+    white-space: nowrap;
+    margin-bottom: 4px;
   }
 
   .timeline-count-block {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 144px;
   }
 
   .timeline-count-label {
@@ -219,10 +222,10 @@
   }
 
   .timeline-count-number {
-    margin-top: 10px;
+    margin-top: 12px;
     font-family: "Sora", "Manrope", sans-serif;
-    font-size: 44px;
-    line-height: 1;
+    font-size: 50px;
+    line-height: 0.94;
     letter-spacing: -0.08em;
     color: var(--gold-hi);
     font-weight: 600;
@@ -236,7 +239,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
   }
 
   .timeline-month {
@@ -297,15 +300,14 @@
 
   .timeline-shell {
     position: relative;
-    min-height: 350px;
-    padding: 96px 0 114px;
+    min-height: var(--timeline-shell-height, 380px);
   }
 
   .timeline-line {
     position: absolute;
     left: 0;
     right: 0;
-    top: 172px;
+    top: var(--timeline-line-top, 172px);
     height: 2px;
     background: linear-gradient(90deg, rgba(212,170,106,0.12), rgba(212,170,106,0.72), rgba(212,170,106,0.12));
     box-shadow: 0 0 18px rgba(212,170,106,0.12);
@@ -321,7 +323,7 @@
 
   .timeline-slot {
     position: absolute;
-    top: 145px;
+    top: calc(var(--timeline-line-top, 172px) - 27px);
     width: 1px;
     height: 54px;
     background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
@@ -351,7 +353,7 @@
   .timeline-marker {
     position: absolute;
     left: 50%;
-    top: 149px;
+    top: calc(var(--timeline-line-top, 172px) - 23px);
     width: 44px;
     height: 44px;
     margin-left: -22px;
@@ -374,7 +376,7 @@
   }
 
   .timeline-milestone.is-top .timeline-card {
-    bottom: calc(66px + var(--stack-offset, 0px));
+    top: calc(var(--timeline-line-top, 172px) - 98px - var(--stack-offset, 0px));
   }
 
   .timeline-milestone.is-top .timeline-card::after {
@@ -389,7 +391,7 @@
   }
 
   .timeline-milestone.is-bottom .timeline-card {
-    top: calc(228px + var(--stack-offset, 0px));
+    top: calc(var(--timeline-line-top, 172px) + 56px + var(--stack-offset, 0px));
   }
 
   .timeline-milestone.is-bottom .timeline-card::before {
@@ -406,8 +408,8 @@
   .timeline-card {
     position: absolute;
     left: 50%;
-    width: 164px;
-    padding: 12px;
+    width: 172px;
+    padding: 12px 13px;
     border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.12);
     background:
@@ -419,8 +421,8 @@
       inset 0 1px 0 rgba(255,255,255,0.05);
     transform: translateX(-50%);
     display: grid;
-    grid-template-columns: 48px minmax(0, 1fr);
-    gap: 11px;
+    grid-template-columns: 50px minmax(0, 1fr);
+    gap: 12px;
     align-items: center;
     text-decoration: none;
     transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
@@ -435,7 +437,7 @@
   }
 
   .timeline-card-cover {
-    width: 48px;
+    width: 50px;
     aspect-ratio: 1 / 1;
     border-radius: 14px;
     overflow: hidden;
@@ -789,15 +791,15 @@
   @media (max-width: 1420px) {
     .timeline-card,
     .timeline-milestone {
-      width: 156px;
+      width: 164px;
     }
 
     .timeline-card {
-      grid-template-columns: 44px minmax(0, 1fr);
+      grid-template-columns: 46px minmax(0, 1fr);
     }
 
     .timeline-card-cover {
-      width: 44px;
+      width: 46px;
     }
   }
 
@@ -821,6 +823,7 @@
 
     .timeline-side-title {
       grid-column: 1 / -1;
+      white-space: normal;
     }
 
     .library-lead {
@@ -857,7 +860,6 @@
 
     .timeline-shell {
       min-height: auto;
-      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -1265,8 +1267,32 @@
       .sort((left, right) => left.deadlineValue - right.deadlineValue || left.project.title.localeCompare(right.project.title));
 
     const slotUsage = {};
+    const sideLanes = {
+      top: [],
+      bottom: []
+    };
 
-    return visible.map(({ project, deadlineValue }, index) => {
+    function findAvailableLane(side, leftPercent, commit) {
+      const lanes = sideLanes[side];
+      const minGap = 14;
+
+      for (let laneIndex = 0; laneIndex < lanes.length; laneIndex += 1) {
+        if (leftPercent - lanes[laneIndex] >= minGap) {
+          if (commit) {
+            lanes[laneIndex] = leftPercent;
+          }
+          return laneIndex;
+        }
+      }
+
+      if (commit) {
+        lanes.push(leftPercent);
+      }
+
+      return lanes.length;
+    }
+
+    const items = visible.map(({ project, deadlineValue }, index) => {
       const releaseDate = getSaturdayOnOrAfter(new Date(deadlineValue));
       let slot = slots.find((item) => item.date.getTime() === releaseDate.getTime());
       if (!slot) {
@@ -1275,27 +1301,42 @@
 
       const slotIndex = slotUsage[slot.index] || 0;
       slotUsage[slot.index] = slotIndex + 1;
-      const orientation = index % 2 === 0 ? "top" : "bottom";
-      const stackLevel = Math.floor(index / 2) % 2;
+      const preferredSide = index % 2 === 0 ? "top" : "bottom";
+      const alternateSide = preferredSide === "top" ? "bottom" : "top";
+      const preferredLaneIndex = findAvailableLane(preferredSide, slot.leftPercent, false);
+      const alternateLaneIndex = findAvailableLane(alternateSide, slot.leftPercent, false);
+      const orientation = alternateLaneIndex < preferredLaneIndex ? alternateSide : preferredSide;
+      const laneIndex = findAvailableLane(orientation, slot.leftPercent, true);
       const slotShift = slotIndex === 0
         ? 0
-        : Math.ceil(slotIndex / 2) * 18 * (slotIndex % 2 === 1 ? -1 : 1);
+        : Math.ceil(slotIndex / 2) * 22 * (slotIndex % 2 === 1 ? -1 : 1);
 
       return {
         project,
         releaseDate: slot.date,
         leftPercent: slot.leftPercent,
         orientation,
-        stackOffset: stackLevel * 72,
+        laneIndex,
+        stackOffset: laneIndex * 82,
         slotShift
       };
     });
+
+    const topLaneCount = Math.max(1, sideLanes.top.length);
+    const bottomLaneCount = Math.max(1, sideLanes.bottom.length);
+
+    return {
+      items,
+      lineTop: 120 + (topLaneCount - 1) * 82,
+      shellHeight: 320 + (topLaneCount - 1) * 82 + (bottomLaneCount - 1) * 82
+    };
   }
 
   function renderUpcomingTimeline(projects) {
     const { start } = getTimelineWindow();
     const { months, slots } = getTimelineSaturdays();
-    const timelineProjects = getTimelineProjects(projects, slots);
+    const timelineLayout = getTimelineProjects(projects, slots);
+    const timelineProjects = timelineLayout.items;
     document.getElementById("timeline-meta").textContent = "Saturday release schedule";
 
     if (!timelineProjects.length) {
@@ -1353,7 +1394,7 @@
             `).join("")}
           </div>
 
-          <div class="timeline-shell">
+          <div class="timeline-shell" style="--timeline-line-top:${timelineLayout.lineTop}px; --timeline-shell-height:${timelineLayout.shellHeight}px;">
             <div class="timeline-line" aria-hidden="true"></div>
             ${slots.map((slot) => `
               <div class="timeline-slot" style="left:${slot.leftPercent}%;" aria-hidden="true"></div>
