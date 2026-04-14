@@ -67,7 +67,6 @@
   }
 
   .todo-panel,
-  .recent-card,
   .library-panel {
     background: linear-gradient(180deg, rgba(17,22,29,0.48) 0%, rgba(11,15,21,0.32) 100%);
     backdrop-filter: blur(24px) saturate(145%);
@@ -137,217 +136,341 @@
     font-weight: 700;
   }
 
-  .recent-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 16px;
+  .timeline-panel {
+    padding: 28px 28px 32px;
+    background:
+      radial-gradient(circle at top right, rgba(212,170,106,0.12), transparent 34%),
+      linear-gradient(180deg, rgba(17,22,29,0.5) 0%, rgba(10,13,19,0.34) 100%);
+    backdrop-filter: blur(24px) saturate(145%);
+    -webkit-backdrop-filter: blur(24px) saturate(145%);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--r);
+    box-shadow:
+      0 24px 58px rgba(4,7,12,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    overflow: hidden;
   }
 
-  .recent-card {
-    overflow: hidden;
+  .timeline-hero {
     display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    min-width: 0;
-    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s, background 0.18s;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
   }
 
-  .recent-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.2);
-    background: linear-gradient(180deg, rgba(19,24,32,0.58) 0%, rgba(11,15,21,0.42) 100%);
-    box-shadow: 0 24px 58px rgba(0,0,0,0.34);
+  .timeline-hero-copy {
+    max-width: 620px;
   }
 
-  .recent-media {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at top left, rgba(212,170,106,0.12), transparent 36%),
-      rgba(7,10,15,0.78);
-  }
-
-  .recent-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-    transform: scale(1.01);
-  }
-
-  .recent-media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(180deg, rgba(5,8,12,0.06) 0%, rgba(5,8,12,0.24) 48%, rgba(5,8,12,0.86) 100%);
-  }
-
-  .stage-badge {
-    position: absolute;
-    left: 14px;
-    bottom: 14px;
-    z-index: 1;
+  .timeline-kicker {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 6px 10px;
-    border-radius: 999px;
+    gap: 9px;
+    margin-bottom: 12px;
+    color: rgba(255,255,255,0.48);
     font-size: 10px;
     font-weight: 800;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.14);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
-
-  .stage-badge::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: currentColor;
-  }
-
-  .stage-badge.tone-gold {
-    background: rgba(212,170,106,0.16);
-    color: var(--gold-hi);
-  }
-
-  .stage-badge.tone-jade {
-    background: rgba(94,201,177,0.16);
-    color: #8DE8D1;
-  }
-
-  .stage-badge.tone-sky {
-    background: rgba(128,191,231,0.16);
-    color: #A7D9F7;
-  }
-
-  .stage-badge.tone-violet {
-    background: rgba(167,139,250,0.16);
-    color: #D0C1FF;
-  }
-
-  .recent-body {
-    padding: 18px 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .recent-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 9px;
-    line-height: 1;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.44);
-    font-weight: 800;
   }
 
-  .recent-kicker::before {
+  .timeline-kicker::before {
     content: "";
-    width: 18px;
+    width: 24px;
     height: 1px;
     background: rgba(212,170,106,0.42);
   }
 
-  .recent-card-title {
+  .timeline-title {
     font-family: "Sora", "Manrope", sans-serif;
-    font-size: 18px;
-    line-height: 1.14;
-    letter-spacing: -0.038em;
-    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.04;
+    letter-spacing: -0.05em;
     color: #FFFFFF;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-weight: 600;
   }
 
-  .recent-card-copy {
-    font-size: 12px;
-    line-height: 1.58;
-    color: rgba(255,255,255,0.54);
+  .timeline-copy {
+    margin-top: 12px;
+    max-width: 540px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    line-height: 1.72;
     font-weight: 700;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
-  .recent-instruments {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .recent-instrument {
+  .timeline-window {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 0;
-    padding: 7px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.05);
-    color: rgba(255,255,255,0.72);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .timeline-window strong {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--gold-hi);
+    font-weight: 600;
+  }
+
+  .timeline-window span {
+    color: rgba(255,255,255,0.42);
     font-size: 10px;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
   }
 
-  .recent-instrument-icon {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold-hi);
+  .timeline-months {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 8px;
   }
 
-  .recent-instrument-icon svg {
-    width: 18px;
-    height: 18px;
-    stroke: currentColor;
+  .timeline-month {
+    position: relative;
+    padding-bottom: 14px;
+  }
+
+  .timeline-month::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(212,170,106,0.34), rgba(255,255,255,0.04));
+  }
+
+  .timeline-month-label {
+    display: block;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-month-sub {
+    display: block;
+    margin-top: 5px;
+    color: rgba(255,255,255,0.36);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .timeline-shell {
+    position: relative;
+    min-height: 440px;
+    margin-top: 24px;
+  }
+
+  .timeline-path {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .timeline-path .timeline-path-shadow {
     fill: none;
-    stroke-width: 1.55;
+    stroke: rgba(212,170,106,0.08);
+    stroke-width: 18;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
-  .recent-card-footer {
-    margin-top: auto;
-    padding-top: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+  .timeline-path .timeline-path-line {
+    fill: none;
+    stroke: rgba(212,170,106,0.62);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 6 10;
   }
 
-  .recent-card-footnote {
-    font-size: 11px;
-    line-height: 1.4;
-    color: rgba(255,255,255,0.42);
+  .timeline-path .timeline-path-glow {
+    fill: none;
+    stroke: rgba(234,204,150,0.18);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .timeline-milestone {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 230px;
+  }
+
+  .timeline-song-card {
+    position: absolute;
+    left: 50%;
+    width: 230px;
+    padding: 18px 18px 17px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background:
+      linear-gradient(180deg, rgba(19,24,32,0.66) 0%, rgba(11,15,21,0.54) 100%);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    box-shadow:
+      0 18px 42px rgba(2,4,8,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    transform: translateX(-50%);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .timeline-milestone.is-top .timeline-song-card {
+    bottom: 34px;
+  }
+
+  .timeline-milestone.is-top .timeline-song-card::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -18px;
+    width: 1px;
+    height: 18px;
+    background: linear-gradient(180deg, rgba(212,170,106,0.46), rgba(212,170,106,0));
+    transform: translateX(-50%);
+  }
+
+  .timeline-milestone.is-bottom .timeline-song-card {
+    top: 34px;
+  }
+
+  .timeline-milestone.is-bottom .timeline-song-card::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -18px;
+    width: 1px;
+    height: 18px;
+    background: linear-gradient(180deg, rgba(212,170,106,0), rgba(212,170,106,0.46));
+    transform: translateX(-50%);
+  }
+
+  .timeline-song-card:hover {
+    transform: translateX(-50%) translateY(-2px);
+    border-color: rgba(212,170,106,0.24);
+    box-shadow:
+      0 24px 48px rgba(2,4,8,0.26),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .timeline-song-title {
+    display: block;
+    margin-bottom: 14px;
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 17px;
+    line-height: 1.22;
+    letter-spacing: -0.03em;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  .timeline-key-line,
+  .timeline-chords-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .timeline-key-line + .timeline-chords-line {
+    margin-top: 10px;
+  }
+
+  .timeline-label {
+    width: 64px;
+    flex-shrink: 0;
+    color: rgba(255,255,255,0.38);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .timeline-value {
+    color: var(--gold-hi);
+    font-size: 13px;
+    line-height: 1.55;
+    font-weight: 800;
+  }
+
+  .timeline-chords {
+    color: rgba(255,255,255,0.74);
+    font-size: 13px;
+    line-height: 1.55;
     font-weight: 700;
   }
 
-  .recent-card-link {
-    color: var(--gold-hi);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .timeline-point {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(234,204,150,0.98);
+    background: radial-gradient(circle at center, rgba(234,204,150,0.94) 0%, rgba(212,170,106,0.88) 48%, rgba(121,81,31,0.9) 100%);
+    box-shadow:
+      0 0 0 8px rgba(212,170,106,0.08),
+      0 0 24px rgba(212,170,106,0.24);
+  }
+
+  button.timeline-point {
+    cursor: pointer;
+    padding: 0;
+    appearance: none;
+  }
+
+  .timeline-point:hover,
+  .timeline-point:focus-visible {
+    transform: scale(1.06);
+    box-shadow:
+      0 0 0 10px rgba(212,170,106,0.1),
+      0 0 28px rgba(212,170,106,0.3);
+    outline: none;
+  }
+
+  .timeline-note {
+    position: absolute;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.32);
+    pointer-events: none;
+  }
+
+  .timeline-milestone.is-top .timeline-note {
+    top: 34px;
+  }
+
+  .timeline-milestone.is-bottom .timeline-note {
+    bottom: 34px;
+  }
+
+  .timeline-empty {
+    padding: 30px 0 18px;
+    color: rgba(255,255,255,0.56);
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: 700;
   }
 
   .todo-shell {
@@ -660,17 +783,26 @@
   }
 
   @media (max-width: 1420px) {
-    .recent-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .timeline-song-card,
+    .timeline-milestone {
+      width: 210px;
     }
   }
 
   @media (max-width: 1180px) {
-    .recent-grid,
     .todo-shell,
     .library-shell,
     .library-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .timeline-hero {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .timeline-window {
+      align-items: flex-start;
     }
 
     .library-lead {
@@ -684,11 +816,80 @@
     }
 
     .qa-grid,
-    .recent-grid,
     .todo-shell,
     .library-shell,
     .library-grid {
       grid-template-columns: 1fr;
+    }
+
+    .timeline-panel {
+      padding: 24px 20px 24px;
+    }
+
+    .timeline-title {
+      font-size: 28px;
+    }
+
+    .timeline-months {
+      display: none;
+    }
+
+    .timeline-shell {
+      min-height: auto;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .timeline-shell::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(212,170,106,0.4), rgba(212,170,106,0.06));
+    }
+
+    .timeline-path {
+      display: none;
+    }
+
+    .timeline-milestone {
+      position: relative;
+      left: auto !important;
+      top: auto !important;
+      width: 100%;
+      transform: none;
+      padding-left: 18px;
+    }
+
+    .timeline-song-card,
+    .timeline-milestone.is-top .timeline-song-card,
+    .timeline-milestone.is-bottom .timeline-song-card {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      width: 100%;
+      transform: none;
+    }
+
+    .timeline-song-card::before,
+    .timeline-song-card::after,
+    .timeline-note {
+      display: none;
+    }
+
+    .timeline-song-card:hover {
+      transform: none;
+    }
+
+    .timeline-point {
+      position: absolute;
+      left: 0;
+      top: 26px;
     }
   }
 </style>
@@ -848,10 +1049,10 @@
 
     <section>
       <div class="section-header">
-        <span class="section-title">Recent Projects</span>
-        <a href="projects.html" class="see-all">See all projects →</a>
+        <span class="section-title">Upcoming Projects Timeline</span>
+        <span class="section-meta" id="timeline-meta"></span>
       </div>
-      <div class="recent-grid" id="recent-projects"></div>
+      <div class="timeline-panel" id="upcoming-timeline"></div>
     </section>
 
     <section>
@@ -916,94 +1117,6 @@
       toast.classList.add("out");
       setTimeout(() => toast.remove(), 220);
     }, 2800);
-  }
-
-  function getStageMeta(project) {
-    const workflow = store.getSongWorkflowState(project);
-    const sourceCount = workflow.sourceLibrary.sheetCount
-      + workflow.sourceLibrary.harmonyCount
-      + workflow.sourceLibrary.audioCount
-      + workflow.sourceLibrary.additionalCount;
-
-    if (project.status === "Released") {
-      return {
-        label: "Released",
-        tone: "violet",
-        summary: "Release benchmark is ready for review."
-      };
-    }
-    if (workflow.sourceLibrary.status === "done") {
-      return {
-        label: "Source Library",
-        tone: "gold",
-        summary: "Reference set is complete and ready to drive production."
-      };
-    }
-    if (workflow.masterKey.status === "done") {
-      return {
-        label: "Master Key",
-        tone: "jade",
-        summary: "Key is locked and the source pass is underway."
-      };
-    }
-    if (workflow.masterKey.status === "in-progress" || sourceCount > 0) {
-      return {
-        label: "Workflow",
-        tone: "gold",
-        summary: "Key and reference decisions are still being shaped."
-      };
-    }
-    if (project.music.selectedInstruments.length) {
-      return {
-        label: "Instruments",
-        tone: "sky",
-        summary: "The arrangement palette is taking shape."
-      };
-    }
-    return {
-      label: "Setup",
-      tone: "sky",
-      summary: "Core project choices are still being framed."
-    };
-  }
-
-  function getCheckpointData(project) {
-    const workflow = store.getSongWorkflowState(project);
-    const sourceCount = workflow.sourceLibrary.sheetCount
-      + workflow.sourceLibrary.harmonyCount
-      + workflow.sourceLibrary.audioCount
-      + workflow.sourceLibrary.additionalCount;
-    const activeTodos = project.todos.filter((todo) => !todo.completed).length;
-    const totalTodos = project.todos.length;
-
-    return [
-      {
-        label: "Key",
-        value: workflow.masterKey.finalKey || workflow.masterKey.originalKey || "Pending",
-        done: workflow.masterKey.status === "done",
-        live: workflow.masterKey.status === "in-progress"
-      },
-      {
-        label: "Library",
-        value: sourceCount ? `${sourceCount} linked` : "Empty",
-        done: workflow.sourceLibrary.status === "done",
-        live: workflow.sourceLibrary.status === "in-progress"
-      },
-      {
-        label: "Instruments",
-        value: project.music.selectedInstruments.length
-          ? `${project.music.selectedInstruments.length} selected`
-          : "Pending",
-        done: project.music.selectedInstruments.length > 0,
-        live: false
-      },
-      {
-        label: "Tasks",
-        value: totalTodos ? `${activeTodos} open` : "None yet",
-        done: totalTodos > 0 && activeTodos === 0,
-        live: activeTodos > 0
-      }
-    ];
   }
 
   function renderTaskGroups(groups, completed) {
@@ -1076,111 +1189,168 @@
     `;
   }
 
-  function renderInstrumentGlyph(instrumentId) {
-    const value = String(instrumentId || "").toLowerCase();
-
-    if (value.includes("piano")) {
-      return `
-        <svg viewBox="0 0 18 18" aria-hidden="true">
-          <rect x="2.25" y="3" width="13.5" height="12" rx="1.8"></rect>
-          <path d="M5.2 3v6.2M8.2 3v6.2M11.2 3v6.2M14.2 3v6.2"></path>
-          <path d="M3.8 10.2h10.4"></path>
-        </svg>
-      `;
-    }
-
-    if (value.includes("drum")) {
-      return `
-        <svg viewBox="0 0 18 18" aria-hidden="true">
-          <ellipse cx="9" cy="6" rx="4.9" ry="2.1"></ellipse>
-          <path d="M4.1 6v5.3c0 1.3 2.2 2.4 4.9 2.4s4.9-1.1 4.9-2.4V6"></path>
-          <path d="M5.4 3 7.2 5.2M12.6 3 10.8 5.2"></path>
-        </svg>
-      `;
-    }
-
-    if (value.includes("flute") || value.includes("dizi")) {
-      return `
-        <svg viewBox="0 0 18 18" aria-hidden="true">
-          <path d="M3 11.8 15 6.2"></path>
-          <circle cx="7.2" cy="9.8" r="0.7" fill="currentColor" stroke="none"></circle>
-          <circle cx="9.4" cy="8.8" r="0.7" fill="currentColor" stroke="none"></circle>
-          <circle cx="11.6" cy="7.8" r="0.7" fill="currentColor" stroke="none"></circle>
-          <path d="M13.9 5.8 15.2 7.1"></path>
-        </svg>
-      `;
-    }
-
-    if (value.includes("voice")) {
-      return `
-        <svg viewBox="0 0 18 18" aria-hidden="true">
-          <rect x="6.4" y="2.6" width="5.2" height="8.2" rx="2.6"></rect>
-          <path d="M4.9 8.9a4.1 4.1 0 0 0 8.2 0"></path>
-          <path d="M9 13v2.4M6.6 15.4h4.8"></path>
-        </svg>
-      `;
-    }
-
-    if (value.includes("tranh") || value.includes("zither") || value.includes("guzheng")) {
-      return `
-        <svg viewBox="0 0 18 18" aria-hidden="true">
-          <path d="M3.2 11.8 14.8 6.2"></path>
-          <path d="M4.6 12.5 6 8.4M7.1 11.3 8.5 7.2M9.7 10.1 11.1 6.2"></path>
-        </svg>
-      `;
-    }
-
-    return `
-      <svg viewBox="0 0 18 18" aria-hidden="true">
-        <circle cx="9" cy="9" r="5.4"></circle>
-      </svg>
-    `;
+  function getPlanningKey(project) {
+    const workflow = store.getSongWorkflowState(project);
+    return workflow.masterKey.finalKey
+      || workflow.masterKey.priorityKeys[0]
+      || workflow.masterKey.originalKey
+      || "";
   }
 
-  function renderInstrumentBadge(instrumentId) {
-    const item = store.INSTRUMENT_LIBRARY.find((entry) => entry.id === instrumentId);
-    const label = item?.label || instrumentId;
-    return `
-      <span class="recent-instrument">
-        <span class="recent-instrument-icon">${renderInstrumentGlyph(instrumentId)}</span>
-        <span>${escapeHtml(label)}</span>
-      </span>
-    `;
+  function getPlanningChords(project) {
+    const theory = store.getKeyTheory(getPlanningKey(project));
+    if (!theory) return "Pending harmony set";
+    const progression = [theory.diatonicChords[0], theory.diatonicChords[4], theory.diatonicChords[5], theory.diatonicChords[3]]
+      .filter(Boolean);
+    return progression.join(" – ");
   }
 
-  function renderRecentProjects(projects) {
-    document.getElementById("recent-projects").innerHTML = projects.slice(0, 5).map((project) => {
-      const thumbnail = store.getThumbnail(project);
-      const stage = getStageMeta(project);
-      const selectedInstruments = (project.music.selectedInstruments || []).slice(0, 3);
-      const openTodos = project.todos.filter((todo) => !todo.completed).length;
-      const summary = project.shortDescription || stage.summary;
-      return `
-        <article class="recent-card" data-open-project="${project.id}" tabindex="0">
-          <div class="recent-media">
-            <img src="${thumbnail}" alt="${project.title}">
-            <div class="stage-badge tone-${stage.tone}">${escapeHtml(stage.label)}</div>
-          </div>
-          <div class="recent-body">
-            <div class="recent-kicker">${escapeHtml(project.category || "Project")}</div>
-            <h3 class="recent-card-title">${escapeHtml(project.title)}</h3>
-            <p class="recent-card-copy">${escapeHtml(summary)}</p>
+  function getTimelineProjects(projects) {
+    const today = new Date();
+    const start = new Date(today.getFullYear(), today.getMonth(), 1);
+    const end = new Date(today.getFullYear(), today.getMonth() + 3, 0);
+    const startValue = start.getTime();
+    const endValue = end.getTime();
 
-            <div class="recent-instruments">
-              ${selectedInstruments.length
-                ? selectedInstruments.map((instrumentId) => renderInstrumentBadge(instrumentId)).join("")
-                : `<span class="recent-instrument"><span class="recent-instrument-icon">${renderInstrumentGlyph("")}</span><span>Palette Pending</span></span>`
-              }
-            </div>
+    const upcoming = projects
+      .filter((project) => project.status !== "Released")
+      .map((project) => {
+        const deadlineValue = project.deadline
+          ? new Date(`${project.deadline}T00:00:00`).getTime()
+          : Number.POSITIVE_INFINITY;
+        return { project, deadlineValue };
+      })
+      .filter(({ deadlineValue }) => deadlineValue <= endValue)
+      .sort((left, right) => left.deadlineValue - right.deadlineValue || left.project.title.localeCompare(right.project.title))
+      .slice(0, 6)
+      .map(({ project, deadlineValue }, index, items) => {
+        const hasDate = Number.isFinite(deadlineValue);
+        const progress = hasDate && endValue > startValue
+          ? Math.min(0.9, Math.max(0.1, (deadlineValue - startValue) / (endValue - startValue)))
+          : 0.12 + ((index + 1) / (items.length + 1)) * 0.72;
+        const planningKey = getPlanningKey(project);
+        return {
+          project,
+          planningKey: planningKey || "To Be Locked",
+          chords: getPlanningChords(project),
+          xPercent: 12 + (progress * 76),
+          yPercent: index % 2 === 0 ? 34 : 71,
+          orientation: index % 2 === 0 ? "top" : "bottom"
+        };
+      });
 
-            <div class="recent-card-footer">
-              <span class="recent-card-footnote">${openTodos} ${openTodos === 1 ? "open task" : "open tasks"} · ${escapeHtml(project.status)}</span>
-              <span class="recent-card-link">Open Project</span>
-            </div>
+    return upcoming;
+  }
+
+  function getTimelineMonths() {
+    const base = new Date();
+    return Array.from({ length: 3 }, (_, index) => {
+      const monthDate = new Date(base.getFullYear(), base.getMonth() + index, 1);
+      return {
+        label: monthDate.toLocaleDateString("en-US", { month: "long" }),
+        sub: monthDate.toLocaleDateString("en-US", { year: "numeric" })
+      };
+    });
+  }
+
+  function buildTimelinePath(items) {
+    if (!items.length) {
+      return "M 100 210 C 320 210 880 210 1100 210";
+    }
+
+    const points = items.map((item) => ({
+      x: (item.xPercent / 100) * 1200,
+      y: (item.yPercent / 100) * 440
+    }));
+
+    let path = `M ${Math.max(70, points[0].x - 120)} ${points[0].y}`;
+    for (let index = 0; index < points.length; index += 1) {
+      const current = points[index];
+      const next = points[index + 1];
+      if (!next) {
+        path += ` L ${Math.min(1130, current.x + 120)} ${current.y}`;
+        break;
+      }
+      const controlX = (current.x + next.x) / 2;
+      path += ` C ${controlX} ${current.y}, ${controlX} ${next.y}, ${next.x} ${next.y}`;
+    }
+    return path;
+  }
+
+  function renderUpcomingTimeline(projects) {
+    const timelineProjects = getTimelineProjects(projects);
+    const months = getTimelineMonths();
+    document.getElementById("timeline-meta").textContent = `${timelineProjects.length} songs in the next 3 months`;
+
+    if (!timelineProjects.length) {
+      document.getElementById("upcoming-timeline").innerHTML = `
+        <div class="timeline-hero">
+          <div class="timeline-hero-copy">
+            <div class="timeline-kicker">Planning Horizon</div>
+            <div class="timeline-title">Three-month song roadmap</div>
+            <div class="timeline-copy">As upcoming songs are scheduled, they will appear here as a clean planning infographic with the final key and matching harmony set.</div>
           </div>
-        </article>
+        </div>
+        <div class="timeline-empty">No upcoming songs are scheduled in the next three months yet.</div>
       `;
-    }).join("");
+      return;
+    }
+
+    const path = buildTimelinePath(timelineProjects);
+    document.getElementById("upcoming-timeline").innerHTML = `
+      <div class="timeline-hero">
+        <div class="timeline-hero-copy">
+          <div class="timeline-kicker">Planning Horizon</div>
+          <div class="timeline-title">Three-month song roadmap</div>
+          <div class="timeline-copy">A forward-looking release planning view shaped as one clean musical path, so the next songs read as a single elegant plan instead of a dashboard card grid.</div>
+        </div>
+        <div class="timeline-window">
+          <strong>${timelineProjects.length}</strong>
+          <span>Upcoming Songs</span>
+        </div>
+      </div>
+
+      <div class="timeline-months">
+        ${months.map((month) => `
+          <div class="timeline-month">
+            <span class="timeline-month-label">${escapeHtml(month.label)}</span>
+            <span class="timeline-month-sub">${escapeHtml(month.sub)}</span>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="timeline-shell">
+        <svg class="timeline-path" viewBox="0 0 1200 440" preserveAspectRatio="none" aria-hidden="true">
+          <path class="timeline-path-shadow" d="${path}"></path>
+          <path class="timeline-path-glow" d="${path}"></path>
+          <path class="timeline-path-line" d="${path}"></path>
+        </svg>
+
+        ${timelineProjects.map((item, index) => `
+          <div
+            class="timeline-milestone is-${item.orientation}"
+            style="left:${item.xPercent}%;top:${item.yPercent}%;">
+            <article class="timeline-song-card">
+              <strong class="timeline-song-title">${escapeHtml(item.project.title)}</strong>
+              <div class="timeline-key-line">
+                <span class="timeline-label">Final Key</span>
+                <span class="timeline-value">${escapeHtml(item.planningKey)}</span>
+              </div>
+              <div class="timeline-chords-line">
+                <span class="timeline-label">Chords</span>
+                <span class="timeline-chords">${escapeHtml(item.chords)}</span>
+              </div>
+            </article>
+            <button class="timeline-point" type="button" data-open-project="${item.project.id}" aria-label="Open ${escapeHtml(item.project.title)}"></button>
+            <span class="timeline-note" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 3v6.2a1.9 1.9 0 1 1-1.1-1.7V4.4l5-1.2V8a1.9 1.9 0 1 1-1.1-1.7V4.1L5 4.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        `).join("")}
+      </div>
+    `;
   }
 
   function renderCreativeLibrary(projects) {
@@ -1259,7 +1429,7 @@
 
   function renderDashboard() {
     const projects = store.getProjects();
-    renderRecentProjects(projects);
+    renderUpcomingTimeline(projects);
     renderTodoHub();
     renderCreativeLibrary(projects);
   }
@@ -1282,11 +1452,11 @@
   });
 
   document.addEventListener("keydown", (event) => {
-    const card = event.target.closest(".recent-card[data-open-project]");
-    if (!card) return;
+    const point = event.target.closest(".timeline-point[data-open-project]");
+    if (!point) return;
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      openProject(card.getAttribute("data-open-project"));
+      openProject(point.getAttribute("data-open-project"));
     }
   });
 
