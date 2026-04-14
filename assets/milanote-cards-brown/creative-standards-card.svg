@@ -1,0 +1,72 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="100" x2="1490" y2="1510" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A17A61"/>
+      <stop offset="0.42" stop-color="#775746"/>
+      <stop offset="0.78" stop-color="#584033"/>
+      <stop offset="1" stop-color="#3B2B21"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 860) rotate(90) scale(340 340)">
+      <stop offset="0" stop-color="#F8E0B8" stop-opacity="0.64"/>
+      <stop offset="0.4" stop-color="#D0A065" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="238" y1="136" x2="1332" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4D8A6"/>
+      <stop offset="0.24" stop-color="#BA8443"/>
+      <stop offset="0.54" stop-color="#F0D7AA"/>
+      <stop offset="0.78" stop-color="#9C692E"/>
+      <stop offset="1" stop-color="#E8C58B"/>
+    </linearGradient>
+    <filter id="blur" x="262" y="334" width="1076" height="1048" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="38"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#glow)"/>
+  <rect x="84" y="84" width="1432" height="1432" rx="56" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="106" y="106" width="1388" height="1388" rx="40" stroke="#FFF7EC" stroke-opacity="0.12" stroke-width="1"/>
+
+  <g transform="translate(146 136)">
+    <rect x="0" y="0" width="318" height="74" rx="26" fill="#6B5342" fill-opacity="0.30" stroke="#F0D9B0" stroke-opacity="0.24" stroke-width="1.2"/>
+    <text x="34" y="33" fill="url(#gold)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="0.14em">THE FLUTIANO</text>
+    <text x="34" y="56" fill="#F1E2CE" fill-opacity="0.72" font-family="Manrope, Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.22em">CREATIVE SYSTEM</text>
+  </g>
+
+  <text x="800" y="250" text-anchor="middle" fill="url(#gold)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="62" font-weight="700" letter-spacing="0.10em">CREATIVE STANDARDS</text>
+
+  <g filter="url(#blur)" opacity="0.52">
+    <circle cx="800" cy="860" r="188" fill="#D5AE74"/>
+  </g>
+
+  <g transform="translate(800 860)">
+    <rect x="-146" y="-170" width="292" height="340" rx="42" stroke="#E8C88D" stroke-opacity="0.18" stroke-width="1.8"/>
+    <rect x="-104" y="-124" width="208" height="248" rx="30" stroke="#E8C88D" stroke-opacity="0.12" stroke-width="1.4"/>
+    <circle r="104" stroke="#E8C88D" stroke-opacity="0.40" stroke-width="2"/>
+    <circle r="156" stroke="#E8C88D" stroke-opacity="0.16" stroke-width="1.4"/>
+
+    <path d="M0 -232V-142" stroke="#E8C88D" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round"/>
+    <path d="M232 0H142" stroke="#E8C88D" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round"/>
+    <path d="M0 232V142" stroke="#E8C88D" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-232 0H-142" stroke="#E8C88D" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="-18" y="-146" width="36" height="82" rx="14" fill="url(#gold)"/>
+    <rect x="146" y="-18" width="82" height="36" rx="14" fill="url(#gold)"/>
+    <rect x="-18" y="64" width="36" height="82" rx="14" fill="url(#gold)"/>
+    <rect x="-228" y="-18" width="82" height="36" rx="14" fill="url(#gold)"/>
+
+    <rect x="-96" y="-254" width="192" height="72" rx="24" fill="#E8C88D" fill-opacity="0.10" stroke="#E8C88D" stroke-opacity="0.18" stroke-width="1.4"/>
+    <rect x="158" y="-36" width="170" height="72" rx="24" fill="#E8C88D" fill-opacity="0.10" stroke="#E8C88D" stroke-opacity="0.18" stroke-width="1.4"/>
+    <rect x="-104" y="182" width="208" height="72" rx="24" fill="#E8C88D" fill-opacity="0.10" stroke="#E8C88D" stroke-opacity="0.18" stroke-width="1.4"/>
+    <rect x="-328" y="-36" width="170" height="72" rx="24" fill="#E8C88D" fill-opacity="0.10" stroke="#E8C88D" stroke-opacity="0.18" stroke-width="1.4"/>
+
+    <path d="M0 -36L12 -2L0 52L-12 -2L0 -36Z" fill="url(#gold)"/>
+    <circle r="12" fill="#0F0A08"/>
+  </g>
+
+  <text x="800" y="522" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="0.12em">CONCEPT</text>
+  <text x="1180" y="874" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="0.12em">WORLD</text>
+  <text x="800" y="1248" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="0.12em">PURPOSE</text>
+  <text x="420" y="874" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="0.12em">EMOTION</text>
+</svg>

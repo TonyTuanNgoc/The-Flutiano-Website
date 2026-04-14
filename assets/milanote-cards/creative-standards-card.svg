@@ -1,0 +1,74 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="200" y1="132" x2="1440" y2="1518" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0F18"/>
+      <stop offset="0.46" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="246" y1="164" x2="1344" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3D8A6"/>
+      <stop offset="0.22" stop-color="#B78343"/>
+      <stop offset="0.5" stop-color="#F0D8AE"/>
+      <stop offset="0.74" stop-color="#A37237"/>
+      <stop offset="1" stop-color="#E7C48A"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 770) rotate(90) scale(330 330)">
+      <stop offset="0" stop-color="#E1BE83" stop-opacity="0.28"/>
+      <stop offset="0.46" stop-color="#A7793D" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="352" y="356" width="900" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.58"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="114" y="114" width="1372" height="1372" rx="44" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <text x="800" y="176" text-anchor="middle" fill="#E5C38A" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="0.14em">CREATIVE STANDARDS</text>
+
+  <g filter="url(#blur)" opacity="0.42">
+    <circle cx="800" cy="770" r="206" fill="#D4AE73"/>
+  </g>
+
+  <rect x="416" y="494" width="768" height="552" rx="42" stroke="rgba(231,196,138,0.22)" stroke-width="1.6"/>
+  <rect x="490" y="570" width="620" height="400" rx="30" stroke="rgba(231,196,138,0.12)" stroke-width="1.4"/>
+  <path d="M800 494V322" stroke="rgba(231,196,138,0.24)" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M1184 770H1358" stroke="rgba(231,196,138,0.24)" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M800 1046V1218" stroke="rgba(231,196,138,0.24)" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M416 770H242" stroke="rgba(231,196,138,0.24)" stroke-width="1.6" stroke-linecap="round"/>
+
+  <g transform="translate(800 770)">
+    <circle r="128" stroke="url(#gold)" stroke-width="2.2"/>
+    <circle r="84" stroke="rgba(231,196,138,0.22)" stroke-width="1.4"/>
+    <circle r="20" fill="url(#gold)"/>
+    <circle r="8" fill="#091018"/>
+    <path d="M0 -58L14 -12L0 58L-14 -12L0 -58Z" fill="url(#gold)"/>
+  </g>
+
+  <g>
+    <rect x="716" y="352" width="168" height="104" rx="24" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+    <rect x="1142" y="718" width="168" height="104" rx="24" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+    <rect x="716" y="1084" width="168" height="104" rx="24" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+    <rect x="290" y="718" width="168" height="104" rx="24" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+
+    <rect x="786" y="456" width="28" height="86" rx="14" fill="url(#gold)"/>
+    <rect x="1096" y="756" width="86" height="28" rx="14" fill="url(#gold)"/>
+    <rect x="786" y="998" width="28" height="86" rx="14" fill="url(#gold)"/>
+    <rect x="418" y="756" width="86" height="28" rx="14" fill="url(#gold)"/>
+  </g>
+
+  <text x="800" y="416" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="36" font-weight="600" letter-spacing="0.08em">CONCEPT</text>
+  <text x="1226" y="782" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="36" font-weight="600" letter-spacing="0.08em">WORLD</text>
+  <text x="800" y="1148" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="36" font-weight="600" letter-spacing="0.08em">PURPOSE</text>
+  <text x="374" y="782" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="36" font-weight="600" letter-spacing="0.08em">EMOTION</text>
+
+  <text x="800" y="1332" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.18em">4-PILLAR QUALITY GATE</text>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

@@ -1,0 +1,82 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="120" x2="1450" y2="1510" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0F18"/>
+      <stop offset="0.45" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 746) rotate(90) scale(330 330)">
+      <stop offset="0" stop-color="#E2BF84" stop-opacity="0.34"/>
+      <stop offset="0.45" stop-color="#A7793D" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ambient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 300) rotate(90) scale(520 720)">
+      <stop offset="0" stop-color="#E8C88E" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="242" y1="160" x2="1352" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3D8A6"/>
+      <stop offset="0.22" stop-color="#B78343"/>
+      <stop offset="0.5" stop-color="#F0D8AE"/>
+      <stop offset="0.74" stop-color="#A37237"/>
+      <stop offset="1" stop-color="#E7C48A"/>
+    </linearGradient>
+    <filter id="blur" x="372" y="320" width="856" height="856" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.56"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#ambient)"/>
+
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="114" y="114" width="1372" height="1372" rx="44" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <text x="800" y="176" text-anchor="middle" fill="#E5C38A" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="0.16em">BRAND ESSENCE</text>
+
+  <g filter="url(#blur)" opacity="0.48">
+    <circle cx="800" cy="742" r="210" fill="#D6AF74"/>
+  </g>
+
+  <g transform="translate(800 742)">
+    <circle r="232" stroke="rgba(231,196,138,0.22)" stroke-width="1.6"/>
+    <circle r="162" stroke="rgba(231,196,138,0.18)" stroke-width="1.4"/>
+    <circle r="94" stroke="rgba(231,196,138,0.16)" stroke-width="1.2"/>
+    <circle r="14" fill="url(#gold)"/>
+    <circle r="5" fill="#091018"/>
+
+    <path d="M0 -196L28 -36L0 196L-28 -36L0 -196Z" fill="url(#gold)"/>
+    <path d="M0 -130L14 -18L0 98L-14 -18L0 -130Z" fill="#05090E"/>
+    <path d="M-168 0H-116" stroke="rgba(231,196,138,0.48)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M116 0H168" stroke="rgba(231,196,138,0.48)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M0 -168V-116" stroke="rgba(231,196,138,0.48)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M0 116V168" stroke="rgba(231,196,138,0.48)" stroke-width="1.8" stroke-linecap="round"/>
+
+    <rect x="-42" y="-22" width="10" height="44" rx="4" fill="rgba(231,196,138,0.88)"/>
+    <rect x="-28" y="-30" width="10" height="60" rx="4" fill="rgba(231,196,138,0.62)"/>
+    <rect x="-14" y="-18" width="10" height="36" rx="4" fill="rgba(231,196,138,0.42)"/>
+
+    <circle cx="0" cy="-232" r="15" fill="url(#gold)"/>
+    <circle cx="232" cy="0" r="15" fill="url(#gold)"/>
+    <circle cx="0" cy="232" r="15" fill="url(#gold)"/>
+    <circle cx="-232" cy="0" r="15" fill="url(#gold)"/>
+
+    <circle cx="0" cy="-232" r="34" stroke="rgba(231,196,138,0.22)" stroke-width="1.6"/>
+    <circle cx="232" cy="0" r="34" stroke="rgba(231,196,138,0.22)" stroke-width="1.6"/>
+    <circle cx="0" cy="232" r="34" stroke="rgba(231,196,138,0.22)" stroke-width="1.6"/>
+    <circle cx="-232" cy="0" r="34" stroke="rgba(231,196,138,0.22)" stroke-width="1.6"/>
+  </g>
+
+  <text x="800" y="504" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.18em">FLUTE + PIANO</text>
+  <text x="1112" y="750" text-anchor="start" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.16em">CINEMATIC</text>
+  <text x="800" y="1084" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.16em">EMOTIONAL</text>
+  <text x="488" y="750" text-anchor="end" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.16em">REFINED</text>
+
+  <text x="800" y="1320" text-anchor="middle" fill="url(#gold)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="68" font-weight="600" letter-spacing="0.16em">THE FLUTIANO</text>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

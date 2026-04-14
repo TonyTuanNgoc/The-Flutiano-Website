@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Flutiano — Step 1</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 34px 38px 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .hero-card,
+  .panel,
+  .theory-card {
+    background: linear-gradient(180deg, rgba(17,22,29,0.48) 0%, rgba(10,14,20,0.30) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--r);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow:
+      0 18px 52px rgba(4,7,12,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .hero-card,
+  .panel {
+    padding: 28px 30px;
+  }
+
+  .hero-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.40);
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .hero-title,
+  .panel-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    color: #FFFFFF;
+  }
+
+  .hero-title {
+    font-size: 34px;
+    line-height: 1.04;
+    letter-spacing: -0.05em;
+    font-weight: 600;
+  }
+
+  .hero-sub {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--t2);
+    max-width: 720px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .back-btn,
+  .ghost-btn,
+  .save-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 12px;
+    font-weight: 800;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
+    cursor: pointer;
+  }
+
+  .back-btn,
+  .ghost-btn {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.72);
+  }
+
+  .back-btn:hover,
+  .ghost-btn:hover {
+    transform: translateY(-1px);
+    color: #FFFFFF;
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .save-btn {
+    background: rgba(212,170,106,0.16);
+    border-color: rgba(212,170,106,0.26);
+    color: var(--gold-hi);
+  }
+
+  .save-btn:hover {
+    transform: translateY(-1px);
+    background: rgba(212,170,106,0.20);
+    border-color: rgba(212,170,106,0.34);
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .panel-title {
+    font-size: 24px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+  }
+
+  .transpose-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(212,170,106,0.22);
+    background: rgba(212,170,106,0.12);
+    color: var(--gold-hi);
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  .controls-grid,
+  .theory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field label {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    font-weight: 800;
+  }
+
+  .select-wrap {
+    position: relative;
+  }
+
+  .select {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 42px 0 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: #FFFFFF;
+    font: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .select:focus {
+    outline: none;
+    border-color: rgba(212,170,106,0.30);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .select-wrap::after {
+    content: "";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid rgba(255,255,255,0.56);
+    border-bottom: 1.5px solid rgba(255,255,255,0.56);
+    transform: translateY(-60%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .select option {
+    background: #14181f;
+    color: #FFFFFF;
+  }
+
+  .chip-picker,
+  .chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .chip-option,
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.05);
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.14s, border-color 0.14s, background 0.14s;
+  }
+
+  .chip-option:hover,
+  .chip-option.active {
+    transform: translateY(-1px);
+    border-color: rgba(212,170,106,0.24);
+    background: rgba(212,170,106,0.12);
+  }
+
+  .theory-card {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .theory-card.is-final {
+    border-color: rgba(212,170,106,0.24);
+    background: linear-gradient(180deg, rgba(212,170,106,0.10) 0%, rgba(10,14,20,0.36) 100%);
+  }
+
+  .theory-kicker {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    font-weight: 800;
+  }
+
+  .theory-key {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 28px;
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  .theory-line {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .theory-line span {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.34);
+    font-weight: 800;
+  }
+
+  .theory-line strong,
+  .empty-state {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--t2);
+    font-weight: 600;
+  }
+
+  .action-row {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 1180px) {
+    .controls-grid,
+    .theory-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .content {
+      padding: 24px 20px 36px;
+    }
+
+    .hero-card,
+    .panel,
+    .theory-card {
+      padding: 22px 20px;
+    }
+
+    .hero-card,
+    .panel-head,
+    .hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-title {
+      font-size: 28px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-art" aria-hidden="true"></div>
+
+<aside class="sidebar">
+  <a class="brand-block" href="dashboard.html">
+    <div class="brand-mark">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 15 Q4 9 8 7 Q10 6 12 6.5 L14 4 Q15 3 15.5 4 Q16 5 15 5.5 L13.2 7.3 Q13.8 9 13 11 Q12 13.5 9 14.5 Q6 15.5 3 15 Z" stroke="#D4AA6A" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+          <circle cx="10.5" cy="9.5" r="1" fill="#D4AA6A" opacity="0.7"/>
+          <circle cx="8.5" cy="11.5" r="0.7" fill="#D4AA6A" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="brand-name">The Flutiano</div>
+    </div>
+    <div class="brand-sub">Creative System</div>
+  </a>
+
+  <div class="nav-scroll">
+    <div class="nav-section-label">Main</div>
+    <a class="nav-item" href="dashboard.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor"/>
+        <rect x="8.5" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="1" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+      </svg>
+      Dashboard
+    </a>
+    <a class="nav-item active" href="projects.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M1.5 3.5h12M1.5 7.5h9M1.5 11.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Projects
+      <span class="badge">5</span>
+    </a>
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <circle cx="3" cy="7.5" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="7.5" cy="3" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="12" cy="7.5" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="7.5" cy="12" r="1.8" fill="currentColor" opacity="0.7"/>
+        <path d="M4.7 6.5L6.3 4.2M10.8 6.5L9.2 4.2M10.8 8.5L9.2 10.8M4.7 8.5L6.3 10.8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      </svg>
+      Workflow
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Create</div>
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M5 11V4l8-2v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="3.5" cy="11" r="2" fill="currentColor" opacity="0.7"/>
+        <circle cx="11.5" cy="9" r="2" fill="currentColor" opacity="0.7"/>
+      </svg>
+      Practice
+    </a>
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="4" width="13" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="7.5" cy="8.5" r="2.3" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5.5 4l1-1.5h3L10.5 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      Shoots
+    </a>
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M7.5 1.5L10 6H13.5L11 9l1 4.5-4.5-2.5L3 13.5l1-4.5L1.5 6H5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      Releases
+      <span class="badge">1</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Manage</div>
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1.5" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="6" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="10.5" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+      </svg>
+      Library
+    </a>
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="3.5" width="13" height="2.5" rx="1" fill="currentColor" opacity="0.6"/>
+        <path d="M2 6v6.5a1 1 0 001 1h9a1 1 0 001-1V6" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5.5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      Archive
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="avatar">F</div>
+    <div class="user-info">
+      <div class="user-name">Flutiano</div>
+      <div class="user-role">Artist &amp; Producer</div>
+    </div>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <circle cx="6" cy="2.5" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="6" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="9.5" r="1" fill="rgba(255,255,255,0.28)"/>
+    </svg>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <div class="topbar">
+    <span class="page-title">Workflow</span>
+    <div class="topbar-spacer"></div>
+  </div>
+
+  <div class="content" id="step-one-root"></div>
+</div>
+
+<script src="project-store.js"></script>
+<script>
+  const store = window.FlutianoProjectStore;
+  const DEFAULT_PRIORITY_KEYS = ["C major", "F major", "G major", "A major"];
+  const state = {
+    project: null,
+    priorityKeys: []
+  };
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function buildKeyOptions(selected) {
+    return [`<option value="">Select a key</option>`]
+      .concat(store.KEY_OPTIONS.map((keyName) => `
+        <option value="${keyName}" ${selected === keyName ? "selected" : ""}>${keyName}</option>
+      `))
+      .join("");
+  }
+
+  function getPriorityPool(project) {
+    const workflow = store.getSongWorkflowState(project);
+    return Array.from(new Set(
+      DEFAULT_PRIORITY_KEYS
+        .concat(workflow.masterKey.priorityKeys || [])
+        .concat([workflow.masterKey.originalKey, workflow.masterKey.finalKey])
+        .filter(Boolean)
+    ));
+  }
+
+  function renderPriorityPicker(project) {
+    return getPriorityPool(project).map((keyName) => `
+      <button
+        class="chip-option ${state.priorityKeys.includes(keyName) ? "active" : ""}"
+        type="button"
+        data-priority-key="${keyName}"
+      >
+        ${escapeHtml(keyName)}
+      </button>
+    `).join("");
+  }
+
+  function renderTheoryCard(label, keyName, isFinal) {
+    const theory = store.getKeyTheory(keyName);
+    if (!theory) {
+      return `
+        <article class="theory-card ${isFinal ? "is-final" : ""}">
+          <div class="theory-kicker">${escapeHtml(label)}</div>
+          <div class="theory-key">Not set</div>
+          <div class="empty-state">Choose a key to reveal its scale notes, primary chords, and full diatonic family.</div>
+        </article>
+      `;
+    }
+
+    return `
+      <article class="theory-card ${isFinal ? "is-final" : ""}">
+        <div class="theory-kicker">${escapeHtml(label)}</div>
+        <div class="theory-key">${escapeHtml(theory.keyName)}</div>
+        <div class="theory-line">
+          <span>Scale Tones</span>
+          <strong>${escapeHtml(theory.scaleNotes.join(" · "))}</strong>
+        </div>
+        <div class="theory-line">
+          <span>Primary Chords</span>
+          <strong>${escapeHtml(theory.primaryChords.join(" · "))}</strong>
+        </div>
+        <div class="theory-line">
+          <span>Diatonic Family</span>
+          <div class="chip-list">${theory.diatonicChords.map((chord) => `<span class="chip">${escapeHtml(chord)}</span>`).join("")}</div>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderPage(project) {
+    const workflow = store.getSongWorkflowState(project);
+    const transpose = store.getKeyShiftDescription(
+      workflow.masterKey.originalKey,
+      workflow.masterKey.finalKey
+    );
+
+    return `
+      <section class="hero-card">
+        <div>
+          <div class="eyebrow">Project Workflow</div>
+          <h1 class="hero-title">Step 1 — Lock Master Key</h1>
+          <p class="hero-sub">${escapeHtml(project.title)}</p>
+        </div>
+        <div class="hero-actions">
+          <a class="back-btn" href="${store.getDetailUrl(project.id)}">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M10 6H2M6 2L2 6l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to Project
+          </a>
+          <a class="ghost-btn" href="${store.getEditUrl(project.id, "workflow-step-1")}">Open Edit</a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Key Decision</div>
+          <div class="transpose-pill">Transpose: ${escapeHtml(transpose)}</div>
+        </div>
+        <div class="controls-grid">
+          <div class="field">
+            <label for="originalKey">Original Key</label>
+            <div class="select-wrap">
+              <select class="select" id="originalKey">${buildKeyOptions(workflow.masterKey.originalKey)}</select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="finalKey">Final Key</label>
+            <div class="select-wrap">
+              <select class="select" id="finalKey">${buildKeyOptions(workflow.masterKey.finalKey)}</select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Priority Keys</label>
+          <div class="chip-picker" id="priority-picker">${renderPriorityPicker(project)}</div>
+        </div>
+        <div class="action-row">
+          <button class="save-btn" type="button" id="save-step-one">Save Step 1</button>
+        </div>
+      </section>
+
+      <section class="theory-grid">
+        ${renderTheoryCard("Original Key", workflow.masterKey.originalKey, false)}
+        ${renderTheoryCard("Final Key", workflow.masterKey.finalKey, true)}
+      </section>
+    `;
+  }
+
+  function saveStepOne() {
+    const originalKey = document.getElementById("originalKey").value;
+    const finalKey = document.getElementById("finalKey").value;
+    const saved = store.upsertProject({
+      ...state.project,
+      songWorkflow: {
+        ...state.project.songWorkflow,
+        masterKey: {
+          ...state.project.songWorkflow.masterKey,
+          originalKey,
+          priorityKeys: state.priorityKeys.slice(),
+          finalKey
+        },
+        sourceLibrary: {
+          ...state.project.songWorkflow.sourceLibrary
+        }
+      }
+    });
+    state.project = saved;
+    render();
+  }
+
+  function bindEvents() {
+    document.getElementById("originalKey").addEventListener("change", saveStepOne);
+    document.getElementById("finalKey").addEventListener("change", saveStepOne);
+    document.getElementById("priority-picker").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-priority-key]");
+      if (!button) return;
+      const keyName = button.getAttribute("data-priority-key");
+      if (state.priorityKeys.includes(keyName)) {
+        state.priorityKeys = state.priorityKeys.filter((item) => item !== keyName);
+      } else {
+        state.priorityKeys = state.priorityKeys.concat(keyName);
+      }
+      saveStepOne();
+    });
+    document.getElementById("save-step-one").addEventListener("click", saveStepOne);
+  }
+
+  function render() {
+    const root = document.getElementById("step-one-root");
+    if (!state.project) {
+      root.innerHTML = `<section class="panel"><div class="panel-title">Project not found</div><div class="empty-state">Return to Projects and open a valid item.</div></section>`;
+      return;
+    }
+    root.innerHTML = renderPage(state.project);
+    bindEvents();
+  }
+
+  function initPage() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("project");
+    const project = store.getProject(id) || (!id ? store.getDefaultProject() : null);
+    if (!project) {
+      render();
+      return;
+    }
+    state.project = project;
+    state.priorityKeys = project.songWorkflow.masterKey.priorityKeys.length
+      ? project.songWorkflow.masterKey.priorityKeys.slice()
+      : DEFAULT_PRIORITY_KEYS.slice();
+    document.title = `The Flutiano — ${project.title} Step 1`;
+    render();
+  }
+
+  initPage();
+</script>
+</body>
+</html>

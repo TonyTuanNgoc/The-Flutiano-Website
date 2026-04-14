@@ -1,0 +1,98 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="180" y1="120" x2="1440" y2="1520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1018"/>
+      <stop offset="0.46" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <radialGradient id="topGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 338) rotate(90) scale(500 680)">
+      <stop offset="0" stop-color="#F2D6A4" stop-opacity="0.18"/>
+      <stop offset="0.36" stop-color="#C59554" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lowerGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 1140) rotate(90) scale(600 820)">
+      <stop offset="0" stop-color="#0F2031" stop-opacity="0.34"/>
+      <stop offset="0.42" stop-color="#0A1320" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldLine" x1="286" y1="214" x2="1330" y2="1392" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F0D5A0"/>
+      <stop offset="0.24" stop-color="#C69756"/>
+      <stop offset="0.52" stop-color="#F2DBAE"/>
+      <stop offset="0.76" stop-color="#A97738"/>
+      <stop offset="1" stop-color="#E9C98F"/>
+    </linearGradient>
+    <filter id="softBlur" x="270" y="410" width="1060" height="860" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+    <filter id="noise" x="0" y="0" width="1600" height="1600" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" stitchTiles="stitch" seed="19"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0
+                                           0 1 0 0 0
+                                           0 0 1 0 0
+                                           0 0 0 0.14 0"/>
+    </filter>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.58"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bgGradient)"/>
+  <rect width="1600" height="1600" fill="url(#topGlow)"/>
+  <rect width="1600" height="1600" fill="url(#lowerGlow)"/>
+  <g opacity="0.16" filter="url(#noise)">
+    <rect width="1600" height="1600" fill="#FFFFFF"/>
+  </g>
+
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#goldLine)" stroke-width="2"/>
+  <rect x="112" y="112" width="1376" height="1376" rx="44" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <text x="800" y="254" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="0.12em">STRONG CANDIDATE</text>
+
+  <g filter="url(#softBlur)" opacity="0.82">
+    <circle cx="800" cy="796" r="176" fill="#D8AF72"/>
+    <circle cx="1012" cy="686" r="56" fill="#E8C88E"/>
+    <circle cx="588" cy="904" r="42" fill="#A87A3A"/>
+  </g>
+
+  <g opacity="0.26">
+    <path d="M434 980C536 950 620 902 682 852C742 806 770 776 800 796C842 824 866 810 940 736C1000 676 1060 610 1148 540" stroke="rgba(233,201,143,0.24)" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M536 620C622 688 684 718 736 730" stroke="rgba(233,201,143,0.20)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#A5AFBB" opacity="0.52">
+    <circle cx="424" cy="972" r="8"/>
+    <circle cx="510" cy="730" r="8"/>
+    <circle cx="622" cy="620" r="9"/>
+    <circle cx="1082" cy="556" r="8"/>
+    <circle cx="1188" cy="742" r="8"/>
+    <circle cx="1024" cy="1038" r="8"/>
+  </g>
+
+  <g transform="translate(800 796)">
+    <circle r="148" stroke="rgba(233,201,143,0.34)" stroke-width="2"/>
+    <circle r="94" stroke="rgba(233,201,143,0.26)" stroke-width="1.6"/>
+    <circle r="28" fill="url(#goldLine)"/>
+    <circle r="8" fill="#071018"/>
+    <path d="M0 -194V-114" stroke="rgba(233,201,143,0.34)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M194 0H114" stroke="rgba(233,201,143,0.34)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M0 194V114" stroke="rgba(233,201,143,0.34)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-194 0H-114" stroke="rgba(233,201,143,0.34)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-124 -124L-56 -56" stroke="rgba(233,201,143,0.18)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M124 -124L56 -56" stroke="rgba(233,201,143,0.18)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M-124 124L-56 56" stroke="rgba(233,201,143,0.18)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M124 124L56 56" stroke="rgba(233,201,143,0.18)" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <path d="M588 904L800 796L1012 686" stroke="url(#goldLine)" stroke-width="4.2" stroke-linecap="round"/>
+  <circle cx="1012" cy="686" r="16" fill="url(#goldLine)"/>
+  <circle cx="588" cy="904" r="12" fill="rgba(233,201,143,0.54)"/>
+
+  <g transform="translate(800 1242)">
+    <rect x="-164" y="-34" width="328" height="68" rx="24" fill="rgba(8,11,17,0.40)" stroke="rgba(233,201,143,0.14)" stroke-width="1.2"/>
+    <text x="0" y="12" text-anchor="middle" fill="#E9C98E" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0.16em">RISING ABOVE THE FIELD</text>
+  </g>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

@@ -1,0 +1,66 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="100" x2="1490" y2="1510" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A17B62"/>
+      <stop offset="0.42" stop-color="#775847"/>
+      <stop offset="0.78" stop-color="#583F32"/>
+      <stop offset="1" stop-color="#3B2A21"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 920) rotate(90) scale(360 360)">
+      <stop offset="0" stop-color="#F8E0B8" stop-opacity="0.62"/>
+      <stop offset="0.4" stop-color="#D0A065" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="238" y1="136" x2="1332" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4D8A6"/>
+      <stop offset="0.24" stop-color="#BA8443"/>
+      <stop offset="0.54" stop-color="#F0D7AA"/>
+      <stop offset="0.78" stop-color="#9C692E"/>
+      <stop offset="1" stop-color="#E8C58B"/>
+    </linearGradient>
+    <filter id="blur" x="242" y="452" width="1116" height="948" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="42"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#glow)"/>
+  <rect x="84" y="84" width="1432" height="1432" rx="56" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="106" y="106" width="1388" height="1388" rx="40" stroke="#FFF7EC" stroke-opacity="0.12" stroke-width="1"/>
+
+  <g transform="translate(146 136)">
+    <rect x="0" y="0" width="318" height="74" rx="26" fill="#6B5342" fill-opacity="0.30" stroke="#F0D9B0" stroke-opacity="0.24" stroke-width="1.2"/>
+    <text x="34" y="33" fill="url(#gold)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="0.14em">THE FLUTIANO</text>
+    <text x="34" y="56" fill="#F1E2CE" fill-opacity="0.72" font-family="Manrope, Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.22em">CREATIVE SYSTEM</text>
+  </g>
+
+  <text x="800" y="250" text-anchor="middle" fill="url(#gold)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="0.11em">WHAT FITS</text>
+  <text x="800" y="312" text-anchor="middle" fill="#F0E1CC" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0.20em">THE FLUTIANO</text>
+
+  <g filter="url(#blur)" opacity="0.54">
+    <ellipse cx="800" cy="950" rx="236" ry="184" fill="#D3A96E"/>
+  </g>
+
+  <g transform="translate(800 930)">
+    <circle cx="-198" cy="-246" r="22" fill="#E8C88D" fill-opacity="0.18" stroke="#E8C88D" stroke-opacity="0.30" stroke-width="1.6"/>
+    <circle cx="0" cy="-286" r="22" fill="#E8C88D" fill-opacity="0.18" stroke="#E8C88D" stroke-opacity="0.30" stroke-width="1.6"/>
+    <circle cx="198" cy="-246" r="22" fill="#E8C88D" fill-opacity="0.18" stroke="#E8C88D" stroke-opacity="0.30" stroke-width="1.6"/>
+
+    <path d="M-198 -224C-176 -104 -126 -24 -42 62" stroke="#E8C88D" stroke-opacity="0.40" stroke-width="5" stroke-linecap="round"/>
+    <path d="M0 -264C0 -140 0 -28 0 76" stroke="#E8C88D" stroke-opacity="0.40" stroke-width="5" stroke-linecap="round"/>
+    <path d="M198 -224C176 -104 126 -24 42 62" stroke="#E8C88D" stroke-opacity="0.40" stroke-width="5" stroke-linecap="round"/>
+
+    <path d="M-130 102L0 246L130 102" stroke="url(#gold)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-204 196L0 372L204 196" stroke="#E8C88D" stroke-opacity="0.22" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-90 102H90" stroke="#E8C88D" stroke-opacity="0.16" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="-138" y="378" width="276" height="96" rx="28" fill="#E8C88D" fill-opacity="0.10" stroke="#E8C88D" stroke-opacity="0.18" stroke-width="1.6"/>
+    <circle cx="-28" cy="426" r="18" fill="url(#gold)"/>
+    <path d="M-36 426L-29 434L-15 418" stroke="#120C09" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="40" y="442" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="0.06em">INTENTIONAL</text>
+  </g>
+
+  <text x="320" y="1400" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="0.08em">EMOTIONAL</text>
+  <text x="636" y="1400" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="0.08em">ELEGANT</text>
+  <text x="968" y="1400" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="0.08em">CINEMATIC</text>
+</svg>

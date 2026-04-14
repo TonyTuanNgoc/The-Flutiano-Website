@@ -1,0 +1,119 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="160" y1="110" x2="1450" y2="1510" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0D111A"/>
+      <stop offset="0.44" stop-color="#06080E"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <radialGradient id="topGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 322) rotate(90) scale(520 720)">
+      <stop offset="0" stop-color="#F2D6A5" stop-opacity="0.18"/>
+      <stop offset="0.34" stop-color="#C59554" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lowerGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 1220) rotate(90) scale(620 860)">
+      <stop offset="0" stop-color="#102032" stop-opacity="0.34"/>
+      <stop offset="0.42" stop-color="#0A1320" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldLine" x1="236" y1="144" x2="1348" y2="1446" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F0D5A0"/>
+      <stop offset="0.22" stop-color="#C69756"/>
+      <stop offset="0.5" stop-color="#F3DDB2"/>
+      <stop offset="0.78" stop-color="#A97738"/>
+      <stop offset="1" stop-color="#E8C88E"/>
+    </linearGradient>
+    <filter id="noise" x="0" y="0" width="1600" height="1600" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" seed="13" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="1 0 0 0 0
+                                                       0 1 0 0 0
+                                                       0 0 1 0 0
+                                                       0 0 0 0.14 0"/>
+    </filter>
+    <filter id="softBlur" x="180" y="300" width="1240" height="980" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="nodeGlow" x="-240" y="-240" width="480" height="480" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.60"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bgGradient)"/>
+  <rect width="1600" height="1600" fill="url(#topGlow)"/>
+  <rect width="1600" height="1600" fill="url(#lowerGlow)"/>
+  <g opacity="0.16" filter="url(#noise)">
+    <rect width="1600" height="1600" fill="#FFFFFF"/>
+  </g>
+
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#goldLine)" stroke-width="2"/>
+  <rect x="112" y="112" width="1376" height="1376" rx="44" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <g transform="translate(142 132)">
+    <rect x="0" y="0" width="326" height="76" rx="24" fill="rgba(8,10,16,0.62)" stroke="rgba(233,201,143,0.14)" stroke-width="1.2"/>
+    <text x="30" y="32" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="0.14em">THE FLUTIANO</text>
+    <text x="30" y="56" fill="#A9B1BC" font-family="Manrope, Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.22em">CREATIVE SYSTEM</text>
+  </g>
+
+  <text x="800" y="246" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="0.12em">SONG POOL</text>
+  <text x="800" y="304" text-anchor="middle" fill="#B0B8C2" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.22em">IDEAS  /  CANDIDATES  /  POTENTIAL</text>
+
+  <g opacity="0.34">
+    <path d="M318 968C418 856 500 786 612 740C714 698 810 686 910 628C998 578 1074 504 1172 374" stroke="rgba(233,201,143,0.22)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M424 1134C512 1014 632 940 722 886C820 826 894 754 972 664" stroke="rgba(233,201,143,0.18)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M372 620C462 676 538 700 642 684C744 668 828 612 908 560" stroke="rgba(233,201,143,0.14)" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#softBlur)" opacity="0.72">
+    <circle cx="964" cy="560" r="122" fill="#D7AF73"/>
+    <circle cx="790" cy="726" r="98" fill="#C99B57"/>
+    <circle cx="1116" cy="430" r="76" fill="#E7C68C"/>
+  </g>
+
+  <g fill="#A6AFBA" opacity="0.58">
+    <circle cx="340" cy="852" r="10"/>
+    <circle cx="414" cy="1060" r="10"/>
+    <circle cx="468" cy="684" r="8"/>
+    <circle cx="540" cy="910" r="9"/>
+    <circle cx="620" cy="582" r="8"/>
+    <circle cx="682" cy="996" r="8"/>
+    <circle cx="760" cy="486" r="8"/>
+    <circle cx="860" cy="1102" r="9"/>
+    <circle cx="1014" cy="930" r="9"/>
+    <circle cx="1168" cy="744" r="9"/>
+    <circle cx="1242" cy="558" r="8"/>
+    <circle cx="1026" cy="312" r="7"/>
+  </g>
+
+  <g>
+    <circle cx="790" cy="726" r="122" stroke="rgba(233,201,143,0.30)" stroke-width="1.8"/>
+    <circle cx="790" cy="726" r="72" stroke="rgba(233,201,143,0.24)" stroke-width="1.4"/>
+    <circle cx="964" cy="560" r="92" stroke="rgba(233,201,143,0.32)" stroke-width="2"/>
+    <circle cx="964" cy="560" r="52" stroke="rgba(233,201,143,0.24)" stroke-width="1.4"/>
+    <circle cx="1116" cy="430" r="54" stroke="rgba(233,201,143,0.28)" stroke-width="1.6"/>
+    <circle cx="1116" cy="430" r="14" fill="url(#goldLine)"/>
+    <circle cx="964" cy="560" r="18" fill="url(#goldLine)"/>
+    <circle cx="790" cy="726" r="16" fill="url(#goldLine)"/>
+    <circle cx="620" cy="582" r="12" fill="rgba(233,201,143,0.56)"/>
+    <circle cx="1014" cy="930" r="12" fill="rgba(233,201,143,0.52)"/>
+    <circle cx="340" cy="852" r="10" fill="rgba(233,201,143,0.32)"/>
+    <circle cx="414" cy="1060" r="10" fill="rgba(233,201,143,0.30)"/>
+  </g>
+
+  <g opacity="0.48">
+    <path d="M620 582L790 726L964 560L1116 430" stroke="url(#goldLine)" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M790 726L1014 930" stroke="rgba(233,201,143,0.34)" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M540 910L790 726" stroke="rgba(233,201,143,0.24)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(800 1276)">
+    <rect x="-262" y="-40" width="524" height="80" rx="28" fill="rgba(9,12,18,0.42)" stroke="rgba(233,201,143,0.14)" stroke-width="1.2"/>
+    <text x="-154" y="12" fill="#E9C98E" font-family="Manrope, Inter, Arial, sans-serif" font-size="21" font-weight="800" letter-spacing="0.14em">IDEAS</text>
+    <text x="-14" y="12" fill="#AEB7C2" font-family="Manrope, Inter, Arial, sans-serif" font-size="21" font-weight="800" letter-spacing="0.14em">CANDIDATES</text>
+    <text x="160" y="12" fill="#E9C98E" font-family="Manrope, Inter, Arial, sans-serif" font-size="21" font-weight="800" letter-spacing="0.14em">POTENTIAL</text>
+  </g>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

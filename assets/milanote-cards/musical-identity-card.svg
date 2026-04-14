@@ -1,0 +1,69 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="200" y1="132" x2="1440" y2="1518" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0F18"/>
+      <stop offset="0.46" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="246" y1="164" x2="1344" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3D8A6"/>
+      <stop offset="0.22" stop-color="#B78343"/>
+      <stop offset="0.5" stop-color="#F0D8AE"/>
+      <stop offset="0.74" stop-color="#A37237"/>
+      <stop offset="1" stop-color="#E7C48A"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 812) rotate(90) scale(310 440)">
+      <stop offset="0" stop-color="#E1BE83" stop-opacity="0.24"/>
+      <stop offset="0.5" stop-color="#A7793D" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.58"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#halo)"/>
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="114" y="114" width="1372" height="1372" rx="44" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <text x="800" y="176" text-anchor="middle" fill="#E5C38A" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="0.14em">MUSICAL IDENTITY</text>
+
+  <path d="M334 820H1266" stroke="rgba(231,196,138,0.26)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M534 654C650 586 950 586 1066 654" stroke="rgba(231,196,138,0.24)" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M534 986C650 1054 950 1054 1066 986" stroke="rgba(231,196,138,0.16)" stroke-width="1.6" stroke-linecap="round"/>
+
+  <g transform="translate(498 820)">
+    <circle r="124" stroke="rgba(231,196,138,0.12)" stroke-width="1.6"/>
+    <path d="M-54 -64L-40 -112L-26 -64L-12 -16L2 32L16 78" stroke="url(#gold)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M24 -98C44 -88 52 -56 40 -38C28 -20 0 -18 -18 -26" stroke="url(#gold)" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M-68 18C-26 8 8 16 42 34" stroke="rgba(231,196,138,0.36)" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(1102 820)">
+    <circle r="124" stroke="rgba(231,196,138,0.12)" stroke-width="1.6"/>
+    <rect x="-58" y="-64" width="26" height="132" rx="10" fill="url(#gold)"/>
+    <rect x="-24" y="-76" width="26" height="152" rx="10" fill="rgba(231,196,138,0.86)"/>
+    <rect x="10" y="-52" width="26" height="104" rx="10" fill="rgba(231,196,138,0.42)"/>
+    <path d="M-82 84H58" stroke="rgba(231,196,138,0.26)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(800 820)">
+    <circle r="152" stroke="rgba(231,196,138,0.16)" stroke-width="1.8"/>
+    <circle r="84" stroke="rgba(231,196,138,0.18)" stroke-width="1.4"/>
+    <circle r="24" fill="url(#gold)"/>
+    <circle r="8" fill="#091018"/>
+    <path d="M0 -74L14 -10L0 72L-14 -10L0 -74Z" fill="url(#gold)"/>
+    <path d="M-92 0C-36 -34 36 -34 92 0" stroke="rgba(231,196,138,0.42)" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M-92 26C-36 58 36 58 92 26" stroke="rgba(231,196,138,0.20)" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <text x="498" y="1064" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.08em">FLUTE</text>
+  <text x="1102" y="1064" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.08em">PIANO</text>
+  <text x="800" y="648" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="0.18em">CINEMATIC</text>
+  <text x="800" y="1140" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="0.18em">ELEGANCE</text>
+  <text x="800" y="888" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.18em">MELODY</text>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

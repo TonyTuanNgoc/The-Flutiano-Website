@@ -1,0 +1,288 @@
+<svg width="2400" height="2400" viewBox="0 0 2400 2400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="boardBg" x1="160" y1="120" x2="2240" y2="2280" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2A1B13"/>
+      <stop offset="0.38" stop-color="#1C120D"/>
+      <stop offset="0.72" stop-color="#140D09"/>
+      <stop offset="1" stop-color="#0D0907"/>
+    </linearGradient>
+    <radialGradient id="boardGlowTop" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1200 320) rotate(90) scale(760 1180)">
+      <stop offset="0" stop-color="#E3BE84" stop-opacity="0.22"/>
+      <stop offset="0.4" stop-color="#A9783D" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="boardGlowLower" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1200 1960) rotate(90) scale(860 1280)">
+      <stop offset="0" stop-color="#4C2B17" stop-opacity="0.20"/>
+      <stop offset="0.48" stop-color="#1A110C" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldLine" x1="250" y1="120" x2="2180" y2="2260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F2D5A0"/>
+      <stop offset="0.22" stop-color="#B07A3D"/>
+      <stop offset="0.5" stop-color="#F0D8AE"/>
+      <stop offset="0.76" stop-color="#95622D"/>
+      <stop offset="1" stop-color="#E6C286"/>
+    </linearGradient>
+    <linearGradient id="goldSoft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0D29B"/>
+      <stop offset="1" stop-color="#A87437"/>
+    </linearGradient>
+    <linearGradient id="panelFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18110D" stop-opacity="0.98"/>
+      <stop offset="0.58" stop-color="#120D09" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#0D0907" stop-opacity="0.98"/>
+    </linearGradient>
+    <radialGradient id="tileGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0.5 0.46) rotate(90) scale(0.54 0.54)">
+      <stop offset="0" stop-color="#E1BA7E" stop-opacity="0.34"/>
+      <stop offset="0.4" stop-color="#8D6231" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1200 1200) rotate(90) scale(1520 1520)">
+      <stop offset="0.55" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.56"/>
+    </radialGradient>
+    <filter id="blurLarge" x="-1000" y="-1000" width="4400" height="4400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="46"/>
+    </filter>
+    <filter id="blurSoft" x="-1000" y="-1000" width="4400" height="4400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="shadow" x="-1000" y="-1000" width="4400" height="4400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="28" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+    <filter id="noise" x="0" y="0" width="2400" height="2400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="2" stitchTiles="stitch" seed="11" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="1 0 0 0 0
+                                                       0 1 0 0 0
+                                                       0 0 1 0 0
+                                                       0 0 0 0.12 0"/>
+    </filter>
+  </defs>
+
+  <rect width="2400" height="2400" fill="url(#boardBg)"/>
+  <rect width="2400" height="2400" fill="url(#boardGlowTop)"/>
+  <rect width="2400" height="2400" fill="url(#boardGlowLower)"/>
+  <g opacity="0.16" filter="url(#noise)">
+    <rect width="2400" height="2400" fill="#FFFFFF"/>
+  </g>
+
+  <rect x="58" y="58" width="2284" height="2284" rx="78" stroke="url(#goldLine)" stroke-width="2"/>
+  <rect x="84" y="84" width="2232" height="2232" rx="62" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <g transform="translate(122 118)">
+    <rect x="0" y="0" width="404" height="92" rx="32" fill="rgba(17,12,9,0.62)" stroke="rgba(233,201,143,0.18)" stroke-width="1.4"/>
+    <rect x="24" y="20" width="52" height="52" rx="16" fill="rgba(232,200,142,0.10)" stroke="rgba(232,200,142,0.24)" stroke-width="1.2"/>
+    <g transform="translate(50 46)">
+      <path d="M-11 13C-2 3 4 -3 10 -9C16 -15 24 -17 29 -12C34 -7 32 2 24 9C17 15 12 19 6 22C0 25 -7 25 -11 13Z" stroke="url(#goldLine)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="8" cy="7" r="3.6" fill="url(#goldLine)"/>
+      <circle cx="0" cy="16" r="2.6" fill="rgba(232,200,142,0.62)"/>
+    </g>
+    <text x="98" y="39" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="26" font-weight="600" letter-spacing="0.12em">THE FLUTIANO</text>
+    <text x="98" y="66" fill="#B3A99C" font-family="Manrope, Inter, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="0.20em">CREATIVE SYSTEM</text>
+  </g>
+
+  <g font-family="Sora, Manrope, Inter, Arial, sans-serif">
+    <text x="2278" y="164" text-anchor="end" fill="#A89C90" font-size="28" font-weight="500" letter-spacing="0.14em">VISUAL KNOWLEDGE BOARD</text>
+  </g>
+
+  <!-- PANEL 1 -->
+  <g transform="translate(120 300)" filter="url(#shadow)">
+    <rect width="680" height="900" rx="46" fill="url(#panelFill)" stroke="rgba(233,201,143,0.16)" stroke-width="1.8"/>
+    <rect x="16" y="16" width="648" height="868" rx="34" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <g transform="translate(340 460)">
+      <g filter="url(#blurLarge)" opacity="0.48">
+        <circle r="128" fill="#D5AD73"/>
+      </g>
+      <circle r="180" stroke="rgba(233,201,143,0.18)" stroke-width="1.4"/>
+      <circle r="124" stroke="rgba(233,201,143,0.14)" stroke-width="1.2"/>
+      <circle r="74" stroke="rgba(233,201,143,0.12)" stroke-width="1.2"/>
+      <path d="M0 -154L22 -30L0 154L-22 -30L0 -154Z" fill="url(#goldLine)"/>
+      <path d="M0 -106L12 -14L0 78L-12 -14L0 -106Z" fill="#110B08"/>
+      <path d="M-132 0H-92" stroke="rgba(233,201,143,0.4)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M92 0H132" stroke="rgba(233,201,143,0.4)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M0 -132V-92" stroke="rgba(233,201,143,0.4)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M0 92V132" stroke="rgba(233,201,143,0.4)" stroke-width="1.6" stroke-linecap="round"/>
+      <rect x="-30" y="-18" width="9" height="38" rx="4" fill="rgba(233,201,143,0.82)"/>
+      <rect x="-17" y="-26" width="9" height="54" rx="4" fill="rgba(233,201,143,0.58)"/>
+      <rect x="-4" y="-14" width="9" height="30" rx="4" fill="rgba(233,201,143,0.38)"/>
+      <circle cx="0" cy="-180" r="12" fill="url(#goldLine)"/>
+      <circle cx="180" cy="0" r="12" fill="url(#goldLine)"/>
+      <circle cx="0" cy="180" r="12" fill="url(#goldLine)"/>
+      <circle cx="-180" cy="0" r="12" fill="url(#goldLine)"/>
+      <circle cx="0" cy="-180" r="26" stroke="rgba(233,201,143,0.18)" stroke-width="1.2"/>
+      <circle cx="180" cy="0" r="26" stroke="rgba(233,201,143,0.18)" stroke-width="1.2"/>
+      <circle cx="0" cy="180" r="26" stroke="rgba(233,201,143,0.18)" stroke-width="1.2"/>
+      <circle cx="-180" cy="0" r="26" stroke="rgba(233,201,143,0.18)" stroke-width="1.2"/>
+    </g>
+    <text x="340" y="88" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.14em">BRAND ESSENCE</text>
+    <text x="340" y="158" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="0.16em">THE FLUTIANO</text>
+    <text x="340" y="268" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="21" font-weight="800" letter-spacing="0.16em">FLUTE + PIANO</text>
+    <text x="556" y="468" text-anchor="start" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">CINEMATIC</text>
+    <text x="340" y="726" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">EMOTIONAL</text>
+    <text x="126" y="468" text-anchor="end" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">REFINED</text>
+  </g>
+
+  <!-- PANEL 2 -->
+  <g transform="translate(860 300)" filter="url(#shadow)">
+    <rect width="680" height="900" rx="46" fill="url(#panelFill)" stroke="rgba(233,201,143,0.16)" stroke-width="1.8"/>
+    <rect x="16" y="16" width="648" height="868" rx="34" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <g transform="translate(340 470)">
+      <g filter="url(#blurLarge)" opacity="0.44">
+        <circle r="120" fill="#D7B078"/>
+      </g>
+      <path d="M-218 0H218" stroke="rgba(233,201,143,0.22)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0 -138V138" stroke="rgba(233,201,143,0.18)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M-176 -58C-148 -102 -112 -120 -56 -118" stroke="rgba(233,201,143,0.34)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M176 -58C148 -102 112 -120 56 -118" stroke="rgba(233,201,143,0.34)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M-180 -54C-154 -8 -126 26 -74 72" stroke="url(#goldLine)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="88" y="-72" width="112" height="140" rx="16" fill="rgba(233,201,143,0.12)" stroke="rgba(233,201,143,0.28)" stroke-width="1.4"/>
+      <rect x="102" y="-50" width="16" height="96" rx="6" fill="url(#goldLine)"/>
+      <rect x="126" y="-62" width="16" height="108" rx="6" fill="rgba(233,201,143,0.68)"/>
+      <rect x="150" y="-44" width="16" height="90" rx="6" fill="rgba(233,201,143,0.44)"/>
+      <rect x="174" y="-60" width="16" height="106" rx="6" fill="rgba(233,201,143,0.28)"/>
+      <path d="M-238 -2C-196 -2 -168 -76 -154 -118" stroke="rgba(233,201,143,0.86)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M-214 12C-164 12 -120 60 -60 102" stroke="rgba(233,201,143,0.5)" stroke-width="3.4" stroke-linecap="round"/>
+      <circle r="22" fill="url(#goldLine)"/>
+      <circle r="8" fill="#110B08"/>
+      <circle r="66" stroke="rgba(233,201,143,0.34)" stroke-width="1.8"/>
+      <circle r="114" stroke="rgba(233,201,143,0.16)" stroke-width="1.2"/>
+    </g>
+    <text x="340" y="88" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.14em">MUSICAL IDENTITY</text>
+    <text x="150" y="492" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0.14em">FLUTE</text>
+    <text x="530" y="492" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0.14em">PIANO</text>
+    <text x="340" y="294" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.16em">CINEMATIC</text>
+    <text x="184" y="706" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">ELEGANCE</text>
+    <text x="498" y="706" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">MELODY</text>
+  </g>
+
+  <!-- PANEL 3 -->
+  <g transform="translate(1600 300)" filter="url(#shadow)">
+    <rect width="680" height="900" rx="46" fill="url(#panelFill)" stroke="rgba(233,201,143,0.16)" stroke-width="1.8"/>
+    <rect x="16" y="16" width="648" height="868" rx="34" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <g transform="translate(340 470)">
+      <g filter="url(#blurLarge)" opacity="0.34">
+        <circle r="128" fill="#C89A60"/>
+      </g>
+      <rect x="-208" y="-208" width="188" height="188" rx="28" fill="rgba(7,8,10,0.58)" stroke="rgba(233,201,143,0.08)" stroke-width="1.2"/>
+      <rect x="20" y="-208" width="188" height="188" rx="28" fill="rgba(20,15,11,0.66)" stroke="rgba(233,201,143,0.08)" stroke-width="1.2"/>
+      <rect x="-208" y="20" width="188" height="188" rx="28" fill="rgba(14,11,8,0.74)" stroke="rgba(233,201,143,0.08)" stroke-width="1.2"/>
+      <rect x="20" y="20" width="188" height="188" rx="28" fill="rgba(45,28,18,0.58)" stroke="rgba(233,201,143,0.08)" stroke-width="1.2"/>
+      <circle r="96" stroke="rgba(233,201,143,0.42)" stroke-width="1.8"/>
+      <circle r="148" stroke="rgba(233,201,143,0.16)" stroke-width="1.2"/>
+      <path d="M0 -180V-112" stroke="rgba(233,201,143,0.30)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M180 0H112" stroke="rgba(233,201,143,0.30)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M0 180V112" stroke="rgba(233,201,143,0.30)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M-180 0H-112" stroke="rgba(233,201,143,0.30)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M-114 -114L-70 -70" stroke="rgba(233,201,143,0.18)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M114 -114L70 -70" stroke="rgba(233,201,143,0.18)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M-114 114L-70 70" stroke="rgba(233,201,143,0.18)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M114 114L70 70" stroke="rgba(233,201,143,0.18)" stroke-width="1.4" stroke-linecap="round"/>
+      <rect x="-132" y="-132" width="264" height="264" rx="26" stroke="rgba(233,201,143,0.14)" stroke-width="1.2"/>
+      <path d="M-28 -180C24 -154 54 -110 72 -44" stroke="url(#goldLine)" stroke-width="4.2" stroke-linecap="round"/>
+    </g>
+    <text x="340" y="88" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.14em">VISUAL IDENTITY</text>
+    <text x="340" y="288" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">DARK</text>
+    <text x="536" y="470" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">LIGHT</text>
+    <text x="340" y="706" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">ATMOSPHERE</text>
+    <text x="152" y="470" text-anchor="middle" fill="#B6ADA3" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">FRAMED</text>
+  </g>
+
+  <!-- PANEL 4 -->
+  <g transform="translate(120 1280)" filter="url(#shadow)">
+    <rect width="680" height="900" rx="46" fill="url(#panelFill)" stroke="rgba(233,201,143,0.16)" stroke-width="1.8"/>
+    <rect x="16" y="16" width="648" height="868" rx="34" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <g transform="translate(340 446)">
+      <g filter="url(#blurLarge)" opacity="0.40">
+        <ellipse cx="0" cy="54" rx="160" ry="120" fill="#D1A96F"/>
+      </g>
+      <circle cx="-150" cy="-194" r="22" fill="rgba(233,201,143,0.18)" stroke="rgba(233,201,143,0.28)" stroke-width="1.2"/>
+      <circle cx="0" cy="-226" r="22" fill="rgba(233,201,143,0.18)" stroke="rgba(233,201,143,0.28)" stroke-width="1.2"/>
+      <circle cx="150" cy="-194" r="22" fill="rgba(233,201,143,0.18)" stroke="rgba(233,201,143,0.28)" stroke-width="1.2"/>
+      <path d="M-150 -172C-132 -88 -98 -32 -42 20" stroke="rgba(233,201,143,0.30)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M0 -204C0 -116 0 -36 0 28" stroke="rgba(233,201,143,0.30)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M150 -172C132 -88 98 -32 42 20" stroke="rgba(233,201,143,0.30)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M-104 54H104" stroke="rgba(233,201,143,0.16)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M-52 54L0 122L52 54" stroke="url(#goldLine)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M-138 104L0 224L138 104" stroke="rgba(233,201,143,0.22)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="-118" y="210" width="236" height="88" rx="24" fill="rgba(233,201,143,0.08)" stroke="rgba(233,201,143,0.18)" stroke-width="1.2"/>
+      <circle cx="0" cy="254" r="16" fill="url(#goldLine)"/>
+      <path d="M-7 254L-1 260L9 248" stroke="#140D09" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="340" y="88" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="46" font-weight="600" letter-spacing="0.14em">WHAT FITS</text>
+    <text x="340" y="140" text-anchor="middle" fill="#BFAF9C" font-family="Manrope, Inter, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="0.22em">THE FLUTIANO</text>
+    <text x="154" y="780" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">EMOTIONAL</text>
+    <text x="304" y="780" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">ELEGANT</text>
+    <text x="446" y="780" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">CINEMATIC</text>
+    <text x="548" y="738" text-anchor="end" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">INTENTIONAL</text>
+  </g>
+
+  <!-- PANEL 5 -->
+  <g transform="translate(860 1280)" filter="url(#shadow)">
+    <rect width="680" height="900" rx="46" fill="url(#panelFill)" stroke="rgba(233,201,143,0.16)" stroke-width="1.8"/>
+    <rect x="16" y="16" width="648" height="868" rx="34" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <g transform="translate(340 446)">
+      <g filter="url(#blurLarge)" opacity="0.20">
+        <ellipse cx="0" cy="40" rx="170" ry="126" fill="#8A5233"/>
+      </g>
+      <circle cx="-150" cy="-194" r="22" fill="rgba(125,84,62,0.16)" stroke="rgba(189,114,86,0.32)" stroke-width="1.2"/>
+      <circle cx="0" cy="-226" r="22" fill="rgba(125,84,62,0.16)" stroke="rgba(189,114,86,0.32)" stroke-width="1.2"/>
+      <circle cx="150" cy="-194" r="22" fill="rgba(125,84,62,0.16)" stroke="rgba(189,114,86,0.32)" stroke-width="1.2"/>
+      <path d="M-150 -172C-122 -90 -90 -18 -8 18" stroke="rgba(188,112,82,0.34)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M0 -204C8 -116 6 -20 18 24" stroke="rgba(188,112,82,0.34)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M150 -172C124 -92 90 -18 12 16" stroke="rgba(188,112,82,0.34)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M-112 46H112" stroke="rgba(233,201,143,0.08)" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M-88 74L88 74" stroke="rgba(193,106,80,0.44)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M-34 22L34 126" stroke="rgba(214,126,90,0.78)" stroke-width="9" stroke-linecap="round"/>
+      <path d="M34 22L-34 126" stroke="rgba(214,126,90,0.78)" stroke-width="9" stroke-linecap="round"/>
+      <path d="M-138 104L-22 186" stroke="rgba(188,112,82,0.28)" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M138 104L22 186" stroke="rgba(188,112,82,0.28)" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="-176" cy="154" r="34" stroke="rgba(188,112,82,0.42)" stroke-width="2"/>
+      <path d="M-194 136L-158 172" stroke="rgba(214,126,90,0.7)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M-158 136L-194 172" stroke="rgba(214,126,90,0.7)" stroke-width="3.4" stroke-linecap="round"/>
+      <circle cx="176" cy="154" r="34" stroke="rgba(188,112,82,0.42)" stroke-width="2"/>
+      <path d="M158 136L194 172" stroke="rgba(214,126,90,0.7)" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M194 136L158 172" stroke="rgba(214,126,90,0.7)" stroke-width="3.4" stroke-linecap="round"/>
+    </g>
+    <text x="340" y="88" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.12em">WHAT DOESN'T FIT</text>
+    <text x="136" y="780" text-anchor="middle" fill="#BEA08E" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">LOUD</text>
+    <text x="262" y="780" text-anchor="middle" fill="#BEA08E" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">GENERIC</text>
+    <text x="436" y="780" text-anchor="middle" fill="#BEA08E" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">CROWDED</text>
+    <text x="574" y="780" text-anchor="end" fill="#BEA08E" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">EMPTY</text>
+  </g>
+
+  <!-- PANEL 6 -->
+  <g transform="translate(1600 1280)" filter="url(#shadow)">
+    <rect width="680" height="900" rx="46" fill="url(#panelFill)" stroke="rgba(233,201,143,0.16)" stroke-width="1.8"/>
+    <rect x="16" y="16" width="648" height="868" rx="34" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <g transform="translate(340 460)">
+      <g filter="url(#blurLarge)" opacity="0.50">
+        <circle r="120" fill="#D7B177"/>
+      </g>
+      <rect x="-124" y="-144" width="248" height="288" rx="36" stroke="rgba(233,201,143,0.18)" stroke-width="1.6"/>
+      <rect x="-90" y="-104" width="180" height="208" rx="28" stroke="rgba(233,201,143,0.10)" stroke-width="1.2"/>
+      <circle r="76" stroke="rgba(233,201,143,0.42)" stroke-width="1.8"/>
+      <circle r="130" stroke="rgba(233,201,143,0.16)" stroke-width="1.2"/>
+      <path d="M0 -196V-118" stroke="rgba(233,201,143,0.28)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M196 0H118" stroke="rgba(233,201,143,0.28)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M0 196V118" stroke="rgba(233,201,143,0.28)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M-196 0H-118" stroke="rgba(233,201,143,0.28)" stroke-width="1.8" stroke-linecap="round"/>
+      <rect x="-18" y="-116" width="36" height="74" rx="14" fill="url(#goldLine)"/>
+      <rect x="118" y="-18" width="74" height="36" rx="14" fill="url(#goldLine)"/>
+      <rect x="-18" y="42" width="36" height="74" rx="14" fill="url(#goldLine)"/>
+      <rect x="-192" y="-18" width="74" height="36" rx="14" fill="url(#goldLine)"/>
+      <path d="M0 -30L11 -2L0 38L-11 -2L0 -30Z" fill="url(#goldLine)"/>
+      <circle r="12" fill="#140D09"/>
+      <rect x="-92" y="-188" width="184" height="64" rx="22" fill="rgba(233,201,143,0.08)" stroke="rgba(233,201,143,0.12)" stroke-width="1.2"/>
+      <rect x="126" y="-32" width="132" height="64" rx="22" fill="rgba(233,201,143,0.08)" stroke="rgba(233,201,143,0.12)" stroke-width="1.2"/>
+      <rect x="-96" y="128" width="192" height="64" rx="22" fill="rgba(233,201,143,0.08)" stroke="rgba(233,201,143,0.12)" stroke-width="1.2"/>
+      <rect x="-262" y="-32" width="132" height="64" rx="22" fill="rgba(233,201,143,0.08)" stroke="rgba(233,201,143,0.12)" stroke-width="1.2"/>
+    </g>
+    <text x="340" y="88" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="42" font-weight="600" letter-spacing="0.14em">CREATIVE STANDARDS</text>
+    <text x="340" y="296" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">CONCEPT</text>
+    <text x="532" y="470" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">WORLD</text>
+    <text x="340" y="704" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">PURPOSE</text>
+    <text x="148" y="470" text-anchor="middle" fill="#C9BDAE" font-family="Manrope, Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.14em">EMOTION</text>
+  </g>
+
+  <rect width="2400" height="2400" fill="url(#vignette)"/>
+</svg>

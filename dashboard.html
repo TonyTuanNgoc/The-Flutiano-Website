@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Flutiano — Dashboard</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 34px 38px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.62);
+    line-height: 1;
+  }
+
+  .section-meta,
+  .see-all {
+    font-size: 11px;
+    color: rgba(255,255,255,0.48);
+    font-weight: 700;
+  }
+
+  .see-all {
+    color: var(--gold-hi);
+    transition: opacity 0.13s, transform 0.13s;
+  }
+
+  .see-all:hover {
+    opacity: 1;
+    transform: translateX(1px);
+  }
+
+  .todo-panel,
+  .recent-card,
+  .library-panel {
+    background: linear-gradient(180deg, rgba(17,22,29,0.48) 0%, rgba(11,15,21,0.32) 100%);
+    backdrop-filter: blur(24px) saturate(145%);
+    -webkit-backdrop-filter: blur(24px) saturate(145%);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--r);
+    box-shadow:
+      0 20px 48px rgba(4,7,12,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .todo-panel,
+  .library-panel {
+    padding: 24px;
+  }
+
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .week-card {
+    padding: 18px 20px;
+    border-radius: var(--r);
+    border: 1px solid rgba(255,255,255,0.14);
+    background:
+      radial-gradient(circle at top right, rgba(212,170,106,0.14), transparent 34%),
+      linear-gradient(180deg, rgba(17,22,29,0.48) 0%, rgba(11,15,21,0.32) 100%);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow:
+      0 20px 48px rgba(4,7,12,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .week-card strong {
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  .week-card span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    font-weight: 800;
+  }
+
+  .week-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--t2);
+    font-weight: 700;
+  }
+
+  .qa-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 220px));
+    gap: 12px;
+  }
+
+  .qa-tile {
+    background: linear-gradient(180deg, rgba(20,26,34,0.34) 0%, rgba(12,17,24,0.24) 100%);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 18px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    transition: background 0.13s, border-color 0.13s, transform 0.13s, box-shadow 0.13s;
+  }
+
+  .qa-tile:hover {
+    background: linear-gradient(180deg, rgba(20,26,34,0.48) 0%, rgba(12,17,24,0.32) 100%);
+    border-color: rgba(255,255,255,0.14);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(0,0,0,0.18);
+  }
+
+  .qa-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .qa-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .qa-label {
+    font-size: 13px;
+    color: #FFFFFF;
+    font-weight: 800;
+  }
+
+  .qa-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.44);
+    font-weight: 700;
+  }
+
+  .recent-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .recent-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  }
+
+  .recent-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 24px 58px rgba(0,0,0,0.34);
+  }
+
+  .recent-media {
+    position: relative;
+    height: 136px;
+    overflow: hidden;
+  }
+
+  .recent-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .recent-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5,8,12,0.04) 0%, rgba(5,8,12,0.82) 100%);
+  }
+
+  .stage-badge {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .stage-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .stage-badge.tone-gold {
+    background: rgba(212,170,106,0.16);
+    color: var(--gold-hi);
+  }
+
+  .stage-badge.tone-jade {
+    background: rgba(94,201,177,0.16);
+    color: #8DE8D1;
+  }
+
+  .stage-badge.tone-sky {
+    background: rgba(128,191,231,0.16);
+    color: #A7D9F7;
+  }
+
+  .stage-badge.tone-violet {
+    background: rgba(167,139,250,0.16);
+    color: #D0C1FF;
+  }
+
+  .recent-body {
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .recent-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 16px;
+    line-height: 1.16;
+    letter-spacing: -0.032em;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .recent-summary {
+    font-size: 12px;
+    line-height: 1.58;
+    color: rgba(255,255,255,0.56);
+    font-weight: 700;
+  }
+
+  .checkpoint-rail {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .checkpoint-node {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .checkpoint-node.is-done { background: rgba(94,201,177,0.94); }
+  .checkpoint-node.is-live { background: rgba(212,170,106,0.94); }
+
+  .checkpoint-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .checkpoint-card {
+    padding: 10px 11px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .checkpoint-card span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.36);
+    font-weight: 800;
+  }
+
+  .checkpoint-card strong {
+    display: block;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  .todo-shell {
+    display: grid;
+    grid-template-columns: 1.2fr 0.88fr;
+    gap: 18px;
+  }
+
+  .todo-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 320px;
+  }
+
+  .todo-panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .todo-panel-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .todo-panel-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.46);
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .todo-count-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .todo-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .todo-group {
+    padding: 16px 17px 15px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .todo-group-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .todo-group-link {
+    border: 0;
+    background: none;
+    padding: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .todo-group-link:hover {
+    color: var(--gold-hi);
+  }
+
+  .todo-group-meta {
+    font-size: 10px;
+    color: rgba(255,255,255,0.40);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-row {
+    display: grid;
+    grid-template-columns: 18px 10px minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+  }
+
+  .task-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.13s, border-color 0.13s, transform 0.13s;
+  }
+
+  .task-check:hover {
+    transform: scale(1.05);
+    border-color: rgba(255,255,255,0.28);
+  }
+
+  .task-check.is-complete {
+    background: rgba(94,201,177,0.20);
+    border-color: rgba(94,201,177,0.34);
+  }
+
+  .task-check.is-complete::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: #8DE8D1;
+  }
+
+  .urgency-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.02);
+  }
+
+  .urgency-dot.is-red { background: #D87474; }
+  .urgency-dot.is-yellow { background: #D4AA6A; }
+  .urgency-dot.is-green { background: #67C5A6; }
+
+  .task-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.92);
+    font-weight: 700;
+  }
+
+  .task-text.is-complete {
+    color: rgba(255,255,255,0.46);
+  }
+
+  .empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px dashed rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.03);
+    font-size: 13px;
+    line-height: 1.68;
+    color: rgba(255,255,255,0.46);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .library-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .library-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top right, rgba(212,170,106,0.18), transparent 30%),
+      linear-gradient(90deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.03) 36%, rgba(255,255,255,0.00) 100%);
+  }
+
+  .library-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .library-lead {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 2px 2px 2px 0;
+  }
+
+  .library-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 28px;
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .library-copy {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.58);
+    font-weight: 700;
+    max-width: 280px;
+  }
+
+  .library-total {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .library-total strong {
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: #FFFFFF;
+    font-weight: 800;
+  }
+
+  .library-total span {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.40);
+    font-weight: 800;
+  }
+
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .library-tile {
+    padding: 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .library-tile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .library-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #FFFFFF;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .library-count {
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    font-weight: 800;
+  }
+
+  .library-tile strong {
+    display: block;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #FFFFFF;
+    font-weight: 800;
+  }
+
+  .library-tile p {
+    font-size: 11px;
+    line-height: 1.58;
+    color: rgba(255,255,255,0.48);
+    font-weight: 700;
+  }
+
+  @media (max-width: 1420px) {
+    .recent-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 1180px) {
+    .week-grid,
+    .recent-grid,
+    .todo-shell,
+    .library-shell,
+    .library-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .library-lead {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .content {
+      padding: 24px 20px 36px;
+    }
+
+    .qa-grid,
+    .week-grid,
+    .recent-grid,
+    .todo-shell,
+    .library-shell,
+    .library-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-art" aria-hidden="true"></div>
+
+<aside class="sidebar">
+  <a class="brand-block" href="dashboard.html">
+    <div class="brand-mark">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 15 Q4 9 8 7 Q10 6 12 6.5 L14 4 Q15 3 15.5 4 Q16 5 15 5.5 L13.2 7.3 Q13.8 9 13 11 Q12 13.5 9 14.5 Q6 15.5 3 15 Z" stroke="#D4AA6A" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+          <circle cx="10.5" cy="9.5" r="1" fill="#D4AA6A" opacity="0.7"/>
+          <circle cx="8.5" cy="11.5" r="0.7" fill="#D4AA6A" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="brand-name">The Flutiano</div>
+    </div>
+    <div class="brand-sub">Creative System</div>
+  </a>
+
+  <div class="nav-scroll">
+    <div class="nav-section-label">Main</div>
+
+    <a class="nav-item active" href="dashboard.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor"/>
+        <rect x="8.5" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="1" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+      </svg>
+      Dashboard
+    </a>
+
+    <a class="nav-item" href="projects.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M1.5 3.5h12M1.5 7.5h9M1.5 11.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Projects
+      <span class="badge">5</span>
+    </a>
+
+    <a class="nav-item" href="#" onclick="showToast('🔄 Workflow','Building the stage pipeline…'); return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <circle cx="3" cy="7.5" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="7.5" cy="3" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="12" cy="7.5" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="7.5" cy="12" r="1.8" fill="currentColor" opacity="0.7"/>
+        <path d="M4.7 6.5L6.3 4.2M10.8 6.5L9.2 4.2M10.8 8.5L9.2 10.8M4.7 8.5L6.3 10.8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      </svg>
+      Workflow
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Create</div>
+
+    <a class="nav-item" href="#" onclick="showToast('🎵 Practice','Your scales &amp; exercises await.'); return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M5 11V4l8-2v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="3.5" cy="11" r="2" fill="currentColor" opacity="0.7"/>
+        <circle cx="11.5" cy="9" r="2" fill="currentColor" opacity="0.7"/>
+      </svg>
+      Practice
+    </a>
+
+    <a class="nav-item" href="#" onclick="showToast('📸 Shoots','Your photography sessions here.'); return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="4" width="13" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="7.5" cy="8.5" r="2.3" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5.5 4l1-1.5h3L10.5 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      Shoots
+    </a>
+
+    <a class="nav-item" href="#" onclick="showToast('🚀 Releases','Track your published work.'); return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M7.5 1.5L10 6H13.5L11 9l1 4.5-4.5-2.5L3 13.5l1-4.5L1.5 6H5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      Releases
+      <span class="badge">1</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Manage</div>
+
+    <a class="nav-item" href="#" onclick="showToast('📚 Library','All your references &amp; samples.'); return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1.5" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="6" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="10.5" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+      </svg>
+      Library
+    </a>
+
+    <a class="nav-item" href="#" onclick="showToast('🗂 Archive','Your completed work lives here.'); return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="3.5" width="13" height="2.5" rx="1" fill="currentColor" opacity="0.6"/>
+        <path d="M2 6v6.5a1 1 0 001 1h9a1 1 0 001-1V6" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5.5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      Archive
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="avatar">F</div>
+    <div class="user-info">
+      <div class="user-name">Flutiano</div>
+      <div class="user-role">Artist &amp; Producer</div>
+    </div>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <circle cx="6" cy="2.5" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="6" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="9.5" r="1" fill="rgba(255,255,255,0.28)"/>
+    </svg>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <div class="topbar">
+    <span class="page-title">Dashboard</span>
+    <div class="topbar-spacer"></div>
+  </div>
+
+  <div class="content">
+    <section>
+      <div class="section-header">
+        <span class="section-title">Quick Actions</span>
+      </div>
+      <div class="qa-grid">
+        <a class="qa-tile" href="new-project.html">
+          <div class="qa-icon" style="background:var(--gold-lo);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2v12M2 8h12" stroke="#D4AA6A" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="qa-copy">
+            <span class="qa-label">New Project</span>
+            <span class="qa-sub">Start a new song workspace</span>
+          </div>
+        </a>
+
+        <button class="qa-tile" type="button" onclick="showToast('📝 Quick Note','Idea captured to your notes.')">
+          <div class="qa-icon" style="background:rgba(122,188,232,0.12);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="2" y="2" width="12" height="12" rx="2.5" stroke="#7ABCE8" stroke-width="1.5"/>
+              <path d="M5 8h6M5 5.5h6M5 10.5h4" stroke="#7ABCE8" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="qa-copy">
+            <span class="qa-label">Quick Note</span>
+            <span class="qa-sub">Capture an idea without leaving the flow</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="section-title">This Week for Tasks</span>
+        <span class="section-meta" id="week-summary-meta"></span>
+      </div>
+      <div class="week-grid" id="week-grid"></div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="section-title">Recent Projects</span>
+        <a href="projects.html" class="see-all">See all projects →</a>
+      </div>
+      <div class="recent-grid" id="recent-projects"></div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="section-title">Weekly Progress</span>
+        <span class="section-meta" id="todo-hub-meta"></span>
+      </div>
+      <div class="todo-shell" id="todo-hub"></div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="section-title">Creative Library</span>
+      </div>
+      <div class="library-panel" id="creative-library"></div>
+    </section>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="project-store.js"></script>
+<script>
+  const store = window.FlutianoProjectStore;
+  const URGENCY_META = {
+    urgent: { className: "is-red", label: "Urgent" },
+    soon: { className: "is-yellow", label: "Important" },
+    later: { className: "is-green", label: "Later" }
+  };
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function openProject(id) {
+    window.location.href = store.getDetailUrl(id);
+  }
+
+  function showToast(title, sub) {
+    const container = document.getElementById("toast-container");
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    const spaceIdx = title.indexOf(" ");
+    let icon = "";
+    let text = title;
+    if (spaceIdx > -1) {
+      const first = title.substring(0, spaceIdx);
+      const isEmoji = /\p{Emoji}/u.test(first);
+      if (isEmoji) {
+        icon = first;
+        text = title.substring(spaceIdx + 1);
+      }
+    }
+    toast.innerHTML = `${icon ? `<span style="font-size:16px;">${icon}</span>` : ""}<div><div style="font-weight:700;font-size:12.5px;">${text}</div>${sub ? `<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">${sub}</div>` : ""}</div>`;
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add("out");
+      setTimeout(() => toast.remove(), 220);
+    }, 2800);
+  }
+
+  function getStageMeta(project) {
+    const workflow = store.getSongWorkflowState(project);
+    const sourceCount = workflow.sourceLibrary.sheetCount
+      + workflow.sourceLibrary.harmonyCount
+      + workflow.sourceLibrary.audioCount
+      + workflow.sourceLibrary.additionalCount;
+
+    if (project.status === "Released") {
+      return {
+        label: "Released",
+        tone: "violet",
+        summary: "Release benchmark is ready for review."
+      };
+    }
+    if (workflow.sourceLibrary.status === "done") {
+      return {
+        label: "Source Library",
+        tone: "gold",
+        summary: "Reference set is complete and ready to drive production."
+      };
+    }
+    if (workflow.masterKey.status === "done") {
+      return {
+        label: "Master Key",
+        tone: "jade",
+        summary: "Key is locked and the source pass is underway."
+      };
+    }
+    if (workflow.masterKey.status === "in-progress" || sourceCount > 0) {
+      return {
+        label: "Workflow",
+        tone: "gold",
+        summary: "Key and reference decisions are still being shaped."
+      };
+    }
+    if (project.music.selectedInstruments.length) {
+      return {
+        label: "Instruments",
+        tone: "sky",
+        summary: "The arrangement palette is taking shape."
+      };
+    }
+    return {
+      label: "Setup",
+      tone: "sky",
+      summary: "Core project choices are still being framed."
+    };
+  }
+
+  function getCheckpointData(project) {
+    const workflow = store.getSongWorkflowState(project);
+    const sourceCount = workflow.sourceLibrary.sheetCount
+      + workflow.sourceLibrary.harmonyCount
+      + workflow.sourceLibrary.audioCount
+      + workflow.sourceLibrary.additionalCount;
+    const activeTodos = project.todos.filter((todo) => !todo.completed).length;
+    const totalTodos = project.todos.length;
+
+    return [
+      {
+        label: "Key",
+        value: workflow.masterKey.finalKey || workflow.masterKey.originalKey || "Pending",
+        done: workflow.masterKey.status === "done",
+        live: workflow.masterKey.status === "in-progress"
+      },
+      {
+        label: "Library",
+        value: sourceCount ? `${sourceCount} linked` : "Empty",
+        done: workflow.sourceLibrary.status === "done",
+        live: workflow.sourceLibrary.status === "in-progress"
+      },
+      {
+        label: "Instruments",
+        value: project.music.selectedInstruments.length
+          ? `${project.music.selectedInstruments.length} selected`
+          : "Pending",
+        done: project.music.selectedInstruments.length > 0,
+        live: false
+      },
+      {
+        label: "Tasks",
+        value: totalTodos ? `${activeTodos} open` : "None yet",
+        done: totalTodos > 0 && activeTodos === 0,
+        live: activeTodos > 0
+      }
+    ];
+  }
+
+  function renderTaskGroups(groups, completed) {
+    if (!groups.length) {
+      return `<div class="empty-state">${completed ? "Completed tasks will gather here automatically once a project task is checked off." : "Add a to-do from any Project Detail page and it will appear here instantly under that project."}</div>`;
+    }
+
+    return `
+      <div class="todo-groups">
+        ${groups.map((group) => `
+          <section class="todo-group">
+            <div class="todo-group-head">
+              <button class="todo-group-link" type="button" data-open-project="${group.project.id}">${escapeHtml(group.project.title)}</button>
+              <span class="todo-group-meta">${group.todos.length} ${group.todos.length === 1 ? "task" : "tasks"}</span>
+            </div>
+            <div class="todo-list">
+              ${group.todos.map((todo) => {
+                const urgency = URGENCY_META[todo.urgency] || URGENCY_META.soon;
+                return `
+                  <div class="task-row">
+                    <button
+                      class="task-check ${todo.completed ? "is-complete" : ""}"
+                      type="button"
+                      data-toggle-todo="${group.project.id}"
+                      data-todo-id="${todo.id}"
+                      data-completed="${todo.completed ? "true" : "false"}"
+                      aria-label="${todo.completed ? "Re-open task" : "Mark task complete"}"
+                    ></button>
+                    <span class="urgency-dot ${urgency.className}" title="${urgency.label}" aria-hidden="true"></span>
+                    <div class="task-text ${todo.completed ? "is-complete" : ""}">${escapeHtml(todo.text)}</div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </section>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  function renderTodoHub() {
+    const activeGroups = store.getTodoGroups(false);
+    const completedGroups = store.getTodoGroups(true);
+    const activeCount = activeGroups.reduce((total, group) => total + group.todos.length, 0);
+    const completedCount = completedGroups.reduce((total, group) => total + group.todos.length, 0);
+
+    document.getElementById("todo-hub-meta").textContent = `${activeCount} open · ${completedCount} done`;
+    document.getElementById("todo-hub").innerHTML = `
+      <section class="todo-panel">
+        <div class="todo-panel-head">
+          <div>
+            <div class="todo-panel-title">To Do</div>
+            <div class="todo-panel-sub">Grouped by project, updating directly from each project detail page.</div>
+          </div>
+          <div class="todo-count-pill">${activeCount}</div>
+        </div>
+        ${renderTaskGroups(activeGroups, false)}
+      </section>
+
+      <section class="todo-panel">
+        <div class="todo-panel-head">
+          <div>
+            <div class="todo-panel-title">Done</div>
+            <div class="todo-panel-sub">Completed tasks move here automatically and stay grouped the same way.</div>
+          </div>
+          <div class="todo-count-pill">${completedCount}</div>
+        </div>
+        ${renderTaskGroups(completedGroups, true)}
+      </section>
+    `;
+  }
+
+  function renderWeekSummary(projects) {
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+    const endOfWeek = startOfToday + (7 * 24 * 60 * 60 * 1000);
+
+    const stats = projects.reduce((accumulator, project) => {
+      const openTasks = project.todos.filter((todo) => !todo.completed).length;
+      const linkedSources = store.getSourceLibraryEntries(project);
+      accumulator.openTasks += openTasks;
+      accumulator.linkedSources += linkedSources.sheet.length + linkedSources.harmony.length + linkedSources.audio.length + linkedSources.additional.length;
+      if (openTasks > 0) {
+        accumulator.projectsInMotion += 1;
+      }
+
+      if (project.deadline) {
+        const deadlineValue = new Date(`${project.deadline}T00:00:00`).getTime();
+        if (!Number.isNaN(deadlineValue) && deadlineValue >= startOfToday && deadlineValue <= endOfWeek) {
+          accumulator.dueThisWeek += 1;
+        }
+      }
+
+      return accumulator;
+    }, { openTasks: 0, linkedSources: 0, projectsInMotion: 0, dueThisWeek: 0 });
+
+    document.getElementById("week-summary-meta").textContent = `${stats.openTasks} tasks updating live`;
+    document.getElementById("week-grid").innerHTML = `
+      <article class="week-card">
+        <span>Open Tasks</span>
+        <strong>${stats.openTasks}</strong>
+        <p>Anything added or completed in a project detail page is reflected here immediately.</p>
+      </article>
+      <article class="week-card">
+        <span>Projects in Motion</span>
+        <strong>${stats.projectsInMotion}</strong>
+        <p>Projects with active to-do items stay surfaced so the weekly view feels connected.</p>
+      </article>
+      <article class="week-card">
+        <span>Deadlines This Week</span>
+        <strong>${stats.dueThisWeek}</strong>
+        <p>Tracks near-term deadlines from the linked project data, not a separate static board.</p>
+      </article>
+      <article class="week-card">
+        <span>Linked Sources</span>
+        <strong>${stats.linkedSources}</strong>
+        <p>Library items collected across projects and carried back into the dashboard overview.</p>
+      </article>
+    `;
+  }
+
+  function renderRecentProjects(projects) {
+    document.getElementById("recent-projects").innerHTML = projects.slice(0, 5).map((project) => {
+      const thumbnail = store.getThumbnail(project);
+      return `
+        <article class="recent-card" data-open-project="${project.id}" tabindex="0" style="cursor:pointer; overflow:hidden; position:relative;">
+          <div class="recent-card-img" style="position:relative; height:160px;">
+            <img src="${thumbnail}" alt="${project.title}">
+            <div class="card-status-overlay" style="position:absolute; bottom:12px; left:12px; padding:4px 10px; border-radius:6px; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.1); font-size:10px; font-weight:800; color:var(--gold-hi);">${project.status}</div>
+          </div>
+          <div class="recent-card-body" style="padding:16px;">
+            <div style="font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.3); font-weight:800; margin-bottom:4px;">${project.category || 'PROJECT'}</div>
+            <h3 class="recent-card-title">${project.title}</h3>
+            
+            <div style="display:flex; flex-wrap:wrap; gap:4px; margin:8px 0 12px;">
+              ${(project.music.selectedInstruments || []).slice(0, 3).map(id => {
+                const item = store.INSTRUMENT_LIBRARY.find(i => i.id === id);
+                return `<span style="display:inline-flex; align-items:center; gap:4px; padding:2px 6px; border-radius:4px; background:rgba(212,170,106,0.08); font-size:9px; color:var(--gold-hi); border:1px solid rgba(212,170,106,0.15);">
+                  ${item ? `<img src="${item.img}" style="width:10px; height:10px; filter:brightness(0) invert(1);">` : ''}
+                  ${item ? item.label : id}
+                </span>`;
+              }).join('')}
+            </div>
+
+            <div class="recent-card-meta">
+              <div class="recent-card-progress">
+                <div class="recent-progress-bar">
+                  <div class="recent-progress-fill" style="width: ${project.progress}%"></div>
+                </div>
+                <span>${project.progress}%</span>
+              </div>
+              <div class="recent-card-deadline" style="color:rgba(255,255,255,0.4); font-size:11px; font-weight:700;">${store.formatDate(project.deadline, true)}</div>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  function renderCreativeLibrary(projects) {
+    const libraryCounts = projects.reduce((accumulator, project) => {
+      const workflow = store.getSongWorkflowState(project);
+      accumulator.sheet += workflow.sourceLibrary.sheetCount;
+      accumulator.harmony += workflow.sourceLibrary.harmonyCount;
+      accumulator.audio += workflow.sourceLibrary.audioCount;
+      accumulator.additional += workflow.sourceLibrary.additionalCount;
+      return accumulator;
+    }, { sheet: 0, harmony: 0, audio: 0, additional: 0 });
+
+    const total = libraryCounts.sheet + libraryCounts.harmony + libraryCounts.audio + libraryCounts.additional;
+
+    document.getElementById("creative-library").innerHTML = `
+      <div class="library-shell">
+        <div class="library-lead">
+          <div>
+            <div class="section-title" style="font-size:30px;line-height:1.04;">Creative Library</div>
+            <div class="library-copy">A stronger source overview for the whole system, so sheet material, harmony references, listening references, and extra support links are visible at a glance.</div>
+          </div>
+          <div class="library-total">
+            <strong>${total}</strong>
+            <span>Total linked sources</span>
+          </div>
+        </div>
+
+        <div class="library-grid">
+          <article class="library-tile">
+            <div class="library-tile-head">
+              <span class="library-icon">𝄞</span>
+              <span class="library-count">${libraryCounts.sheet}</span>
+            </div>
+            <div>
+              <strong>Sheet Sources</strong>
+              <p>Reference scores and notation pulled into active projects.</p>
+            </div>
+          </article>
+
+          <article class="library-tile">
+            <div class="library-tile-head">
+              <span class="library-icon">♬</span>
+              <span class="library-count">${libraryCounts.harmony}</span>
+            </div>
+            <div>
+              <strong>Harmony Sources</strong>
+              <p>Chord and harmonic references guiding arrangement decisions.</p>
+            </div>
+          </article>
+
+          <article class="library-tile">
+            <div class="library-tile-head">
+              <span class="library-icon">▶</span>
+              <span class="library-count">${libraryCounts.audio}</span>
+            </div>
+            <div>
+              <strong>Audio References</strong>
+              <p>Listening examples collected for performance, feel, and production tone.</p>
+            </div>
+          </article>
+
+          <article class="library-tile">
+            <div class="library-tile-head">
+              <span class="library-icon">✧</span>
+              <span class="library-count">${libraryCounts.additional}</span>
+            </div>
+            <div>
+              <strong>Additional Sources</strong>
+              <p>Extra links that support concept shaping and creative development.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDashboard() {
+    const projects = store.getProjects();
+    renderWeekSummary(projects);
+    renderRecentProjects(projects);
+    renderTodoHub();
+    renderCreativeLibrary(projects);
+  }
+
+  document.addEventListener("click", (event) => {
+    const projectTrigger = event.target.closest("[data-open-project]");
+    if (projectTrigger) {
+      openProject(projectTrigger.getAttribute("data-open-project"));
+      return;
+    }
+
+    const toggleTrigger = event.target.closest("[data-toggle-todo]");
+    if (toggleTrigger) {
+      const projectId = toggleTrigger.getAttribute("data-toggle-todo");
+      const todoId = toggleTrigger.getAttribute("data-todo-id");
+      const isCompleted = toggleTrigger.getAttribute("data-completed") === "true";
+      store.toggleProjectTodo(projectId, todoId, !isCompleted);
+      renderDashboard();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const card = event.target.closest(".recent-card[data-open-project]");
+    if (!card) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProject(card.getAttribute("data-open-project"));
+    }
+  });
+
+  window.addEventListener(store.TODO_UPDATE_EVENT, renderDashboard);
+  window.addEventListener("storage", (event) => {
+    if (!event.key || event.key === store.STORAGE_KEY) {
+      renderDashboard();
+    }
+  });
+
+  renderDashboard();
+</script>
+</body>
+</html>

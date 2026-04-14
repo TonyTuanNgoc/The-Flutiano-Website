@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Flutiano — Edit Project</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 36px 132px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .panel,
+  .hero-panel,
+  .tab-panel,
+  .sheet-entry-card,
+  .sheet-thumb,
+  .modal-shell {
+    background: linear-gradient(180deg, rgba(17,22,29,0.48) 0%, rgba(10,14,20,0.30) 100%);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--r);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    box-shadow:
+      0 18px 44px rgba(4,7,12,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .hero-panel {
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .hero-main {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .back-btn,
+  .ghost-btn,
+  .primary-btn,
+  .mini-icon-btn,
+  .tab-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    font-weight: 800;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s, opacity 0.15s;
+    cursor: pointer;
+  }
+
+  .back-btn,
+  .ghost-btn {
+    padding: 10px 15px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: var(--t2);
+    font-size: 12px;
+  }
+
+  .back-btn:hover,
+  .ghost-btn:hover,
+  .primary-btn:hover,
+  .mini-icon-btn:hover,
+  .tab-chip:hover {
+    transform: translateY(-1px);
+  }
+
+  .primary-btn {
+    padding: 10px 16px;
+    border: 1px solid rgba(212,170,106,0.26);
+    background: rgba(212,170,106,0.16);
+    color: var(--gold-hi);
+    font-size: 12px;
+  }
+
+  .ghost-btn {
+    color: var(--t1);
+  }
+
+  .mini-icon-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    color: var(--t2);
+  }
+
+  .mini-icon-btn.is-accent {
+    border-color: rgba(212,170,106,0.26);
+    color: var(--gold-hi);
+    background: rgba(212,170,106,0.12);
+  }
+
+  .mini-icon-btn[aria-disabled="true"] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 1.06;
+    letter-spacing: -0.045em;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  .hero-meta {
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--t2);
+    max-width: 760px;
+  }
+
+  .tab-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .tab-chip {
+    padding: 10px 16px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: var(--t2);
+    font-size: 12px;
+  }
+
+  .tab-chip.is-active {
+    background: var(--gold-lo);
+    color: var(--gold);
+    border-color: rgba(212,170,106,0.28);
+  }
+
+  .tab-panel {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .tab-panel[hidden] {
+    display: none;
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .section-label {
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.62);
+    font-weight: 800;
+  }
+
+  .section-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  .section-copy {
+    font-size: 13px;
+    line-height: 1.68;
+    color: var(--t2);
+    max-width: 820px;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field.full {
+    grid-column: 1 / -1;
+  }
+
+  .field label {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    font-weight: 800;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: #FFFFFF;
+    font: inherit;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+
+  .input,
+  .select {
+    min-height: 48px;
+    padding: 0 14px;
+  }
+
+  .textarea {
+    min-height: 120px;
+    padding: 14px;
+    resize: vertical;
+  }
+
+  .textarea.small {
+    min-height: 90px;
+  }
+
+  .input:focus,
+  .textarea:focus,
+  .select:focus {
+    outline: none;
+    border-color: rgba(212,170,106,0.30);
+    box-shadow: 0 0 0 4px rgba(212,170,106,0.08);
+  }
+
+  .select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  .select-wrap {
+    position: relative;
+  }
+
+  .select-wrap::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid rgba(255,255,255,0.58);
+    border-bottom: 1.5px solid rgba(255,255,255,0.58);
+    transform: translateY(-60%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .core-grid {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .thumbnail-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .thumbnail-frame {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .thumbnail-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .thumbnail-overlay {
+    position: absolute;
+    inset: auto 12px 12px 12px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .thumbnail-note {
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--t2);
+  }
+
+  .instrument-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
+    gap: 16px;
+  }
+
+  .instrument-picker,
+  .selected-panel,
+  .key-library,
+  .step-card,
+  .workflow-focus-card,
+  .support-panel,
+  .sheet-group {
+    padding: 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .instrument-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+
+  .instrument-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 10px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  }
+
+  .instrument-option:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .instrument-option.is-selected {
+    border-color: rgba(212,170,106,0.28);
+    background: rgba(212,170,106,0.10);
+  }
+
+  .instrument-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .instrument-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(81%) sepia(20%) saturate(741%) hue-rotate(351deg) brightness(95%) contrast(87%);
+  }
+
+  .instrument-name {
+    font-size: 11px;
+    line-height: 1.35;
+    font-weight: 800;
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+  .selected-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .selected-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(212,170,106,0.22);
+    background: rgba(212,170,106,0.12);
+    color: var(--gold-hi);
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .selected-empty {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px dashed rgba(255,255,255,0.10);
+    color: var(--t3);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .step-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .step-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .step-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .step-label {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    font-weight: 800;
+  }
+
+  .step-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 22px;
+    line-height: 1.08;
+    color: #FFFFFF;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+  }
+
+  .key-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) 140px minmax(0, 1fr);
+    gap: 14px;
+    align-items: end;
+  }
+
+  .locked-key-card {
+    padding: 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(212,170,106,0.22);
+    background:
+      radial-gradient(circle at top right, rgba(212,170,106,0.16), transparent 38%),
+      rgba(255,255,255,0.04);
+  }
+
+  .locked-key-card span,
+  .key-secondary span,
+  .info-stat span,
+  .sheet-count span,
+  .workflow-focus-card span,
+  .sheet-entry-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.40);
+    font-weight: 800;
+  }
+
+  .locked-key-card strong {
+    display: block;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 800;
+    color: var(--gold-hi);
+    letter-spacing: -0.05em;
+    margin-bottom: 10px;
+  }
+
+  .locked-key-card small {
+    display: block;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--t2);
+    font-weight: 700;
+  }
+
+  .key-secondary,
+  .key-shift-card,
+  .info-stat,
+  .sheet-count {
+    padding: 14px 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .key-secondary strong,
+  .info-stat strong,
+  .sheet-count strong {
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  .key-shift-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .key-shift-value {
+    font-size: 34px;
+    line-height: 1;
+    color: var(--sky);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .key-shift-copy {
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--t2);
+    font-weight: 700;
+  }
+
+  .key-library {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .key-library .library-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .theory-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.05);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .five-step-strip {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .step-icon-block {
+    min-height: 78px;
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-icon-block.is-active {
+    border-color: rgba(212,170,106,0.24);
+    background: rgba(212,170,106,0.10);
+  }
+
+  .step-icon-block .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .step-icon-block img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .step-icon-block svg {
+    width: 22px;
+    height: 22px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .sheet-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sheet-group-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .sheet-group-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+
+  .sheet-group-title img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .sheet-group-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .sheet-entry-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sheet-entry-card {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sheet-entry-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 34px;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .sheet-thumb-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sheet-thumb {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .sheet-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+  }
+
+  .sheet-thumb-del {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(7,9,12,0.78);
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .sheet-upload {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: var(--t2);
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .sheet-upload input {
+    display: none;
+  }
+
+  .sheet-empty {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px dashed rgba(255,255,255,0.10);
+    color: var(--t3);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .toggle-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .toggle-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: var(--t2);
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .toggle-chip.is-selected {
+    border-color: rgba(212,170,106,0.26);
+    background: rgba(212,170,106,0.12);
+    color: var(--gold-hi);
+  }
+
+  .workflow-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .workflow-focus-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .workflow-focus-card strong {
+    font-size: 16px;
+    line-height: 1.35;
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  .workflow-focus-card p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--t2);
+  }
+
+  .link-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.05);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .sticky-submit {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 80;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(8,11,16,0.84);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    padding: 28px;
+    background: rgba(4,7,11,0.76);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-backdrop[hidden] {
+    display: none;
+  }
+
+  .modal-shell {
+    width: min(1120px, 100%);
+    max-height: min(88vh, 920px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .modal-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+
+  .modal-body {
+    padding: 20px;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.18);
+  }
+
+  .modal-body img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 18px;
+    display: block;
+  }
+
+  .hidden-input {
+    display: none;
+  }
+
+  @media (max-width: 1280px) {
+    .sheet-grid,
+    .workflow-grid,
+    .workflow-focus-grid,
+    .key-library {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .core-grid,
+    .instrument-shell,
+    .support-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .key-grid,
+    .sheet-entry-row,
+    .field-grid,
+    .five-step-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .sticky-submit {
+      left: 20px;
+      right: 20px;
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .content {
+      padding: 24px 18px 140px;
+    }
+
+    .hero-panel {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-art" aria-hidden="true"></div>
+
+<aside class="sidebar">
+  <a class="brand-block" href="dashboard.html">
+    <div class="brand-mark">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 15 Q4 9 8 7 Q10 6 12 6.5 L14 4 Q15 3 15.5 4 Q16 5 15 5.5 L13.2 7.3 Q13.8 9 13 11 Q12 13.5 9 14.5 Q6 15.5 3 15 Z" stroke="#D4AA6A" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+          <circle cx="10.5" cy="9.5" r="1" fill="#D4AA6A" opacity="0.7"/>
+          <circle cx="8.5" cy="11.5" r="0.7" fill="#D4AA6A" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="brand-name">The Flutiano</div>
+    </div>
+    <div class="brand-sub">Creative System</div>
+  </a>
+
+  <div class="nav-scroll">
+    <div class="nav-section-label">Main</div>
+    <a class="nav-item" href="dashboard.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor"/>
+        <rect x="8.5" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="1" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+      </svg>
+      Dashboard
+    </a>
+    <a class="nav-item active" href="projects.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M1.5 3.5h12M1.5 7.5h9M1.5 11.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Projects
+      <span class="badge">5</span>
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="avatar">F</div>
+    <div class="user-info">
+      <div class="user-name">Flutiano</div>
+      <div class="user-role">Artist &amp; Producer</div>
+    </div>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <circle cx="6" cy="2.5" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="6" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="9.5" r="1" fill="rgba(255,255,255,0.28)"/>
+    </svg>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <div class="topbar">
+    <span class="page-title" id="page-title">Edit Project</span>
+    <div class="topbar-spacer"></div>
+  </div>
+
+  <div class="content" id="edit-root"></div>
+</div>
+
+<div class="sticky-submit" id="sticky-submit">
+  <button class="ghost-btn" type="button" id="cancel-edit">Cancel</button>
+  <button class="primary-btn" type="button" id="save-edit">Save Changes</button>
+</div>
+
+<div class="modal-backdrop" id="image-viewer" hidden>
+  <div class="modal-shell">
+    <div class="modal-topbar">
+      <div class="modal-title" id="image-viewer-title">Sheet Preview</div>
+      <button class="ghost-btn" type="button" id="image-viewer-close">Close</button>
+    </div>
+    <div class="modal-body">
+      <img id="image-viewer-image" alt="Sheet preview">
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="thumbnail-url-modal" hidden>
+  <div class="modal-shell" style="max-width:640px;">
+    <div class="modal-topbar">
+      <div class="modal-title">Paste Thumbnail Image URL</div>
+      <button class="ghost-btn" type="button" id="thumbnail-url-close">Close</button>
+    </div>
+    <div class="modal-body" style="display:block; background:transparent;">
+      <div class="field" style="margin-bottom:12px;">
+        <label for="thumbnail-url-input">Image URL</label>
+        <input class="input" id="thumbnail-url-input" type="url" placeholder="https://...">
+      </div>
+      <div class="thumbnail-frame" style="aspect-ratio:16/9;">
+        <img id="thumbnail-url-preview" alt="Thumbnail URL preview">
+      </div>
+      <div class="thumbnail-note" id="thumbnail-url-feedback" style="margin-top:12px;">Paste a direct image URL to preview it before applying.</div>
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:14px;">
+        <button class="ghost-btn" type="button" id="thumbnail-url-cancel">Cancel</button>
+        <button class="primary-btn" type="button" id="thumbnail-url-apply">Use This Image</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="project-store.js"></script>
+<script>
+  const store = window.FlutianoProjectStore;
+  const DEFAULT_PRIORITY_KEYS = ["C major", "F major", "G major", "A major"];
+  const SOURCE_LABELS = {
+    musescore: "MuseScore",
+    youtube: "YouTube",
+    website: "Internet"
+  };
+  const SOURCE_HOME_URLS = {
+    musescore: "https://musescore.com/",
+    youtube: "https://www.youtube.com/",
+    website: "https://www.google.com/"
+  };
+  const STEP_ICON_HTML = {
+    key: `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M9 13a4 4 0 1 1 2.9 3.84L8 20v-3H5v-3H2v-3.1L8.1 4.8A4 4 0 0 1 9 13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    `,
+    instruments: `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M7 18V7l10-3v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="5" cy="18" r="2.5" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="17" cy="15" r="2.5" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    `,
+    perform: `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M5 19V5l14 7-14 7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    `,
+    polish: `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 3l2.2 4.8L19 10l-4.8 2.2L12 17l-2.2-4.8L5 10l4.8-2.2L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    `
+  };
+
+  const state = {
+    project: null,
+    activeTab: "tab-core",
+    thumbnail: "",
+    selectedInstruments: [],
+    priorityKeys: DEFAULT_PRIORITY_KEYS.slice(),
+    youtubeReferences: [],
+    sheetImages: {
+      musescore: [],
+      youtube: [],
+      website: []
+    },
+    thumbnailUrlPreview: ""
+  };
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function getCurrentProject() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("project");
+    return store.getProject(id) || null;
+  }
+
+  function sectionTemplate() {
+    return `
+      <section class="hero-panel">
+        <div class="hero-main">
+          <a class="back-btn" id="back-link" href="projects.html">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M10 6H2M6 2L2 6l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+          </a>
+          <div>
+            <div class="hero-meta">Unified Project Editor</div>
+            <div class="hero-title" id="edit-heading">Edit Project</div>
+            <div class="hero-sub">Keep audio workflow, source library, image planning, instruments, and thumbnail decisions connected in one place.</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="tab-bar">
+        <button class="tab-chip is-active" type="button" data-tab="tab-core">Core Info</button>
+        <button class="tab-chip" type="button" data-tab="tab-workflow">Workflow Hub</button>
+        <button class="tab-chip" type="button" data-tab="tab-audio">Audio Production</button>
+        <button class="tab-chip" type="button" data-tab="tab-image">Image Production</button>
+      </div>
+
+      <section class="tab-panel" id="tab-core">
+        <div class="panel-head">
+          <div>
+            <div class="section-label">Project Setup</div>
+            <div class="section-title">Project Identity</div>
+            <div class="section-copy">Keep the entry point practical: title, status, deadline, thumbnail, and chosen instruments should all be visible without extra clicks.</div>
+          </div>
+        </div>
+
+        <div class="core-grid">
+          <div class="thumbnail-stack">
+            <div class="thumbnail-frame">
+              <img id="thumbnail-preview" alt="Thumbnail preview">
+              <div class="thumbnail-overlay">
+                <button class="mini-icon-btn is-accent" type="button" id="thumbnail-upload-btn" title="Upload image">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 10V2M4 5l3-3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.5 11.5h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <button class="mini-icon-btn" type="button" id="thumbnail-url-btn" title="Paste image URL">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M5.5 4.5H4A2.5 2.5 0 1 0 4 9.5h1.5M8.5 4.5H10A2.5 2.5 0 1 1 10 9.5H8.5M5 7h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <button class="mini-icon-btn" type="button" id="thumbnail-reset-btn" title="Remove thumbnail">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 3l8 8M11 3L3 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <input class="hidden-input" id="thumbnail-input" type="file" accept="image/*">
+            <div class="thumbnail-note">Thumbnail preview is tied directly to dashboard cards, recent projects, and the project detail hero.</div>
+          </div>
+
+          <div class="field-grid">
+            <div class="field full">
+              <label for="title">Song Title</label>
+              <input class="input" id="title" type="text" placeholder="Song title">
+            </div>
+            <div class="field">
+              <label for="status">Status</label>
+              <div class="select-wrap">
+                <select class="select" id="status">
+                  <option value="Draft">Draft</option>
+                  <option value="Active">Active</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Released">Released</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="deadline">Deadline</label>
+              <input class="input" id="deadline" type="date">
+            </div>
+            <div class="field full">
+              <label for="project-status-note">Project Status Focus</label>
+              <input class="input" id="project-status-note" type="text" placeholder="Short operating note for the current phase">
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-head" style="margin-top:8px;">
+          <div>
+            <div class="section-label">Instruments</div>
+            <div class="section-title">Arrangement Palette</div>
+            <div class="section-copy">Choose the instruments for this project and keep the selected set linked to detail views, dashboard cards, and project thumbnails.</div>
+          </div>
+        </div>
+
+        <div class="instrument-shell">
+          <div class="instrument-picker">
+            <div class="instrument-picker-grid" id="instrument-picker"></div>
+          </div>
+          <div class="selected-panel">
+            <div class="section-label" style="margin-bottom:8px;">Selected</div>
+            <div id="selected-instruments"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-workflow" hidden>
+        <div class="panel-head">
+          <div>
+            <div class="section-label">Workflow Hub</div>
+            <div class="section-title">Clean, Connected Music Workflow</div>
+            <div class="section-copy">The system stays usable when key, source collection, instruments, iteration, and finishing stages all line up inside one practical sequence.</div>
+          </div>
+        </div>
+
+        <div class="five-step-strip">
+          <div class="step-icon-block is-active">
+            <div class="logo-row">
+              <img src="assets/icons/musescore.png" alt="MuseScore">
+              <img src="assets/icons/youtube.png" alt="YouTube">
+              <img src="assets/icons/internet.png" alt="Internet">
+            </div>
+          </div>
+          <div class="step-icon-block is-active">${STEP_ICON_HTML.key}</div>
+          <div class="step-icon-block is-active">${STEP_ICON_HTML.instruments}</div>
+          <div class="step-icon-block">${STEP_ICON_HTML.perform}</div>
+          <div class="step-icon-block">${STEP_ICON_HTML.polish}</div>
+        </div>
+
+        <div class="workflow-grid">
+          <article class="step-card" id="workflow-step-1">
+            <div class="step-head">
+              <div class="step-meta">
+                <div class="step-label">Step 1</div>
+                <div class="step-title">Lock Master Key</div>
+              </div>
+            </div>
+
+            <div class="key-grid">
+              <div class="field">
+                <label for="finalKey">Locked Key</label>
+                <div class="locked-key-card">
+                  <span>Locked Key</span>
+                  <strong id="locked-key-display">Not set</strong>
+                  <div class="select-wrap">
+                    <select class="select" id="finalKey"></select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="key-shift-card">
+                <span>Interval Shift</span>
+                <div class="key-shift-value" id="key-shift-value">—</div>
+                <div class="key-shift-copy" id="key-shift-copy">No change yet</div>
+              </div>
+
+              <div class="field">
+                <label for="originalKey">Original Key</label>
+                <div class="select-wrap">
+                  <select class="select" id="originalKey"></select>
+                </div>
+                <div class="key-secondary" style="margin-top:10px;">
+                  <span>Priority Keys</span>
+                  <strong id="priority-keys-hint"></strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="key-library">
+              <div class="support-panel">
+                <span>Scale Notes</span>
+                <div class="library-list" id="scale-notes-list"></div>
+              </div>
+              <div class="support-panel">
+                <span>Primary Chords</span>
+                <div class="library-list" id="primary-chords-list"></div>
+              </div>
+              <div class="support-panel">
+                <span>Chord Library</span>
+                <div class="library-list" id="diatonic-chords-list"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="step-card" id="workflow-step-2">
+            <div class="step-head">
+              <div class="step-meta">
+                <div class="step-label">Step 2</div>
+                <div class="step-title">Collect Sheet Sources</div>
+              </div>
+            </div>
+
+            <div class="sheet-grid">
+              <section class="sheet-group">
+                <div class="sheet-group-head">
+                  <div class="sheet-group-title">
+                    <img src="assets/icons/musescore.png" alt="MuseScore">
+                    <span>MuseScore</span>
+                  </div>
+                  <div class="sheet-group-actions">
+                    <a class="mini-icon-btn" href="https://musescore.com/" target="_blank" rel="noreferrer" title="Open MuseScore">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M5 3h6v6M9 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                    <button class="mini-icon-btn is-accent" type="button" data-add-sheet="musescore" title="Add MuseScore item">+</button>
+                  </div>
+                </div>
+                <div class="sheet-entry-list" id="sheet-list-musescore"></div>
+              </section>
+
+              <section class="sheet-group">
+                <div class="sheet-group-head">
+                  <div class="sheet-group-title">
+                    <img src="assets/icons/youtube.png" alt="YouTube">
+                    <span>YouTube</span>
+                  </div>
+                  <div class="sheet-group-actions">
+                    <a class="mini-icon-btn" href="https://www.youtube.com/" target="_blank" rel="noreferrer" title="Open YouTube">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M5 3h6v6M9 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                    <button class="mini-icon-btn is-accent" type="button" data-add-sheet="youtube" title="Add YouTube item">+</button>
+                  </div>
+                </div>
+                <div class="sheet-entry-list" id="sheet-list-youtube"></div>
+              </section>
+
+              <section class="sheet-group">
+                <div class="sheet-group-head">
+                  <div class="sheet-group-title">
+                    <img src="assets/icons/internet.png" alt="Internet">
+                    <span>Internet</span>
+                  </div>
+                  <div class="sheet-group-actions">
+                    <a class="mini-icon-btn" href="https://www.google.com/" target="_blank" rel="noreferrer" title="Open Internet">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M5 3h6v6M9 5l-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                    <button class="mini-icon-btn is-accent" type="button" data-add-sheet="website" title="Add web item">+</button>
+                  </div>
+                </div>
+                <div class="sheet-entry-list" id="sheet-list-website"></div>
+              </section>
+            </div>
+
+            <div class="support-grid">
+              <div class="field">
+                <label for="harmonySources">Harmony / Chord Sources</label>
+                <textarea class="textarea small" id="harmonySources" placeholder="Label | https://..."></textarea>
+              </div>
+              <div class="field">
+                <label for="additionalSources">Additional Sources</label>
+                <textarea class="textarea small" id="additionalSources" placeholder="Label | https://..."></textarea>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-audio" hidden>
+        <div class="panel-head">
+          <div>
+            <div class="section-label">Audio Production Workflow</div>
+            <div class="section-title">Real Music Production Handling</div>
+            <div class="section-copy">Keep the audio workflow flexible enough for writing, listening back, adjusting, editing, and refining continuously instead of forcing a rigid pipeline.</div>
+          </div>
+        </div>
+
+        <div class="workflow-focus-grid">
+          <article class="workflow-focus-card">
+            <span>Practical Setup</span>
+            <strong>Working Score Layout</strong>
+            <p>Default stack follows your real writing flow: flute first, then two piano staves, then the voice staff at the bottom.</p>
+          </article>
+          <article class="workflow-focus-card">
+            <span>Input Support</span>
+            <strong>MIDI + XML Ready</strong>
+            <p>Manual note input with MIDI keyboard and XML import stay visible as workflow support, not buried inside a disconnected settings area.</p>
+          </article>
+        </div>
+
+        <div class="support-grid">
+          <div class="field">
+            <label for="scoreOrder">Score Order</label>
+            <input class="input" id="scoreOrder" type="text" placeholder="Flute, Piano RH, Piano LH, Voice">
+          </div>
+          <div class="field">
+            <label>Workflow Support</label>
+            <div class="toggle-row">
+              <button class="toggle-chip" type="button" data-audio-toggle="supportsMidiInput">Manual Note Input (MIDI)</button>
+              <button class="toggle-chip" type="button" data-audio-toggle="supportsXmlImport">XML Import</button>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="audioSheetReferences">Audio Sheet References</label>
+            <textarea class="textarea small" id="audioSheetReferences" placeholder="Label | https://..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="arrangementNotes">Arrangement Notes</label>
+            <textarea class="textarea" id="arrangementNotes" placeholder="Voicing, phrasing, orchestration, or writing notes..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="recordingNotes">Recording Notes</label>
+            <textarea class="textarea small" id="recordingNotes" placeholder="Mic, performance, layering, or mix notes..."></textarea>
+          </div>
+          <div class="field">
+            <label for="audioWorkflowNotes">Audio Workflow Notes</label>
+            <textarea class="textarea small" id="audioWorkflowNotes" placeholder="How this project should move through the audio workflow..."></textarea>
+          </div>
+          <div class="field">
+            <label for="audioIterationLoop">Iteration Loop</label>
+            <textarea class="textarea small" id="audioIterationLoop" placeholder="How you want to keep listening, adjusting, and refining..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="audioManualNotes">Manual Notes</label>
+            <textarea class="textarea small" id="audioManualNotes" placeholder="Any other manual workflow notes or score handling notes..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="musicTasks">Audio Tasks</label>
+            <textarea class="textarea small" id="musicTasks" placeholder="One task per line"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-image" hidden>
+        <div class="panel-head">
+          <div>
+            <div class="section-label">Image Production</div>
+            <div class="section-title">Visual Planning That Stays Connected</div>
+            <div class="section-copy">Image direction should stay attached to the same project state, so selected frames, references, thumbnail choices, and final delivery stay linked back to the song.</div>
+          </div>
+        </div>
+
+        <div class="workflow-focus-grid">
+          <article class="workflow-focus-card">
+            <span>Visual Direction</span>
+            <strong>Dark Cinematic Luxury</strong>
+            <p>Keep the look premium, minimal, and Milanote-friendly: dark textured background, metallic gold accents, and calm visual hierarchy.</p>
+          </article>
+          <article class="workflow-focus-card">
+            <span>Connected Assets</span>
+            <strong>Thumbnail + References + Delivery</strong>
+            <p>Everything saved here should feed the project entry points instead of feeling like a separate disconnected image tool.</p>
+          </article>
+        </div>
+
+        <div class="support-grid">
+          <div class="field full">
+            <label for="concept">Visual Concept</label>
+            <textarea class="textarea" id="concept" placeholder="Describe the visual direction..."></textarea>
+          </div>
+          <div class="field">
+            <label for="location">Location</label>
+            <input class="input" id="location" type="text" placeholder="Studio, apartment, hall...">
+          </div>
+          <div class="field">
+            <label for="wardrobe">Wardrobe</label>
+            <input class="input" id="wardrobe" type="text" placeholder="Main wardrobe direction">
+          </div>
+          <div class="field">
+            <label for="lighting">Lighting</label>
+            <input class="input" id="lighting" type="text" placeholder="Lighting direction">
+          </div>
+          <div class="field">
+            <label for="shotDirection">Shot Direction</label>
+            <input class="input" id="shotDirection" type="text" placeholder="Shot language">
+          </div>
+          <div class="field full">
+            <label for="imageWorkflowNotes">Image Workflow Notes</label>
+            <textarea class="textarea small" id="imageWorkflowNotes" placeholder="How the image production should run..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="imageReferenceFrames">Reference Frames</label>
+            <textarea class="textarea small" id="imageReferenceFrames" placeholder="Label | https://..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="imageDeliveryNotes">Delivery Notes</label>
+            <textarea class="textarea small" id="imageDeliveryNotes" placeholder="Thumbnail, frame exports, Milanote usage notes..."></textarea>
+          </div>
+          <div class="field full">
+            <label for="visualTasks">Image Tasks</label>
+            <textarea class="textarea small" id="visualTasks" placeholder="One task per line"></textarea>
+          </div>
+          <div class="field full">
+            <label for="youtubeReferences">YouTube References</label>
+            <textarea class="textarea small" id="youtubeReferences" placeholder="One YouTube URL per line"></textarea>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  function populateKeySelect(selectId) {
+    const select = document.getElementById(selectId);
+    select.innerHTML = [`<option value="">Select a key</option>`]
+      .concat(store.KEY_OPTIONS.map((key) => `<option value="${escapeHtml(key)}">${escapeHtml(key)}</option>`))
+      .join("");
+  }
+
+  function renderThumbnail() {
+    const preview = document.getElementById("thumbnail-preview");
+    if (!preview) return;
+    preview.src = state.thumbnail || store.getThumbnail(state.project);
+  }
+
+  function renderInstrumentPicker() {
+    const picker = document.getElementById("instrument-picker");
+    const selected = document.getElementById("selected-instruments");
+    if (!picker || !selected) return;
+
+    picker.innerHTML = store.INSTRUMENT_LIBRARY.map((item) => `
+      <button class="instrument-option ${state.selectedInstruments.includes(item.id) ? "is-selected" : ""}" type="button" data-instrument="${escapeHtml(item.id)}">
+        <div class="instrument-icon">
+          <img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.label)}">
+        </div>
+        <div class="instrument-name">${escapeHtml(item.label)}</div>
+      </button>
+    `).join("");
+
+    if (!state.selectedInstruments.length) {
+      selected.innerHTML = `<div class="selected-empty">Pick the instruments you want available for this project. They will also surface on detail cards and project thumbnails.</div>`;
+      return;
+    }
+
+    selected.innerHTML = `
+      <div class="selected-list">
+        ${state.selectedInstruments.map((id) => {
+          const item = store.INSTRUMENT_LIBRARY.find((entry) => entry.id === id) || { label: id };
+          return `<button class="selected-chip" type="button" data-remove-instrument="${escapeHtml(id)}">✕ ${escapeHtml(item.label)}</button>`;
+        }).join("")}
+      </div>
+    `;
+  }
+
+  function renderKeyLibrary() {
+    const finalKey = document.getElementById("finalKey")?.value || "";
+    const originalKey = document.getElementById("originalKey")?.value || "";
+    const theory = store.getKeyTheory(finalKey);
+    const lockedDisplay = document.getElementById("locked-key-display");
+    const shiftValue = document.getElementById("key-shift-value");
+    const shiftCopy = document.getElementById("key-shift-copy");
+    const priorityHint = document.getElementById("priority-keys-hint");
+
+    if (lockedDisplay) {
+      lockedDisplay.textContent = finalKey || "Not set";
+    }
+    if (shiftValue) {
+      shiftValue.textContent = store.getKeyShiftLabel(originalKey, finalKey);
+    }
+    if (shiftCopy) {
+      shiftCopy.textContent = finalKey
+        ? store.getKeyShiftDescription(originalKey, finalKey)
+        : "Set a locked key to show the interval shift";
+    }
+    if (priorityHint) {
+      priorityHint.textContent = state.priorityKeys.join(" · ");
+    }
+
+    const scaleNotes = document.getElementById("scale-notes-list");
+    const primaryChords = document.getElementById("primary-chords-list");
+    const diatonicChords = document.getElementById("diatonic-chords-list");
+    if (!scaleNotes || !primaryChords || !diatonicChords) return;
+
+    if (!theory) {
+      scaleNotes.innerHTML = `<div class="selected-empty" style="min-height:90px;">Select a locked key to build the matching note and harmony library.</div>`;
+      primaryChords.innerHTML = `<div class="selected-empty" style="min-height:90px;">Primary harmony will appear here.</div>`;
+      diatonicChords.innerHTML = `<div class="selected-empty" style="min-height:90px;">Diatonic chord family will appear here.</div>`;
+      return;
+    }
+
+    scaleNotes.innerHTML = theory.scaleNotes.map((note) => `<span class="theory-chip">${escapeHtml(note)}</span>`).join("");
+    primaryChords.innerHTML = theory.primaryChords.map((note) => `<span class="theory-chip">${escapeHtml(note)}</span>`).join("");
+    diatonicChords.innerHTML = theory.diatonicChords.map((note) => `<span class="theory-chip">${escapeHtml(note)}</span>`).join("");
+  }
+
+  function renderSheetList(source) {
+    const list = document.getElementById(`sheet-list-${source}`);
+    if (!list) return;
+    const entries = state.sheetImages[source] || [];
+
+    if (!entries.length) {
+      list.innerHTML = `<div class="sheet-empty">Add a ${SOURCE_LABELS[source]} source and any related sheet images here. Saved items will flow back into the project detail page.</div>`;
+      return;
+    }
+
+    list.innerHTML = entries.map((entry, entryIndex) => `
+      <article class="sheet-entry-card">
+        <div class="sheet-entry-row">
+          <div class="field">
+            <label class="sheet-entry-label">Label</label>
+            <input class="input" type="text" value="${escapeHtml(entry.label || "")}" data-sheet-input="${source}" data-sheet-index="${entryIndex}" data-sheet-field="label" placeholder="${SOURCE_LABELS[source]} item">
+          </div>
+          <div class="field">
+            <label class="sheet-entry-label">Link</label>
+            <input class="input" type="url" value="${escapeHtml(entry.url || "")}" data-sheet-input="${source}" data-sheet-index="${entryIndex}" data-sheet-field="url" placeholder="https://...">
+          </div>
+          <button class="mini-icon-btn" type="button" data-remove-sheet="${source}" data-remove-sheet-index="${entryIndex}" title="Remove item">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 2l8 8M10 2L2 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        ${Array.isArray(entry.images) && entry.images.length ? `
+          <div class="sheet-thumb-area">
+            ${entry.images.map((imageSrc, imageIndex) => `
+              <div class="sheet-thumb">
+                <img src="${imageSrc}" alt="${escapeHtml(entry.label || SOURCE_LABELS[source])}" data-preview-image="${imageSrc}" data-preview-title="${escapeHtml(entry.label || SOURCE_LABELS[source])}">
+                <button class="sheet-thumb-del" type="button" data-remove-sheet-image="${source}" data-remove-sheet-index="${entryIndex}" data-remove-image-index="${imageIndex}">×</button>
+              </div>
+            `).join("")}
+          </div>
+        ` : ""}
+        <label class="sheet-upload">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 9V2M3.5 4.5L6 2l2.5 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 10h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          Add Sheet Image
+          <input type="file" accept="image/*" multiple data-upload-sheet="${source}" data-upload-sheet-index="${entryIndex}">
+        </label>
+      </article>
+    `).join("");
+  }
+
+  function renderAllSheetLists() {
+    ["musescore", "youtube", "website"].forEach(renderSheetList);
+  }
+
+  function openImageViewer(src, title) {
+    document.getElementById("image-viewer-image").src = src;
+    document.getElementById("image-viewer-title").textContent = title || "Sheet Preview";
+    document.getElementById("image-viewer").hidden = false;
+  }
+
+  function closeImageViewer() {
+    document.getElementById("image-viewer").hidden = true;
+  }
+
+  function openThumbnailUrlModal() {
+    const modal = document.getElementById("thumbnail-url-modal");
+    const input = document.getElementById("thumbnail-url-input");
+    const preview = document.getElementById("thumbnail-url-preview");
+    const feedback = document.getElementById("thumbnail-url-feedback");
+    state.thumbnailUrlPreview = "";
+    input.value = "";
+    preview.src = store.getThumbnail(state.project);
+    feedback.textContent = "Paste a direct image URL to preview it before applying.";
+    modal.hidden = false;
+    setTimeout(() => input.focus(), 50);
+  }
+
+  function closeThumbnailUrlModal() {
+    document.getElementById("thumbnail-url-modal").hidden = true;
+  }
+
+  function previewThumbnailUrl(url) {
+    const preview = document.getElementById("thumbnail-url-preview");
+    const feedback = document.getElementById("thumbnail-url-feedback");
+    const trimmed = String(url || "").trim();
+    if (!trimmed) {
+      state.thumbnailUrlPreview = "";
+      preview.src = store.getThumbnail(state.project);
+      feedback.textContent = "Paste a direct image URL to preview it before applying.";
+      return;
+    }
+
+    const img = new Image();
+    img.onload = () => {
+      state.thumbnailUrlPreview = trimmed;
+      preview.src = trimmed;
+      feedback.textContent = "Preview loaded. Apply it to use this image as the project thumbnail.";
+    };
+    img.onerror = () => {
+      state.thumbnailUrlPreview = "";
+      feedback.textContent = "Could not load that image. Try a direct image URL instead.";
+    };
+    img.src = trimmed;
+  }
+
+  async function handleThumbnailInput(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    state.thumbnail = await store.readFileAsDataUrl(file);
+    renderThumbnail();
+    event.target.value = "";
+  }
+
+  function setActiveTab(tabId) {
+    state.activeTab = tabId;
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.classList.toggle("is-active", button.getAttribute("data-tab") === tabId);
+    });
+    document.querySelectorAll(".tab-panel").forEach((panel) => {
+      panel.hidden = panel.id !== tabId;
+    });
+  }
+
+  function toggleInstrumentSelection(id) {
+    if (state.selectedInstruments.includes(id)) {
+      state.selectedInstruments = state.selectedInstruments.filter((item) => item !== id);
+    } else {
+      state.selectedInstruments = state.selectedInstruments.concat(id);
+    }
+    renderInstrumentPicker();
+  }
+
+  function fillForm(project) {
+    state.thumbnail = project.thumbnail || "";
+    state.selectedInstruments = Array.isArray(project.music.selectedInstruments)
+      ? project.music.selectedInstruments.slice()
+      : [];
+    state.priorityKeys = (project.songWorkflow.masterKey.priorityKeys || []).length
+      ? project.songWorkflow.masterKey.priorityKeys.slice()
+      : DEFAULT_PRIORITY_KEYS.slice();
+    state.youtubeReferences = Array.isArray(project.youtubeReferences)
+      ? project.youtubeReferences.slice()
+      : [];
+    state.sheetImages = {
+      musescore: ((project.songWorkflow.sourceLibrary.sheetImages || {}).musescore || []).map((entry) => ({
+        label: entry.label || "",
+        url: entry.url || "",
+        images: Array.isArray(entry.images) ? entry.images.slice() : []
+      })),
+      youtube: ((project.songWorkflow.sourceLibrary.sheetImages || {}).youtube || []).map((entry) => ({
+        label: entry.label || "",
+        url: entry.url || "",
+        images: Array.isArray(entry.images) ? entry.images.slice() : []
+      })),
+      website: ((project.songWorkflow.sourceLibrary.sheetImages || {}).website || []).map((entry) => ({
+        label: entry.label || "",
+        url: entry.url || "",
+        images: Array.isArray(entry.images) ? entry.images.slice() : []
+      }))
+    };
+
+    document.getElementById("back-link").href = store.getDetailUrl(project.id);
+    document.getElementById("edit-heading").textContent = project.title || "Edit Project";
+    document.getElementById("page-title").textContent = `Edit · ${project.title}`;
+
+    document.getElementById("title").value = project.title || "";
+    document.getElementById("status").value = project.status || "Draft";
+    document.getElementById("deadline").value = project.deadline || "";
+    document.getElementById("project-status-note").value = project.production?.audio?.iterationLoop || "";
+
+    document.getElementById("originalKey").value = project.songWorkflow.masterKey.originalKey || "";
+    document.getElementById("finalKey").value = project.songWorkflow.masterKey.finalKey || "";
+    document.getElementById("harmonySources").value = store.linksToMultiline(project.songWorkflow.sourceLibrary.harmonySources || []);
+    document.getElementById("additionalSources").value = store.linksToMultiline(project.songWorkflow.sourceLibrary.additionalSources || []);
+
+    document.getElementById("scoreOrder").value = (project.production.audio.scoreOrder || []).join(", ");
+    document.getElementById("audioSheetReferences").value = store.linksToMultiline(project.production.audio.sheetReferences || []);
+    document.getElementById("arrangementNotes").value = project.music.arrangementNotes || "";
+    document.getElementById("recordingNotes").value = project.music.recordingNotes || "";
+    document.getElementById("audioWorkflowNotes").value = project.production.audio.workflowNotes || "";
+    document.getElementById("audioIterationLoop").value = project.production.audio.iterationLoop || "";
+    document.getElementById("audioManualNotes").value = project.production.audio.manualNotes || "";
+    document.getElementById("musicTasks").value = store.joinMultiline(project.music.musicTasks || []);
+
+    document.getElementById("concept").value = project.visual.concept || "";
+    document.getElementById("location").value = project.visual.location || "";
+    document.getElementById("wardrobe").value = project.visual.wardrobe || "";
+    document.getElementById("lighting").value = project.visual.lighting || "";
+    document.getElementById("shotDirection").value = project.visual.shotDirection || "";
+    document.getElementById("imageWorkflowNotes").value = project.production.image.workflowNotes || "";
+    document.getElementById("imageReferenceFrames").value = store.linksToMultiline(project.production.image.referenceFrames || []);
+    document.getElementById("imageDeliveryNotes").value = project.production.image.deliveryNotes || "";
+    document.getElementById("visualTasks").value = store.joinMultiline(project.visual.visualTasks || []);
+    document.getElementById("youtubeReferences").value = store.joinMultiline(project.youtubeReferences || []);
+
+    document.querySelectorAll("[data-audio-toggle]").forEach((button) => {
+      const field = button.getAttribute("data-audio-toggle");
+      const selected = Boolean(project.production.audio[field]);
+      button.classList.toggle("is-selected", selected);
+      button.setAttribute("aria-pressed", selected ? "true" : "false");
+    });
+
+    renderThumbnail();
+    renderInstrumentPicker();
+    renderKeyLibrary();
+    renderAllSheetLists();
+  }
+
+  function buildSheetSourcePayload(source) {
+    return (state.sheetImages[source] || [])
+      .filter((entry) => entry.label || entry.url || (entry.images || []).length)
+      .map((entry) => ({
+        label: String(entry.label || SOURCE_LABELS[source]).trim() || SOURCE_LABELS[source],
+        url: String(entry.url || "").trim(),
+        images: Array.isArray(entry.images) ? entry.images.slice() : []
+      }));
+  }
+
+  function buildPayload() {
+    const title = document.getElementById("title").value.trim();
+    const status = document.getElementById("status").value;
+    const audioToggleState = Object.fromEntries(
+      Array.from(document.querySelectorAll("[data-audio-toggle]")).map((button) => [
+        button.getAttribute("data-audio-toggle"),
+        button.classList.contains("is-selected")
+      ])
+    );
+
+    return {
+      id: state.project.id,
+      title,
+      author: state.project.author || "The Flutiano",
+      status,
+      progress: status === "Released" ? 100 : status === "In Progress" ? 58 : status === "Active" ? 38 : 12,
+      deadline: document.getElementById("deadline").value,
+      category: state.project.category || "Cover",
+      shortDescription: "",
+      thumbnail: state.thumbnail,
+      gallery: Array.isArray(state.project.gallery) ? state.project.gallery : [],
+      music: {
+        arrangementNotes: document.getElementById("arrangementNotes").value.trim(),
+        instrumentation: state.selectedInstruments.join(", "),
+        recordingNotes: document.getElementById("recordingNotes").value.trim(),
+        selectedInstruments: state.selectedInstruments.slice(),
+        musicTasks: store.splitMultiline(document.getElementById("musicTasks").value)
+      },
+      visual: {
+        concept: document.getElementById("concept").value.trim(),
+        location: document.getElementById("location").value.trim(),
+        wardrobe: document.getElementById("wardrobe").value.trim(),
+        lighting: document.getElementById("lighting").value.trim(),
+        shotDirection: document.getElementById("shotDirection").value.trim(),
+        visualTasks: store.splitMultiline(document.getElementById("visualTasks").value)
+      },
+      inspiration: {
+        coreMood: state.project.inspiration?.coreMood || "",
+        referenceNotes: ""
+      },
+      references: {
+        links: Array.isArray(state.project.references?.links) ? state.project.references.links : []
+      },
+      youtubeReferences: store.splitMultiline(document.getElementById("youtubeReferences").value),
+      notes: "",
+      production: {
+        audio: {
+          scoreOrder: document.getElementById("scoreOrder").value
+            .split(",")
+            .map((item) => item.trim())
+            .filter(Boolean),
+          supportsMidiInput: Boolean(audioToggleState.supportsMidiInput),
+          supportsXmlImport: Boolean(audioToggleState.supportsXmlImport),
+          sheetReferences: store.parseLinkLines(document.getElementById("audioSheetReferences").value),
+          workflowNotes: document.getElementById("audioWorkflowNotes").value.trim(),
+          iterationLoop: document.getElementById("audioIterationLoop").value.trim() || document.getElementById("project-status-note").value.trim(),
+          manualNotes: document.getElementById("audioManualNotes").value.trim()
+        },
+        image: {
+          workflowNotes: document.getElementById("imageWorkflowNotes").value.trim(),
+          referenceFrames: store.parseLinkLines(document.getElementById("imageReferenceFrames").value),
+          deliveryNotes: document.getElementById("imageDeliveryNotes").value.trim()
+        }
+      },
+      songWorkflow: {
+        masterKey: {
+          originalKey: document.getElementById("originalKey").value,
+          priorityKeys: state.priorityKeys.slice(),
+          finalKey: document.getElementById("finalKey").value
+        },
+        sourceLibrary: {
+          sheetSources: buildSheetSourcePayload("musescore")
+            .filter((entry) => entry.url)
+            .map((entry) => ({ label: entry.label, url: entry.url })),
+          harmonySources: store.parseLinkLines(document.getElementById("harmonySources").value),
+          audioReferences: buildSheetSourcePayload("youtube")
+            .filter((entry) => entry.url)
+            .map((entry) => ({ label: entry.label, url: entry.url })),
+          additionalSources: buildSheetSourcePayload("website")
+            .filter((entry) => entry.url)
+            .map((entry) => ({ label: entry.label, url: entry.url }))
+            .concat(store.parseLinkLines(document.getElementById("additionalSources").value)),
+          sheetImages: {
+            musescore: buildSheetSourcePayload("musescore"),
+            youtube: buildSheetSourcePayload("youtube"),
+            website: buildSheetSourcePayload("website")
+          }
+        }
+      },
+      todos: Array.isArray(state.project.todos) ? state.project.todos : []
+    };
+  }
+
+  function saveProject() {
+    const payload = buildPayload();
+    if (!payload.title) {
+      document.getElementById("title").focus();
+      return;
+    }
+    const saved = store.upsertProject(payload);
+    window.location.href = store.getDetailUrl(saved.id);
+  }
+
+  function revealHashTarget() {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return;
+
+    const tabMap = {
+      "workflow-step-1": "tab-workflow",
+      "workflow-step-2": "tab-workflow",
+      "tab-audio": "tab-audio",
+      "tab-image": "tab-image"
+    };
+
+    const nextTab = tabMap[hash];
+    if (nextTab) {
+      setActiveTab(nextTab);
+    }
+
+    const target = document.getElementById(hash);
+    if (target) {
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }
+
+  function bindEvents() {
+    document.getElementById("thumbnail-input").addEventListener("change", handleThumbnailInput);
+    document.getElementById("thumbnail-upload-btn").addEventListener("click", () => {
+      document.getElementById("thumbnail-input").click();
+    });
+    document.getElementById("thumbnail-reset-btn").addEventListener("click", () => {
+      state.thumbnail = "";
+      renderThumbnail();
+    });
+    document.getElementById("thumbnail-url-btn").addEventListener("click", openThumbnailUrlModal);
+    document.getElementById("thumbnail-url-close").addEventListener("click", closeThumbnailUrlModal);
+    document.getElementById("thumbnail-url-cancel").addEventListener("click", closeThumbnailUrlModal);
+    document.getElementById("thumbnail-url-input").addEventListener("input", (event) => {
+      previewThumbnailUrl(event.target.value);
+    });
+    document.getElementById("thumbnail-url-apply").addEventListener("click", () => {
+      if (!state.thumbnailUrlPreview) return;
+      state.thumbnail = state.thumbnailUrlPreview;
+      renderThumbnail();
+      closeThumbnailUrlModal();
+    });
+    document.getElementById("thumbnail-url-modal").addEventListener("click", (event) => {
+      if (event.target === event.currentTarget) {
+        closeThumbnailUrlModal();
+      }
+    });
+
+    document.getElementById("image-viewer-close").addEventListener("click", closeImageViewer);
+    document.getElementById("image-viewer").addEventListener("click", (event) => {
+      if (event.target === event.currentTarget) {
+        closeImageViewer();
+      }
+    });
+
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.addEventListener("click", () => setActiveTab(button.getAttribute("data-tab")));
+    });
+
+    document.getElementById("finalKey").addEventListener("change", renderKeyLibrary);
+    document.getElementById("originalKey").addEventListener("change", renderKeyLibrary);
+
+    document.addEventListener("click", (event) => {
+      const instrumentButton = event.target.closest("[data-instrument]");
+      if (instrumentButton) {
+        toggleInstrumentSelection(instrumentButton.getAttribute("data-instrument"));
+        return;
+      }
+
+      const removeInstrumentButton = event.target.closest("[data-remove-instrument]");
+      if (removeInstrumentButton) {
+        toggleInstrumentSelection(removeInstrumentButton.getAttribute("data-remove-instrument"));
+        return;
+      }
+
+      const addSheetButton = event.target.closest("[data-add-sheet]");
+      if (addSheetButton) {
+        const source = addSheetButton.getAttribute("data-add-sheet");
+        state.sheetImages[source].push({ label: "", url: "", images: [] });
+        renderSheetList(source);
+        return;
+      }
+
+      const removeSheetButton = event.target.closest("[data-remove-sheet]");
+      if (removeSheetButton) {
+        const source = removeSheetButton.getAttribute("data-remove-sheet");
+        const index = Number(removeSheetButton.getAttribute("data-remove-sheet-index"));
+        state.sheetImages[source].splice(index, 1);
+        renderSheetList(source);
+        return;
+      }
+
+      const removeSheetImageButton = event.target.closest("[data-remove-sheet-image]");
+      if (removeSheetImageButton) {
+        const source = removeSheetImageButton.getAttribute("data-remove-sheet-image");
+        const entryIndex = Number(removeSheetImageButton.getAttribute("data-remove-sheet-index"));
+        const imageIndex = Number(removeSheetImageButton.getAttribute("data-remove-image-index"));
+        state.sheetImages[source][entryIndex].images.splice(imageIndex, 1);
+        renderSheetList(source);
+        return;
+      }
+
+      const previewImage = event.target.closest("[data-preview-image]");
+      if (previewImage) {
+        openImageViewer(
+          previewImage.getAttribute("data-preview-image"),
+          previewImage.getAttribute("data-preview-title")
+        );
+        return;
+      }
+
+      const audioToggle = event.target.closest("[data-audio-toggle]");
+      if (audioToggle) {
+        audioToggle.classList.toggle("is-selected");
+        audioToggle.setAttribute("aria-pressed", audioToggle.classList.contains("is-selected") ? "true" : "false");
+      }
+    });
+
+    document.addEventListener("input", (event) => {
+      const sheetInput = event.target.closest("[data-sheet-input]");
+      if (sheetInput) {
+        const source = sheetInput.getAttribute("data-sheet-input");
+        const index = Number(sheetInput.getAttribute("data-sheet-index"));
+        const field = sheetInput.getAttribute("data-sheet-field");
+        state.sheetImages[source][index][field] = sheetInput.value;
+      }
+    });
+
+    document.addEventListener("change", async (event) => {
+      const uploadInput = event.target.closest("[data-upload-sheet]");
+      if (!uploadInput) return;
+      const source = uploadInput.getAttribute("data-upload-sheet");
+      const index = Number(uploadInput.getAttribute("data-upload-sheet-index"));
+      const files = Array.from(uploadInput.files || []);
+      if (!files.length) return;
+      const images = await store.readFilesAsDataUrls(files);
+      state.sheetImages[source][index].images = state.sheetImages[source][index].images.concat(images);
+      renderSheetList(source);
+      uploadInput.value = "";
+    });
+
+    document.getElementById("save-edit").addEventListener("click", saveProject);
+    document.getElementById("cancel-edit").addEventListener("click", () => {
+      window.location.href = store.getDetailUrl(state.project.id);
+    });
+  }
+
+  function initEditPage() {
+    const project = getCurrentProject();
+    const root = document.getElementById("edit-root");
+
+    if (!project) {
+      root.innerHTML = `
+        <section class="tab-panel">
+          <div class="section-title">Project not found</div>
+          <div class="section-copy">Return to Projects and open a valid item first.</div>
+        </section>
+      `;
+      return;
+    }
+
+    state.project = project;
+    document.title = `The Flutiano — Edit ${project.title}`;
+    root.innerHTML = sectionTemplate();
+    populateKeySelect("originalKey");
+    populateKeySelect("finalKey");
+    fillForm(project);
+    bindEvents();
+    document.getElementById("sticky-submit").style.display = "inline-flex";
+    revealHashTarget();
+  }
+
+  initEditPage();
+</script>
+</body>
+</html>

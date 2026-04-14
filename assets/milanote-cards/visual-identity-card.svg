@@ -1,0 +1,67 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="200" y1="132" x2="1440" y2="1518" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0F18"/>
+      <stop offset="0.46" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="246" y1="164" x2="1344" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3D8A6"/>
+      <stop offset="0.22" stop-color="#B78343"/>
+      <stop offset="0.5" stop-color="#F0D8AE"/>
+      <stop offset="0.74" stop-color="#A37237"/>
+      <stop offset="1" stop-color="#E7C48A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(330 330)">
+      <stop offset="0" stop-color="#E1BE83" stop-opacity="0.22"/>
+      <stop offset="0.44" stop-color="#A7793D" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="556" y1="598" x2="1034" y2="1016" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F0D7AB" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#F0D7AB" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.58"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#glow)"/>
+
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="114" y="114" width="1372" height="1372" rx="44" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <text x="800" y="176" text-anchor="middle" fill="#E5C38A" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="0.14em">VISUAL IDENTITY</text>
+
+  <rect x="380" y="436" width="840" height="840" rx="42" stroke="rgba(231,196,138,0.18)" stroke-width="1.8"/>
+  <path d="M800 436V1276" stroke="rgba(231,196,138,0.14)" stroke-width="1.4"/>
+  <path d="M380 856H1220" stroke="rgba(231,196,138,0.14)" stroke-width="1.4"/>
+
+  <rect x="430" y="486" width="330" height="330" rx="26" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.10)"/>
+  <rect x="840" y="486" width="330" height="330" rx="26" fill="rgba(255,255,255,0.015)" stroke="rgba(231,196,138,0.08)"/>
+  <rect x="430" y="896" width="330" height="330" rx="26" fill="rgba(255,255,255,0.02)" stroke="rgba(231,196,138,0.08)"/>
+  <rect x="840" y="896" width="330" height="330" rx="26" fill="rgba(255,255,255,0.04)" stroke="rgba(231,196,138,0.12)"/>
+
+  <path d="M800 800L1058 542" stroke="url(#beam)" stroke-width="120" stroke-linecap="round"/>
+  <circle cx="800" cy="800" r="124" stroke="url(#gold)" stroke-width="2.2"/>
+  <circle cx="800" cy="800" r="76" stroke="rgba(231,196,138,0.20)" stroke-width="1.4"/>
+  <circle cx="800" cy="800" r="18" fill="url(#gold)"/>
+  <circle cx="800" cy="800" r="7" fill="#091018"/>
+
+  <path d="M470 540V486H524" stroke="rgba(231,196,138,0.52)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1130 540V486H1076" stroke="rgba(231,196,138,0.52)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M470 1172V1226H524" stroke="rgba(231,196,138,0.32)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1130 1172V1226H1076" stroke="rgba(231,196,138,0.52)" stroke-width="3" stroke-linecap="round"/>
+
+  <rect x="904" y="964" width="200" height="128" rx="20" stroke="rgba(231,196,138,0.28)" stroke-width="1.8"/>
+  <rect x="930" y="990" width="148" height="76" rx="12" fill="rgba(231,196,138,0.08)" stroke="rgba(231,196,138,0.16)"/>
+
+  <text x="534" y="454" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.16em">DARK</text>
+  <text x="1066" y="454" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.16em">FRAMED</text>
+  <text x="534" y="1296" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.16em">ATMOSPHERE</text>
+  <text x="1066" y="1296" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="0.16em">LIGHT</text>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

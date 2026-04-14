@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Flutiano — Project Music</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 34px 38px 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .hero-card,
+  .panel {
+    background: linear-gradient(180deg, rgba(17,22,29,0.48) 0%, rgba(10,14,20,0.30) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--r);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow:
+      0 18px 52px rgba(4,7,12,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .hero-card {
+    padding: 28px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.40);
+    font-weight: 800;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .hero-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 34px;
+    line-height: 1.04;
+    letter-spacing: -0.05em;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .hero-sub {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--t2);
+    max-width: 720px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .back-btn,
+  .edit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 12px;
+    font-weight: 800;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
+  }
+
+  .back-btn {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.72);
+  }
+
+  .back-btn:hover {
+    transform: translateY(-1px);
+    color: #FFFFFF;
+    border-color: rgba(255,255,255,0.18);
+  }
+
+  .edit-btn {
+    background: rgba(212,170,106,0.16);
+    border-color: rgba(212,170,106,0.26);
+    color: var(--gold-hi);
+  }
+
+  .edit-btn:hover {
+    transform: translateY(-1px);
+    background: rgba(212,170,106,0.20);
+    border-color: rgba(212,170,106,0.34);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 16px;
+  }
+
+  .panel {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .panel-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  .field span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .field p,
+  .field li {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--t2);
+  }
+
+  .field ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .field li {
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .field li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.82;
+  }
+
+  .youtube-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .youtube-card {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 12px;
+    padding: 10px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  }
+
+  .youtube-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(212,170,106,0.24);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .youtube-thumb {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .youtube-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .play-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.26) 100%);
+  }
+
+  .youtube-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .youtube-copy span {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.36);
+    font-weight: 800;
+  }
+
+  .youtube-copy strong {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #FFFFFF;
+    font-weight: 700;
+    word-break: break-word;
+  }
+
+  .empty {
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--t3);
+  }
+
+  @media (max-width: 1180px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .content {
+      padding: 24px 20px 36px;
+    }
+
+    .hero-card,
+    .panel {
+      padding: 22px 20px;
+    }
+
+    .hero-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-title {
+      font-size: 28px;
+    }
+
+    .youtube-card {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Image Viewer Modal ── */
+  .imgview-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(4,7,12,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+  .imgview-backdrop[hidden] {
+    display: none !important;
+  }
+  .imgview-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+  .imgview-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+  .imgview-btn {
+    padding: 8px 14px;
+    border-radius: 9px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .imgview-btn:hover { background: rgba(255,255,255,0.1); }
+  .imgview-canvas-wrap {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+  }
+  .imgview-canvas-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-art" aria-hidden="true"></div>
+
+<aside class="sidebar">
+  <a class="brand-block" href="dashboard.html">
+    <div class="brand-mark">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 15 Q4 9 8 7 Q10 6 12 6.5 L14 4 Q15 3 15.5 4 Q16 5 15 5.5 L13.2 7.3 Q13.8 9 13 11 Q12 13.5 9 14.5 Q6 15.5 3 15 Z" stroke="#D4AA6A" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+          <circle cx="10.5" cy="9.5" r="1" fill="#D4AA6A" opacity="0.7"/>
+          <circle cx="8.5" cy="11.5" r="0.7" fill="#D4AA6A" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="brand-name">The Flutiano</div>
+    </div>
+    <div class="brand-sub">Creative System</div>
+  </a>
+
+  <div class="nav-scroll">
+    <div class="nav-section-label">Main</div>
+    <a class="nav-item" href="dashboard.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor"/>
+        <rect x="8.5" y="1" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="1" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+        <rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.5" fill="currentColor" opacity="0.6"/>
+      </svg>
+      Dashboard
+    </a>
+    <a class="nav-item active" href="projects.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M1.5 3.5h12M1.5 7.5h9M1.5 11.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Projects
+      <span class="badge">5</span>
+    </a>
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <circle cx="3" cy="7.5" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="7.5" cy="3" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="12" cy="7.5" r="1.8" fill="currentColor" opacity="0.7"/>
+        <circle cx="7.5" cy="12" r="1.8" fill="currentColor" opacity="0.7"/>
+        <path d="M4.7 6.5L6.3 4.2M10.8 6.5L9.2 4.2M10.8 8.5L9.2 10.8M4.7 8.5L6.3 10.8" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+      </svg>
+      Workflow
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Create</div>
+
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M5 11V4l8-2v7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="3.5" cy="11" r="2" fill="currentColor" opacity="0.7"/>
+        <circle cx="11.5" cy="9" r="2" fill="currentColor" opacity="0.7"/>
+      </svg>
+      Practice
+    </a>
+
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="4" width="13" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="7.5" cy="8.5" r="2.3" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5.5 4l1-1.5h3L10.5 4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      Shoots
+    </a>
+
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M7.5 1.5L10 6H13.5L11 9l1 4.5-4.5-2.5L3 13.5l1-4.5L1.5 6H5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      Releases
+      <span class="badge">1</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Manage</div>
+
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1.5" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="6" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="10.5" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
+      </svg>
+      Library
+    </a>
+
+    <a class="nav-item" href="#" onclick="return false;">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="3.5" width="13" height="2.5" rx="1" fill="currentColor" opacity="0.6"/>
+        <path d="M2 6v6.5a1 1 0 001 1h9a1 1 0 001-1V6" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5.5 9h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      Archive
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="avatar">F</div>
+    <div class="user-info">
+      <div class="user-name">Flutiano</div>
+      <div class="user-role">Artist &amp; Producer</div>
+    </div>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <circle cx="6" cy="2.5" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="6" r="1" fill="rgba(255,255,255,0.28)"/>
+      <circle cx="6" cy="9.5" r="1" fill="rgba(255,255,255,0.28)"/>
+    </svg>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <div class="topbar">
+    <span class="page-title" id="page-title">Music</span>
+    <span class="topbar-sub">— dedicated music workspace</span>
+    <div class="topbar-spacer"></div>
+  </div>
+
+  <div class="content" id="music-root"></div>
+</div>
+
+<script src="project-store.js"></script>
+<script>
+  const store = window.FlutianoProjectStore;
+
+  function getWorkflowStatusMeta(status) {
+    if (status === "done") {
+      return { label: "Done", className: "is-done" };
+    }
+    if (status === "in-progress") {
+      return { label: "In Progress", className: "is-progress" };
+    }
+    return { label: "Empty", className: "is-empty" };
+  }
+
+  function renderYouTubeCards(urls) {
+    const items = urls
+      .map((url) => ({ url, thumb: store.getYouTubeThumbnail(url), watchUrl: store.getYouTubeUrl(url) }))
+      .filter((item) => item.thumb);
+
+    if (!items.length) {
+      return `<div class="empty">Add a few YouTube references in Edit when you want a stronger performance or arrangement target.</div>`;
+    }
+
+    return `
+      <div class="youtube-grid">
+        ${items.map((item) => `
+          <a class="youtube-card" href="${item.watchUrl}" target="_blank" rel="noreferrer">
+            <div class="youtube-thumb">
+              <img src="${item.thumb}" alt="YouTube reference">
+              <div class="play-icon">
+                <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+                  <circle cx="21" cy="21" r="20" fill="rgba(7,9,12,0.56)" stroke="rgba(255,255,255,0.22)"/>
+                  <path d="M18 15.8L28 21L18 26.2V15.8Z" fill="#FFFFFF"/>
+                </svg>
+              </div>
+            </div>
+            <div class="youtube-copy">
+              <span>YouTube reference</span>
+              <strong>${item.url}</strong>
+            </div>
+          </a>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  function renderReferenceList(links) {
+    if (!links.length) {
+      return `<div class="empty">No external music references added yet.</div>`;
+    }
+
+    return `
+      <div class="field">
+        <ul>
+          ${links.map((link) => `<li><a href="${link.url}" target="_blank" rel="noreferrer" style="color:#FFFFFF;">${link.label}</a></li>`).join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+  function renderWorkflowSourceGroup(title, items, emptyMessage) {
+    if (!items.length) {
+      return `
+        <div class="workflow-info-cell" style="margin-top:14px;">
+          <span>${title}</span>
+          <p>${emptyMessage}</p>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="workflow-inline-list" style="margin-top:14px;">
+        <div class="workflow-step-label" style="margin-bottom:4px;">${title}</div>
+        ${items.map((item) => `
+          <a class="workflow-inline-item" href="${item.url}" target="_blank" rel="noreferrer">
+            <strong>${item.label}</strong>
+            <span>Open</span>
+          </a>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function renderSheetImagesGroup(imagesObj) {
+    if (!imagesObj) return '';
+    const html = [];
+    ['musescore', 'youtube', 'website'].forEach(src => {
+       const entries = imagesObj[src];
+       if (!entries || !entries.length) return;
+       entries.forEach(entry => {
+          if (!entry.images || !entry.images.length) return;
+          const sourceName = src === 'musescore' ? 'MuseScore' : src === 'youtube' ? 'YouTube' : 'Website';
+          html.push(`
+            <div class="workflow-inline-list" style="margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);">
+              <div class="workflow-step-label" style="margin-bottom:8px;">${sourceName} — ${escapeHtml(entry.label || 'Sheet')}</div>
+              <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                ${entry.images.map(img => `
+                   <div style="width: 80px; height: 110px; border-radius: 8px; overflow:hidden; border: 1px solid rgba(255,255,255,0.12); cursor:pointer; background:rgba(255,255,255,0.03); transition:border-color 0.15s, transform 0.15s;" 
+                        onclick="openImageViewer('${img}', '${escapeHtml(entry.label).replace(/'/g, "\\'")}')"
+                        onmouseover="this.style.borderColor='rgba(212,170,106,0.28)'; this.style.transform='translateY(-1px)';"
+                        onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'; this.style.transform='none';">
+                     <img src="${img}" style="width:100%; height:100%; object-fit:cover;" alt="Sheet">
+                   </div>
+                `).join("")}
+              </div>
+            </div>
+          `);
+       });
+    });
+    return html.join("");
+  }
+
+  function renderSongWorkflow(project) {
+    const workflow = store.getSongWorkflowState(project);
+    const stepOneStatus = getWorkflowStatusMeta(workflow.masterKey.status);
+    const stepTwoStatus = getWorkflowStatusMeta(workflow.sourceLibrary.status);
+    const keyTheory = store.getKeyTheory(workflow.masterKey.finalKey);
+    const transpose = store.getKeyShiftDescription(
+      workflow.masterKey.originalKey,
+      workflow.masterKey.finalKey
+    );
+    const priorityKeys = workflow.masterKey.priorityKeys.length
+      ? `<div class="workflow-chip-list">${workflow.masterKey.priorityKeys.map((key) => `<span class="workflow-chip">${key}</span>`).join("")}</div>`
+      : `<div class="workflow-empty">No priority keys shortlisted yet.</div>`;
+
+    return `
+      <div class="workflow-shell">
+        <section class="workflow-step-card">
+          <div class="workflow-step-head">
+            <div class="workflow-step-meta">
+              <div class="workflow-step-label">Step 1</div>
+              <div class="workflow-step-title">Master Key</div>
+            </div>
+            <div class="workflow-status-pill ${stepOneStatus.className}">${stepOneStatus.label}</div>
+          </div>
+          <p class="workflow-step-copy">This is the key decision layer for the arrangement, transposition, and performance balance.</p>
+          <div class="workflow-info-grid">
+            <div class="workflow-info-cell">
+              <span>Final Key</span>
+              <strong>${workflow.masterKey.finalKey || "Not set"}</strong>
+            </div>
+            <div class="workflow-info-cell">
+              <span>Original Key</span>
+              <strong>${workflow.masterKey.originalKey || "Not set"}</strong>
+            </div>
+            <div class="workflow-info-cell">
+              <span>Transpose</span>
+              <strong>${transpose}</strong>
+            </div>
+          </div>
+          ${priorityKeys}
+          ${keyTheory
+            ? `<div class="workflow-chip-list">${keyTheory.diatonicChords.map((chord) => `<span class="workflow-chip">${chord}</span>`).join("")}</div>`
+            : `<div class="workflow-empty">Choose a final key to reveal the chord family.</div>`}
+        </section>
+
+        <section class="workflow-step-card">
+          <div class="workflow-step-head">
+            <div class="workflow-step-meta">
+              <div class="workflow-step-label">Step 2</div>
+              <div class="workflow-step-title">Source Library</div>
+            </div>
+            <div class="workflow-status-pill ${stepTwoStatus.className}">${stepTwoStatus.label}</div>
+          </div>
+          <p class="workflow-step-copy">This is the source set the music workspace should reference while arranging and refining the song.</p>
+          <div class="workflow-info-grid">
+            <div class="workflow-info-cell">
+              <span>Sheet Sources</span>
+              <strong>${workflow.sourceLibrary.sheetCount}</strong>
+            </div>
+            <div class="workflow-info-cell">
+              <span>Harmony Sources</span>
+              <strong>${workflow.sourceLibrary.harmonyCount}</strong>
+            </div>
+            <div class="workflow-info-cell">
+              <span>Audio References</span>
+              <strong>${workflow.sourceLibrary.audioCount}</strong>
+            </div>
+            <div class="workflow-info-cell">
+              <span>Additional</span>
+              <strong>${workflow.sourceLibrary.additionalCount}</strong>
+            </div>
+          </div>
+          ${renderWorkflowSourceGroup("Sheet Sources", workflow.sourceLibrary.sheetSources, "No sheet sources yet.")}
+          ${renderSheetImagesGroup(workflow.sourceLibrary.sheetImages)}
+          ${renderWorkflowSourceGroup("Harmony Sources", workflow.sourceLibrary.harmonySources, "No harmony sources yet.")}
+          ${renderWorkflowSourceGroup("Audio References", workflow.sourceLibrary.audioReferences, "No audio references yet.")}
+          ${renderWorkflowSourceGroup("Additional Sources", workflow.sourceLibrary.additionalSources, "No additional sources yet.")}
+        </section>
+      </div>
+    `;
+  }
+
+  function renderMusicPage(project) {
+    return `
+      <section class="hero-card">
+        <div class="eyebrow">Music</div>
+        <div class="hero-top">
+          <div>
+            <h1 class="hero-title">${project.title}</h1>
+            <p class="hero-sub">${project.shortDescription}</p>
+          </div>
+          <div class="hero-actions">
+            <a class="back-btn" href="${store.getDetailUrl(project.id)}">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M10 6H2M6 2L2 6l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Back to Project
+            </a>
+            <a class="edit-btn" href="${store.getEditUrl(project.id)}">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 10.2V11h.8L9.9 4.9 9.1 4.1 3 10.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                <path d="M8.2 3.3l.9-.9a1 1 0 011.4 0l.8.8a1 1 0 010 1.4l-.9.9" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              </svg>
+              Edit
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="layout">
+        <section class="panel">
+          <div class="panel-title">Music Notes</div>
+          <div class="field">
+            <span>Arrangement</span>
+            <p>${project.music.arrangementNotes}</p>
+          </div>
+          <div class="field">
+            <span>Instrumentation</span>
+            <p>${project.music.instrumentation}</p>
+          </div>
+          <div class="field">
+            <span>Recording / Mixing</span>
+            <p>${project.music.recordingNotes}</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">Current Tasks</div>
+          <div class="field">
+            <span>Tasks</span>
+            ${project.music.musicTasks.length
+              ? `<ul>${project.music.musicTasks.map((task) => `<li>${task}</li>`).join("")}</ul>`
+              : `<div class="empty">No music tasks yet.</div>`}
+          </div>
+        </section>
+      </div>
+
+      <div class="layout">
+        <section class="panel">
+          <div class="panel-title">Workflow Hub</div>
+          ${renderSongWorkflow(project)}
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">YouTube References</div>
+          ${renderYouTubeCards(project.youtubeReferences)}
+        </section>
+      </div>
+
+      <div class="layout">
+        <section class="panel">
+          <div class="panel-title">External References</div>
+          ${renderReferenceList(project.references.links)}
+        </section>
+      </div>
+    `;
+  }
+
+  function renderNotFound() {
+    return `<section class="panel"><div class="panel-title">Project not found</div><div class="empty">Return to Projects and open a valid item.</div></section>`;
+  }
+
+  function initMusicPage() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("project");
+    const project = store.getProject(id) || (!id ? store.getDefaultProject() : null);
+    const root = document.getElementById("music-root");
+
+    if (!project) {
+      root.innerHTML = renderNotFound();
+      return;
+    }
+
+    document.title = `The Flutiano — ${project.title} Music`;
+    document.getElementById("page-title").textContent = `${project.title} · Music`;
+    root.innerHTML = renderMusicPage(project);
+  }
+
+  initMusicPage();
+
+  function openImageViewer(src, title) {
+    document.getElementById('imgview-img').src = src;
+    document.getElementById('imgview-title').textContent = title || "Sheet Image";
+    document.getElementById('imgview-backdrop').hidden = false;
+  }
+
+  function closeImageViewer() {
+    document.getElementById('imgview-backdrop').hidden = true;
+    document.getElementById('imgview-img').src = "";
+  }
+
+  document.getElementById('imgview-backdrop').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeImageViewer();
+  });
+</script>
+
+<!-- Image Viewer Modal -->
+<div class="imgview-backdrop" id="imgview-backdrop" hidden>
+  <div class="imgview-topbar">
+    <span class="imgview-title" id="imgview-title">Sheet Image</span>
+    <div class="imgview-controls">
+      <button class="imgview-btn" id="imgview-close" type="button" onclick="closeImageViewer()">× Close</button>
+    </div>
+  </div>
+  <div class="imgview-canvas-wrap" id="imgview-canvas-wrap">
+    <img id="imgview-img" alt="Sheet image" src="">
+  </div>
+</div>
+
+</body>
+</html>

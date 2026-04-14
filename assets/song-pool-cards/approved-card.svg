@@ -1,0 +1,83 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="180" y1="120" x2="1440" y2="1520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1018"/>
+      <stop offset="0.46" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <radialGradient id="topGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 338) rotate(90) scale(500 660)">
+      <stop offset="0" stop-color="#F3D8A8" stop-opacity="0.18"/>
+      <stop offset="0.34" stop-color="#C59653" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lowerGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 1140) rotate(90) scale(600 840)">
+      <stop offset="0" stop-color="#112133" stop-opacity="0.32"/>
+      <stop offset="0.42" stop-color="#09121F" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldLine" x1="286" y1="214" x2="1330" y2="1392" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F0D5A0"/>
+      <stop offset="0.24" stop-color="#C69756"/>
+      <stop offset="0.52" stop-color="#F2DBAE"/>
+      <stop offset="0.76" stop-color="#A97738"/>
+      <stop offset="1" stop-color="#E9C98F"/>
+    </linearGradient>
+    <filter id="softBlur" x="250" y="360" width="1100" height="940" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+    <filter id="noise" x="0" y="0" width="1600" height="1600" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" stitchTiles="stitch" seed="29"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0
+                                           0 1 0 0 0
+                                           0 0 1 0 0
+                                           0 0 0 0.14 0"/>
+    </filter>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.58"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bgGradient)"/>
+  <rect width="1600" height="1600" fill="url(#topGlow)"/>
+  <rect width="1600" height="1600" fill="url(#lowerGlow)"/>
+  <g opacity="0.16" filter="url(#noise)">
+    <rect width="1600" height="1600" fill="#FFFFFF"/>
+  </g>
+
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#goldLine)" stroke-width="2"/>
+  <rect x="112" y="112" width="1376" height="1376" rx="44" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <text x="800" y="254" text-anchor="middle" fill="url(#goldLine)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="74" font-weight="700" letter-spacing="0.14em">APPROVED</text>
+
+  <g filter="url(#softBlur)" opacity="0.84">
+    <circle cx="800" cy="828" r="162" fill="#DAB176"/>
+  </g>
+
+  <g opacity="0.26">
+    <path d="M800 1042V1186" stroke="rgba(233,201,143,0.26)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M800 604V480" stroke="rgba(233,201,143,0.28)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M628 828H514" stroke="rgba(233,201,143,0.24)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M1086 828H972" stroke="rgba(233,201,143,0.24)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <rect x="588" y="618" width="424" height="424" rx="44" stroke="rgba(233,201,143,0.24)" stroke-width="2"/>
+    <rect x="654" y="684" width="292" height="292" rx="32" stroke="rgba(233,201,143,0.14)" stroke-width="1.4"/>
+    <circle cx="800" cy="828" r="128" stroke="url(#goldLine)" stroke-width="2.2"/>
+    <circle cx="800" cy="828" r="70" stroke="rgba(233,201,143,0.24)" stroke-width="1.6"/>
+    <circle cx="800" cy="828" r="20" fill="url(#goldLine)"/>
+    <circle cx="800" cy="828" r="7" fill="#071018"/>
+    <path d="M800 1064L800 1188" stroke="url(#goldLine)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M728 1188L800 1268L872 1188" stroke="url(#goldLine)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(800 1278)">
+    <rect x="-164" y="-38" width="328" height="76" rx="26" fill="rgba(8,11,17,0.40)" stroke="rgba(233,201,143,0.18)" stroke-width="1.2"/>
+    <circle cx="-116" cy="0" r="18" fill="url(#goldLine)"/>
+    <path d="M-124 0L-117 8L-103 -8" stroke="#081018" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="-78" y="12" text-anchor="start" fill="#E9C98E" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="0.14em">MOVING FORWARD</text>
+  </g>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

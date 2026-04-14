@@ -1,0 +1,70 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="128" y1="96" x2="1488" y2="1504" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A07A61"/>
+      <stop offset="0.42" stop-color="#765746"/>
+      <stop offset="0.78" stop-color="#583F32"/>
+      <stop offset="1" stop-color="#3B2A21"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 850) rotate(90) scale(350 350)">
+      <stop offset="0" stop-color="#F7DEB4" stop-opacity="0.64"/>
+      <stop offset="0.38" stop-color="#D09F62" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="238" y1="136" x2="1332" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4D8A6"/>
+      <stop offset="0.24" stop-color="#BA8443"/>
+      <stop offset="0.54" stop-color="#F0D7AA"/>
+      <stop offset="0.78" stop-color="#9C692E"/>
+      <stop offset="1" stop-color="#E8C58B"/>
+    </linearGradient>
+    <filter id="blur" x="240" y="344" width="1120" height="1040" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="38"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#glow)"/>
+  <rect x="84" y="84" width="1432" height="1432" rx="56" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="106" y="106" width="1388" height="1388" rx="40" stroke="#FFF7EC" stroke-opacity="0.12" stroke-width="1"/>
+
+  <g transform="translate(146 136)">
+    <rect x="0" y="0" width="318" height="74" rx="26" fill="#6B5342" fill-opacity="0.30" stroke="#F0D9B0" stroke-opacity="0.24" stroke-width="1.2"/>
+    <text x="34" y="33" fill="url(#gold)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="0.14em">THE FLUTIANO</text>
+    <text x="34" y="56" fill="#F1E2CE" fill-opacity="0.72" font-family="Manrope, Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.22em">CREATIVE SYSTEM</text>
+  </g>
+
+  <text x="800" y="250" text-anchor="middle" fill="url(#gold)" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="64" font-weight="700" letter-spacing="0.11em">MUSICAL IDENTITY</text>
+
+  <g filter="url(#blur)" opacity="0.5">
+    <circle cx="800" cy="870" r="220" fill="#D2AA71"/>
+  </g>
+
+  <g transform="translate(800 870)">
+    <path d="M-304 0H304" stroke="#E8C88D" stroke-opacity="0.18" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M0 -184V184" stroke="#E8C88D" stroke-opacity="0.14" stroke-width="1.8" stroke-linecap="round"/>
+    <circle r="138" stroke="#E8C88D" stroke-opacity="0.22" stroke-width="1.8"/>
+    <circle r="84" stroke="#E8C88D" stroke-opacity="0.28" stroke-width="1.8"/>
+
+    <path d="M-276 -4C-208 -4 -170 -98 -144 -170" stroke="#E8C88D" stroke-opacity="0.94" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-250 24C-164 24 -96 94 -20 156" stroke="#E8C88D" stroke-opacity="0.58" stroke-width="4.6" stroke-linecap="round"/>
+    <path d="M-188 -118C-118 -138 -56 -130 -8 -120" stroke="#E8C88D" stroke-opacity="0.54" stroke-width="4" stroke-linecap="round"/>
+
+    <path d="M154 -126C214 -128 260 -100 292 -46" stroke="#E8C88D" stroke-opacity="0.44" stroke-width="5" stroke-linecap="round"/>
+
+    <rect x="126" y="-82" width="152" height="164" rx="26" fill="#E8C88D" fill-opacity="0.10" stroke="#E8C88D" stroke-opacity="0.20" stroke-width="1.8"/>
+    <rect x="150" y="-58" width="18" height="118" rx="7" fill="url(#gold)"/>
+    <rect x="180" y="-78" width="18" height="138" rx="7" fill="#E8C88D" fill-opacity="0.82"/>
+    <rect x="210" y="-38" width="18" height="98" rx="7" fill="#E8C88D" fill-opacity="0.56"/>
+    <rect x="240" y="-70" width="18" height="130" rx="7" fill="#E8C88D" fill-opacity="0.36"/>
+
+    <circle r="22" fill="url(#gold)"/>
+    <circle r="8" fill="#0F0A08"/>
+  </g>
+
+  <text x="800" y="492" text-anchor="middle" fill="#F0E1CC" font-family="Manrope, Inter, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="0.14em">CINEMATIC</text>
+  <text x="386" y="890" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="36" font-weight="800" letter-spacing="0.12em">FLUTE</text>
+  <text x="1220" y="890" text-anchor="middle" fill="#F5E8D5" font-family="Manrope, Inter, Arial, sans-serif" font-size="36" font-weight="800" letter-spacing="0.12em">PIANO</text>
+  <text x="448" y="1200" text-anchor="middle" fill="#F0E1CC" font-family="Manrope, Inter, Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="0.12em">ELEGANCE</text>
+  <text x="1152" y="1200" text-anchor="middle" fill="#F0E1CC" font-family="Manrope, Inter, Arial, sans-serif" font-size="32" font-weight="800" letter-spacing="0.12em">MELODY</text>
+</svg>

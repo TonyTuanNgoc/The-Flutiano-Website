@@ -1,0 +1,72 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="200" y1="132" x2="1440" y2="1518" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0F18"/>
+      <stop offset="0.46" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="246" y1="164" x2="1344" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3D8A6"/>
+      <stop offset="0.22" stop-color="#B78343"/>
+      <stop offset="0.5" stop-color="#F0D8AE"/>
+      <stop offset="0.74" stop-color="#A37237"/>
+      <stop offset="1" stop-color="#E7C48A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 900) rotate(90) scale(360 460)">
+      <stop offset="0" stop-color="#E1BE83" stop-opacity="0.18"/>
+      <stop offset="0.44" stop-color="#A7793D" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.58"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#glow)"/>
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="114" y="114" width="1372" height="1372" rx="44" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <text x="800" y="176" text-anchor="middle" fill="#E5C38A" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="0.14em">WHAT FITS</text>
+  <text x="800" y="232" text-anchor="middle" fill="#AEB4BE" font-family="Manrope, Inter, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.18em">THE FLUTIANO</text>
+
+  <g opacity="0.94">
+    <circle cx="508" cy="430" r="32" fill="url(#gold)"/>
+    <circle cx="696" cy="402" r="24" fill="rgba(231,196,138,0.66)"/>
+    <circle cx="904" cy="402" r="24" fill="rgba(231,196,138,0.66)"/>
+    <circle cx="1092" cy="430" r="32" fill="url(#gold)"/>
+  </g>
+
+  <path d="M460 500L692 742" stroke="rgba(231,196,138,0.26)" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M664 470L760 742" stroke="rgba(231,196,138,0.22)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M936 470L840 742" stroke="rgba(231,196,138,0.22)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M1140 500L908 742" stroke="rgba(231,196,138,0.26)" stroke-width="2.2" stroke-linecap="round"/>
+
+  <path d="M652 742H948" stroke="url(#gold)" stroke-width="12" stroke-linecap="round"/>
+  <rect x="686" y="728" width="228" height="120" rx="28" fill="rgba(231,196,138,0.08)" stroke="rgba(231,196,138,0.22)" stroke-width="2"/>
+  <path d="M720 790L772 842L884 724" stroke="url(#gold)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M800 848V1048" stroke="rgba(231,196,138,0.22)" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="800" cy="1098" r="18" fill="url(#gold)"/>
+  <circle cx="800" cy="1098" r="66" stroke="rgba(231,196,138,0.16)" stroke-width="1.6"/>
+
+  <g>
+    <rect x="338" y="1170" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+    <rect x="602" y="1170" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+    <rect x="866" y="1170" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+    <rect x="1130" y="1170" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(231,196,138,0.16)"/>
+
+    <circle cx="450" cy="1228" r="12" fill="url(#gold)"/>
+    <circle cx="714" cy="1228" r="12" fill="url(#gold)"/>
+    <circle cx="978" cy="1228" r="12" fill="url(#gold)"/>
+    <circle cx="1242" cy="1228" r="12" fill="url(#gold)"/>
+  </g>
+
+  <text x="450" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">EMOTIONAL</text>
+  <text x="714" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">ELEGANT</text>
+  <text x="978" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">CINEMATIC</text>
+  <text x="1242" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">INTENTIONAL</text>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>

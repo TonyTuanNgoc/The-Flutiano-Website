@@ -1,0 +1,82 @@
+<svg width="1600" height="1600" viewBox="0 0 1600 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="200" y1="132" x2="1440" y2="1518" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0F18"/>
+      <stop offset="0.46" stop-color="#05070C"/>
+      <stop offset="1" stop-color="#020306"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="246" y1="164" x2="1344" y2="1450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3D8A6"/>
+      <stop offset="0.22" stop-color="#B78343"/>
+      <stop offset="0.5" stop-color="#F0D8AE"/>
+      <stop offset="0.74" stop-color="#A37237"/>
+      <stop offset="1" stop-color="#E7C48A"/>
+    </linearGradient>
+    <linearGradient id="warn" x1="422" y1="396" x2="1180" y2="1250" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E1A082"/>
+      <stop offset="1" stop-color="#9D5B46"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 900) rotate(90) scale(360 460)">
+      <stop offset="0" stop-color="#B56C57" stop-opacity="0.14"/>
+      <stop offset="0.44" stop-color="#7E3D2D" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 800) rotate(90) scale(920 920)">
+      <stop offset="0.54" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.58"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1600" fill="url(#bg)"/>
+  <rect width="1600" height="1600" fill="url(#glow)"/>
+  <rect x="92" y="92" width="1416" height="1416" rx="58" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="114" y="114" width="1372" height="1372" rx="44" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <text x="800" y="176" text-anchor="middle" fill="#E5C38A" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="0.14em">WHAT DOESN'T FIT</text>
+
+  <g opacity="0.76">
+    <circle cx="510" cy="430" r="32" fill="rgba(225,160,130,0.78)"/>
+    <circle cx="700" cy="396" r="22" fill="rgba(225,160,130,0.52)"/>
+    <circle cx="896" cy="404" r="26" fill="rgba(225,160,130,0.56)"/>
+    <circle cx="1098" cy="432" r="34" fill="rgba(225,160,130,0.78)"/>
+  </g>
+
+  <path d="M454 500L684 742" stroke="rgba(225,160,130,0.22)" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M662 468L762 742" stroke="rgba(225,160,130,0.18)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M940 474L844 742" stroke="rgba(225,160,130,0.18)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M1144 504L914 742" stroke="rgba(225,160,130,0.22)" stroke-width="2.2" stroke-linecap="round"/>
+
+  <rect x="686" y="728" width="228" height="120" rx="28" fill="rgba(225,160,130,0.05)" stroke="rgba(225,160,130,0.24)" stroke-width="2"/>
+  <path d="M724 764L876 816" stroke="url(#warn)" stroke-width="16" stroke-linecap="round"/>
+  <path d="M876 764L724 816" stroke="url(#warn)" stroke-width="16" stroke-linecap="round"/>
+  <path d="M660 742H940" stroke="rgba(225,160,130,0.18)" stroke-width="12" stroke-linecap="round"/>
+
+  <g opacity="0.48">
+    <path d="M800 848V1046" stroke="rgba(225,160,130,0.16)" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="800" cy="1092" r="18" fill="url(#warn)"/>
+    <circle cx="800" cy="1092" r="64" stroke="rgba(225,160,130,0.14)" stroke-width="1.6"/>
+  </g>
+
+  <g>
+    <rect x="322" y="1168" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(225,160,130,0.14)"/>
+    <rect x="586" y="1168" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(225,160,130,0.14)"/>
+    <rect x="850" y="1168" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(225,160,130,0.14)"/>
+    <rect x="1114" y="1168" width="224" height="118" rx="22" fill="rgba(255,255,255,0.03)" stroke="rgba(225,160,130,0.14)"/>
+
+    <path d="M392 1218L474 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M474 1218L392 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M656 1218L738 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M738 1218L656 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M920 1218L1002 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M1002 1218L920 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M1184 1218L1266 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M1266 1218L1184 1266" stroke="url(#warn)" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <text x="434" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">LOUD</text>
+  <text x="698" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">GENERIC</text>
+  <text x="962" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">CROWDED</text>
+  <text x="1226" y="1278" text-anchor="middle" fill="#FFFFFF" font-family="Sora, Manrope, Inter, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.08em">EMPTY</text>
+
+  <rect width="1600" height="1600" fill="url(#vignette)"/>
+</svg>
