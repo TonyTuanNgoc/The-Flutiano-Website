@@ -68,7 +68,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .timeline-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
     min-width: 0;
   }
 
@@ -81,14 +89,31 @@
     font-weight: 600;
   }
 
+  .timeline-year-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(212,170,106,0.22);
+    background: linear-gradient(180deg, rgba(212,170,106,0.12), rgba(212,170,106,0.05));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    color: rgba(234,204,150,0.94);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
   #timeline-meta {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: rgba(234,204,150,0.88);
-    font-size: 10px;
+    color: rgba(234,204,150,0.94);
+    font-size: 10.5px;
     font-weight: 800;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
   }
 
@@ -115,18 +140,16 @@
   .timeline-reset-btn {
     display: none;
     align-items: center;
-    gap: 6px;
-    padding: 10px 14px;
-    border-radius: 999px;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.10);
     background: rgba(255,255,255,0.04);
     color: rgba(255,255,255,0.72);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease;
+    transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease, border-color 0.16s ease;
   }
 
   .timeline-reset-btn.is-visible {
@@ -136,6 +159,7 @@
   .timeline-reset-btn:hover {
     background: rgba(255,255,255,0.08);
     color: #FFFFFF;
+    border-color: rgba(255,255,255,0.16);
     transform: translateY(-1px);
   }
 
@@ -220,8 +244,8 @@
   }
 
   .timeline-panel {
-    min-height: 860px;
-    padding: 38px 38px 68px;
+    min-height: 980px;
+    padding: 40px 40px 96px;
     background:
       radial-gradient(circle at top right, rgba(212,170,106,0.11), transparent 34%),
       linear-gradient(180deg, rgba(17,22,29,0.52) 0%, rgba(10,13,19,0.36) 100%);
@@ -236,74 +260,7 @@
   }
 
   .timeline-layout {
-    display: grid;
-    grid-template-columns: 264px minmax(0, 1fr);
-    gap: 32px;
-    align-items: start;
-  }
-
-  .timeline-side {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding-top: 18px;
-  }
-
-  .timeline-year-block,
-  .timeline-count-block {
-    min-height: 148px;
-    padding: 20px 20px 22px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .timeline-mini-label {
     display: block;
-    color: rgba(255,255,255,0.38);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .timeline-year-value {
-    display: block;
-    margin-top: 12px;
-    font-family: "Sora", "Manrope", sans-serif;
-    font-size: 56px;
-    line-height: 0.92;
-    letter-spacing: -0.08em;
-    color: var(--gold-hi);
-    font-weight: 600;
-  }
-
-  .timeline-count-block {
-    align-items: center;
-    margin-top: 8px;
-  }
-
-  .timeline-count-label {
-    color: rgba(255,255,255,0.44);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .timeline-count-number {
-    margin-top: 12px;
-    font-family: "Sora", "Manrope", sans-serif;
-    font-size: 50px;
-    line-height: 0.94;
-    letter-spacing: -0.08em;
-    color: var(--gold-hi);
-    font-weight: 600;
   }
 
   .timeline-main {
@@ -342,8 +299,8 @@
     position: relative;
     display: block;
     width: var(--timeline-track-width, 960px);
-    min-height: 104px;
-    margin-bottom: 62px;
+    min-height: 110px;
+    margin-bottom: 74px;
   }
 
   .timeline-month {
@@ -428,7 +385,7 @@
 
   .timeline-shell {
     position: relative;
-    min-height: var(--timeline-shell-height, 720px);
+    min-height: var(--timeline-shell-height, 780px);
     width: var(--timeline-track-width, 960px);
   }
 
@@ -934,18 +891,6 @@
   }
 
   @media (max-width: 1180px) {
-    .timeline-layout {
-      grid-template-columns: 1fr;
-    }
-
-    .timeline-side {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 180px);
-      gap: 16px;
-      align-items: stretch;
-      padding-top: 0;
-    }
-
     .timeline-section-head {
       align-items: flex-start;
       flex-direction: column;
@@ -999,16 +944,6 @@
     .topbar-actions {
       flex-wrap: wrap;
       justify-content: flex-end;
-    }
-
-    .timeline-layout,
-    .timeline-side {
-      grid-template-columns: 1fr;
-    }
-
-    .timeline-year-value,
-    .timeline-count-number {
-      text-align: center;
     }
 
     .timeline-shell {
@@ -1220,11 +1155,18 @@
     <section>
       <div class="timeline-section-head">
         <div class="timeline-section-copy">
-          <span class="timeline-head-title">Upcoming Songs Timeline</span>
+          <div class="timeline-title-row">
+            <span class="timeline-head-title">Upcoming Songs Timeline</span>
+            <span class="timeline-year-chip" id="timeline-year-chip">2026</span>
+          </div>
           <span class="section-meta" id="timeline-meta"></span>
         </div>
         <div class="timeline-head-actions">
-          <button class="timeline-reset-btn" id="timeline-reset-btn" type="button">Reset View</button>
+          <button class="timeline-reset-btn" id="timeline-reset-btn" type="button" aria-label="Reset timeline view" title="Reset timeline view">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3.5 6.25V2.75M3.5 2.75H7M3.5 2.75L5.15 4.4C6.02 3.57 7.19 3.06 8.5 3.06C11.19 3.06 13.38 5.25 13.38 7.94C13.38 10.63 11.19 12.81 8.5 12.81C6.23 12.81 4.32 11.26 3.78 9.16" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
       <div class="timeline-panel" id="upcoming-timeline"></div>
@@ -1413,7 +1355,7 @@
     if (nearestReleaseDistance <= 14) return 1;
     if (nearestReleaseDistance <= 28) return 0.72;
     if (nearestReleaseDistance <= 42) return 0.48;
-    return 0.24;
+    return 0.16;
   }
 
   function getTimelineModel(projects) {
@@ -1423,10 +1365,10 @@
     const slots = [];
     const months = [];
     const monthMap = new Map();
-    const trackStartX = 72;
-    const trackPadding = 90;
-    const compactGap = 34;
-    const expandedGap = 116;
+    const trackStartX = 48;
+    const trackPadding = 58;
+    const compactGap = 24;
+    const expandedGap = 118;
 
     for (let cursor = new Date(firstSaturday); cursor <= end; cursor = addDays(cursor, 7)) {
       slots.push({
@@ -1505,7 +1447,7 @@
 
     function findAvailableLane(side, x, commit) {
       const lanes = sideLanes[side];
-      const minGap = 196;
+      const minGap = 204;
 
       for (let laneIndex = 0; laneIndex < lanes.length; laneIndex += 1) {
         if (x - lanes[laneIndex] >= minGap) {
@@ -1545,14 +1487,14 @@
         releaseDate: item.releaseDate,
         x,
         orientation,
-        stackOffset: laneIndex * 84
+        stackOffset: laneIndex * 88
       };
     });
 
     const topLaneCount = Math.max(1, sideLanes.top.length);
     const bottomLaneCount = Math.max(1, sideLanes.bottom.length);
-    const lineTop = 228 + (topLaneCount - 1) * 98;
-    const shellHeight = lineTop + 246 + (bottomLaneCount - 1) * 98;
+    const lineTop = 248 + (topLaneCount - 1) * 104;
+    const shellHeight = lineTop + 292 + (bottomLaneCount - 1) * 104;
     const focusItems = items.filter((item) => item.releaseDate >= today);
     const focusSource = focusItems.length ? focusItems : items;
     let focusCenterX = trackWidth / 2;
@@ -1632,20 +1574,11 @@
       ? String(timeline.start.getFullYear())
       : `${timeline.start.getFullYear()}–${timeline.end.getFullYear()}`;
     document.getElementById("timeline-meta").textContent = "Saturday Release Schedule";
+    document.getElementById("timeline-year-chip").textContent = yearLabel;
 
     if (!timeline.items.length) {
       document.getElementById("upcoming-timeline").innerHTML = `
         <div class="timeline-layout">
-          <div class="timeline-side">
-            <div class="timeline-year-block">
-              <span class="timeline-mini-label">Year</span>
-              <strong class="timeline-year-value">${yearLabel}</strong>
-            </div>
-            <div class="timeline-count-block">
-              <span class="timeline-count-label">Upcoming Songs</span>
-              <strong class="timeline-count-number">0</strong>
-            </div>
-          </div>
           <div class="timeline-main">
             <div class="timeline-empty">No upcoming songs are scheduled in the next six months yet.</div>
           </div>
@@ -1656,16 +1589,6 @@
 
     document.getElementById("upcoming-timeline").innerHTML = `
       <div class="timeline-layout">
-        <div class="timeline-side">
-          <div class="timeline-year-block">
-            <span class="timeline-mini-label">Year</span>
-            <strong class="timeline-year-value">${yearLabel}</strong>
-          </div>
-          <div class="timeline-count-block">
-            <span class="timeline-count-label">Upcoming Songs</span>
-            <strong class="timeline-count-number">${timeline.items.length}</strong>
-          </div>
-        </div>
         <div class="timeline-main">
           <div
             class="timeline-viewport"
