@@ -56,6 +56,89 @@
     font-weight: 700;
   }
 
+  .timeline-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .timeline-section-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .timeline-head-title {
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  #timeline-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(234,204,150,0.88);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  #timeline-meta::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(212,170,106,0.88), rgba(212,170,106,0.14));
+  }
+
+  .timeline-head-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .topbar-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .timeline-reset-btn {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.72);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease;
+  }
+
+  .timeline-reset-btn.is-visible {
+    display: inline-flex;
+  }
+
+  .timeline-reset-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+
   .see-all {
     color: var(--gold-hi);
     transition: opacity 0.13s, transform 0.13s;
@@ -137,7 +220,8 @@
   }
 
   .timeline-panel {
-    padding: 30px 30px 32px;
+    min-height: 860px;
+    padding: 38px 38px 68px;
     background:
       radial-gradient(circle at top right, rgba(212,170,106,0.11), transparent 34%),
       linear-gradient(180deg, rgba(17,22,29,0.52) 0%, rgba(10,13,19,0.36) 100%);
@@ -161,12 +245,13 @@
   .timeline-side {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
+    padding-top: 18px;
   }
 
   .timeline-year-block,
   .timeline-count-block {
-    min-height: 134px;
+    min-height: 148px;
     padding: 20px 20px 22px;
     border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.08);
@@ -198,19 +283,9 @@
     font-weight: 600;
   }
 
-  .timeline-side-title {
-    font-family: "Sora", "Manrope", sans-serif;
-    font-size: clamp(23px, 2vw, 29px);
-    line-height: 1.05;
-    letter-spacing: -0.045em;
-    color: #FFFFFF;
-    font-weight: 600;
-    white-space: nowrap;
-    margin-bottom: 4px;
-  }
-
   .timeline-count-block {
     align-items: center;
+    margin-top: 8px;
   }
 
   .timeline-count-label {
@@ -235,16 +310,46 @@
     min-width: 0;
   }
 
+  .timeline-viewport {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 12px 12px 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212,170,106,0.34) rgba(255,255,255,0.06);
+  }
+
+  .timeline-viewport::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .timeline-viewport::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.04);
+    border-radius: 999px;
+  }
+
+  .timeline-viewport::-webkit-scrollbar-thumb {
+    background: rgba(212,170,106,0.34);
+    border-radius: 999px;
+  }
+
+  .timeline-track {
+    width: var(--timeline-track-width, 960px);
+    min-width: 100%;
+  }
+
   .timeline-scale {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    margin-bottom: 30px;
+    position: relative;
+    display: block;
+    width: var(--timeline-track-width, 960px);
+    min-height: 104px;
+    margin-bottom: 62px;
   }
 
   .timeline-month {
-    position: relative;
-    padding: 0 0 16px;
+    position: absolute;
+    top: 0;
+    padding: 0 20px 16px 0;
   }
 
   .timeline-month::after {
@@ -270,7 +375,8 @@
   .timeline-weeks {
     display: grid;
     gap: 8px;
-    margin-top: 14px;
+    margin-top: 16px;
+    grid-template-columns: repeat(var(--week-count, 4), minmax(0, 1fr));
   }
 
   .timeline-week {
@@ -298,16 +404,39 @@
     letter-spacing: -0.02em;
   }
 
+  .timeline-week.is-compressed {
+    padding-top: 7px;
+  }
+
+  .timeline-week.is-compressed .timeline-week-label {
+    opacity: 0;
+  }
+
+  .timeline-week.is-compressed .timeline-week-day {
+    margin-top: 0;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .timeline-week.is-condensed .timeline-week-label {
+    opacity: 0.48;
+  }
+
+  .timeline-week.is-condensed .timeline-week-day {
+    font-size: 12px;
+  }
+
   .timeline-shell {
     position: relative;
-    min-height: var(--timeline-shell-height, 380px);
+    min-height: var(--timeline-shell-height, 720px);
+    width: var(--timeline-track-width, 960px);
   }
 
   .timeline-line {
     position: absolute;
     left: 0;
     right: 0;
-    top: var(--timeline-line-top, 172px);
+    top: var(--timeline-line-top, 168px);
     height: 2px;
     background: linear-gradient(90deg, rgba(212,170,106,0.12), rgba(212,170,106,0.72), rgba(212,170,106,0.12));
     box-shadow: 0 0 18px rgba(212,170,106,0.12);
@@ -323,7 +452,7 @@
 
   .timeline-slot {
     position: absolute;
-    top: calc(var(--timeline-line-top, 172px) - 27px);
+    top: calc(var(--timeline-line-top, 168px) - 27px);
     width: 1px;
     height: 54px;
     background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
@@ -347,13 +476,13 @@
     top: 0;
     bottom: 0;
     transform: translateX(-50%);
-    width: 164px;
+    width: 172px;
   }
 
   .timeline-marker {
     position: absolute;
     left: 50%;
-    top: calc(var(--timeline-line-top, 172px) - 23px);
+    top: calc(var(--timeline-line-top, 168px) - 23px);
     width: 44px;
     height: 44px;
     margin-left: -22px;
@@ -372,11 +501,12 @@
     font-size: 12px;
     font-weight: 900;
     letter-spacing: -0.03em;
-    text-decoration: none;
+    pointer-events: none;
+    user-select: none;
   }
 
   .timeline-milestone.is-top .timeline-card {
-    top: calc(var(--timeline-line-top, 172px) - 98px - var(--stack-offset, 0px));
+    top: calc(var(--timeline-line-top, 192px) - 122px - var(--stack-offset, 0px));
   }
 
   .timeline-milestone.is-top .timeline-card::after {
@@ -391,7 +521,7 @@
   }
 
   .timeline-milestone.is-bottom .timeline-card {
-    top: calc(var(--timeline-line-top, 172px) + 56px + var(--stack-offset, 0px));
+    top: calc(var(--timeline-line-top, 192px) + 62px + var(--stack-offset, 0px));
   }
 
   .timeline-milestone.is-bottom .timeline-card::before {
@@ -813,17 +943,27 @@
       grid-template-columns: minmax(0, 1fr) minmax(0, 180px);
       gap: 16px;
       align-items: stretch;
+      padding-top: 0;
+    }
+
+    .timeline-section-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .timeline-head-actions {
+      align-self: stretch;
+      justify-content: flex-end;
+    }
+
+    .topbar-actions {
+      margin-left: auto;
     }
 
     .todo-shell,
     .library-shell,
     .library-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .timeline-side-title {
-      grid-column: 1 / -1;
-      white-space: normal;
     }
 
     .library-lead {
@@ -844,7 +984,21 @@
     }
 
     .timeline-panel {
-      padding: 24px 20px 24px;
+      min-height: auto;
+      padding: 28px 20px 32px;
+    }
+
+    .timeline-section-head {
+      margin-bottom: 16px;
+    }
+
+    .timeline-head-title {
+      font-size: 21px;
+    }
+
+    .topbar-actions {
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .timeline-layout,
@@ -852,7 +1006,6 @@
       grid-template-columns: 1fr;
     }
 
-    .timeline-side-title,
     .timeline-year-value,
     .timeline-count-number {
       text-align: center;
@@ -863,12 +1016,23 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      width: auto;
     }
 
     .timeline-scale,
     .timeline-line,
     .timeline-slot {
       display: none;
+    }
+
+    .timeline-viewport {
+      overflow: visible;
+      padding: 0;
+    }
+
+    .timeline-track {
+      width: auto;
+      min-width: 0;
     }
 
     .timeline-milestone {
@@ -949,6 +1113,14 @@
       <span class="badge">5</span>
     </a>
 
+    <a class="nav-item" href="weekly-progress.html">
+      <svg class="ni" viewBox="0 0 15 15" fill="none">
+        <path d="M2 11.5h11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M3.5 9V6.5M7.5 9V3.5M11.5 9V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Weekly Progress
+    </a>
+
     <a class="nav-item" href="#" onclick="showToast('🔄 Workflow','Building the stage pipeline…'); return false;">
       <svg class="ni" viewBox="0 0 15 15" fill="none">
         <circle cx="3" cy="7.5" r="1.8" fill="currentColor" opacity="0.7"/>
@@ -990,7 +1162,7 @@
 
     <div class="nav-section-label" style="margin-top:8px;">Manage</div>
 
-    <a class="nav-item" href="#" onclick="showToast('📚 Library','All your references &amp; samples.'); return false;">
+    <a class="nav-item" href="library.html">
       <svg class="ni" viewBox="0 0 15 15" fill="none">
         <rect x="1.5" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
         <rect x="6" y="2" width="3" height="11" rx="1" fill="currentColor" opacity="0.7"/>
@@ -1026,63 +1198,36 @@
 <div class="main-wrap">
   <div class="topbar">
     <span class="page-title">Dashboard</span>
+    <div class="topbar-actions">
+      <button class="topbar-btn" type="button" onclick="showToast('📝 Quick Note','Idea captured to your notes.')">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <rect x="1.5" y="1.5" width="9" height="9" rx="1.8" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M4 6h4M4 4.2h4M4 7.8h2.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Quick Note
+      </button>
+      <a class="topbar-btn" href="new-project.html">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M6 1.2v9.6M1.2 6h9.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        New Project
+      </a>
+    </div>
     <div class="topbar-spacer"></div>
   </div>
 
   <div class="content">
     <section>
-      <div class="section-header">
-        <span class="section-title">Quick Actions</span>
-      </div>
-      <div class="qa-grid">
-        <a class="qa-tile" href="new-project.html">
-          <div class="qa-icon" style="background:var(--gold-lo);">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 2v12M2 8h12" stroke="#D4AA6A" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="qa-copy">
-            <span class="qa-label">New Project</span>
-            <span class="qa-sub">Start a new song workspace</span>
-          </div>
-        </a>
-
-        <button class="qa-tile" type="button" onclick="showToast('📝 Quick Note','Idea captured to your notes.')">
-          <div class="qa-icon" style="background:rgba(122,188,232,0.12);">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <rect x="2" y="2" width="12" height="12" rx="2.5" stroke="#7ABCE8" stroke-width="1.5"/>
-              <path d="M5 8h6M5 5.5h6M5 10.5h4" stroke="#7ABCE8" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="qa-copy">
-            <span class="qa-label">Quick Note</span>
-            <span class="qa-sub">Capture an idea without leaving the flow</span>
-          </div>
-        </button>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-header">
-        <span class="section-title">Upcoming Songs Timeline</span>
-        <span class="section-meta" id="timeline-meta"></span>
+      <div class="timeline-section-head">
+        <div class="timeline-section-copy">
+          <span class="timeline-head-title">Upcoming Songs Timeline</span>
+          <span class="section-meta" id="timeline-meta"></span>
+        </div>
+        <div class="timeline-head-actions">
+          <button class="timeline-reset-btn" id="timeline-reset-btn" type="button">Reset View</button>
+        </div>
       </div>
       <div class="timeline-panel" id="upcoming-timeline"></div>
-    </section>
-
-    <section>
-      <div class="section-header">
-        <span class="section-title">Weekly Progress</span>
-        <span class="section-meta" id="todo-hub-meta"></span>
-      </div>
-      <div class="todo-shell" id="todo-hub"></div>
-    </section>
-
-    <section>
-      <div class="section-header">
-        <span class="section-title">Creative Library</span>
-      </div>
-      <div class="library-panel" id="creative-library"></div>
     </section>
   </div>
 </div>
@@ -1204,11 +1349,30 @@
     `;
   }
 
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function addDays(date, amount) {
+    const next = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    next.setDate(next.getDate() + amount);
+    return next;
+  }
+
+  function addMonths(date, amount) {
+    return new Date(date.getFullYear(), date.getMonth() + amount, date.getDate());
+  }
+
+  function getDayDiff(left, right) {
+    const msPerDay = 24 * 60 * 60 * 1000;
+    return Math.round((left.getTime() - right.getTime()) / msPerDay);
+  }
+
   function getTimelineWindow() {
-    const today = new Date();
-    const start = new Date(today.getFullYear(), today.getMonth(), 1);
-    const end = new Date(today.getFullYear(), today.getMonth() + 3, 0);
-    return { start, end };
+    const now = new Date();
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const end = addMonths(start, 6);
+    return { start, end, today: start };
   }
 
   function getMonthNumberLabel(date) {
@@ -1222,131 +1386,260 @@
     return next;
   }
 
-  function getTimelineSaturdays() {
-    const { start } = getTimelineWindow();
-    const months = Array.from({ length: 3 }, (_, index) => {
-      const monthDate = new Date(start.getFullYear(), start.getMonth() + index, 1);
-      const month = monthDate.getMonth();
-      const year = monthDate.getFullYear();
-      const saturdays = [];
-      const cursor = new Date(year, month, 1);
-      while (cursor.getMonth() === month) {
-        if (cursor.getDay() === 6) {
-          saturdays.push(new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate()));
-        }
-        cursor.setDate(cursor.getDate() + 1);
-      }
-
-      return {
-        monthDate,
-        monthLabel: getMonthNumberLabel(monthDate),
-        saturdays
-      };
-    });
-
-    const slots = months.flatMap((month) => month.saturdays).map((date, index, all) => ({
-      date,
-      index,
-      leftPercent: all.length === 1 ? 50 : 6 + (index / (all.length - 1)) * 88
-    }));
-
-    return { months, slots };
-  }
-
-  function getTimelineProjects(projects, slots) {
-    const { start, end } = getTimelineWindow();
+  function getTimelineReleaseProjects(projects, start, end) {
     const startValue = start.getTime();
     const endValue = new Date(end.getFullYear(), end.getMonth(), end.getDate(), 23, 59, 59).getTime();
 
-    const visible = projects
+    return projects
       .map((project) => {
-        const deadlineValue = project.deadline ? new Date(`${project.deadline}T00:00:00`).getTime() : NaN;
-        return { project, deadlineValue };
+        const releaseDate = project.deadline ? new Date(`${project.deadline}T00:00:00`) : null;
+        return {
+          project,
+          releaseDate,
+          releaseValue: releaseDate ? releaseDate.getTime() : NaN
+        };
       })
-      .filter(({ deadlineValue }) => Number.isFinite(deadlineValue) && deadlineValue >= startValue && deadlineValue <= endValue)
-      .sort((left, right) => left.deadlineValue - right.deadlineValue || left.project.title.localeCompare(right.project.title));
+      .filter(({ releaseValue }) => Number.isFinite(releaseValue) && releaseValue >= startValue && releaseValue <= endValue)
+      .sort((left, right) => left.releaseValue - right.releaseValue || left.project.title.localeCompare(right.project.title));
+  }
 
-    const slotUsage = {};
-    const sideLanes = {
-      top: [],
-      bottom: []
-    };
+  function getSlotWeight(date, releases) {
+    if (!releases.length) return 0.42;
 
-    function findAvailableLane(side, leftPercent, commit) {
+    const nearestReleaseDistance = releases.reduce((closest, item) => {
+      return Math.min(closest, Math.abs(getDayDiff(item.releaseDate, date)));
+    }, Infinity);
+
+    if (nearestReleaseDistance <= 14) return 1;
+    if (nearestReleaseDistance <= 28) return 0.72;
+    if (nearestReleaseDistance <= 42) return 0.48;
+    return 0.24;
+  }
+
+  function getTimelineModel(projects) {
+    const { start, end, today } = getTimelineWindow();
+    const releases = getTimelineReleaseProjects(projects, start, end);
+    const firstSaturday = getSaturdayOnOrAfter(start);
+    const slots = [];
+    const months = [];
+    const monthMap = new Map();
+    const trackStartX = 72;
+    const trackPadding = 90;
+    const compactGap = 34;
+    const expandedGap = 116;
+
+    for (let cursor = new Date(firstSaturday); cursor <= end; cursor = addDays(cursor, 7)) {
+      slots.push({
+        date: new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate()),
+        index: slots.length,
+        weight: 0,
+        x: trackStartX,
+        stateClass: ""
+      });
+    }
+
+    slots.forEach((slot, index) => {
+      slot.weight = getSlotWeight(slot.date, releases);
+      slot.stateClass = slot.weight <= 0.3 ? "is-compressed" : slot.weight <= 0.55 ? "is-condensed" : "";
+      if (index > 0) {
+        slots[index].x = slots[index - 1].x + compactGap + expandedGap * slots[index - 1].weight;
+      }
+
+      const monthKey = `${slot.date.getFullYear()}-${slot.date.getMonth()}`;
+      if (!monthMap.has(monthKey)) {
+        const month = {
+          key: monthKey,
+          monthDate: new Date(slot.date.getFullYear(), slot.date.getMonth(), 1),
+          monthLabel: getMonthNumberLabel(slot.date),
+          weeks: []
+        };
+        monthMap.set(monthKey, month);
+        months.push(month);
+      }
+
+      monthMap.get(monthKey).weeks.push(slot);
+    });
+
+    const trackWidth = slots.length ? slots[slots.length - 1].x + trackPadding : 920;
+    months.forEach((month, index) => {
+      const firstWeek = month.weeks[0];
+      const lastWeek = month.weeks[month.weeks.length - 1];
+      const prevMonth = months[index - 1];
+      const nextMonth = months[index + 1];
+      const startX = prevMonth
+        ? Math.round((prevMonth.weeks[prevMonth.weeks.length - 1].x + firstWeek.x) / 2)
+        : 0;
+      const endX = nextMonth
+        ? Math.round((lastWeek.x + nextMonth.weeks[0].x) / 2)
+        : trackWidth;
+      month.x = startX;
+      month.width = Math.max(144, endX - startX);
+    });
+
+    const sideLanes = { top: [], bottom: [] };
+    const dateUsage = {};
+
+    function getReleaseX(releaseDate) {
+      if (!slots.length) return trackStartX;
+      const exactSlot = slots.find((slot) => slot.date.getTime() === releaseDate.getTime());
+      if (exactSlot) return exactSlot.x;
+      if (releaseDate <= slots[0].date) {
+        return slots[0].x;
+      }
+      if (releaseDate >= slots[slots.length - 1].date) {
+        return slots[slots.length - 1].x;
+      }
+
+      for (let index = 0; index < slots.length - 1; index += 1) {
+        const current = slots[index];
+        const next = slots[index + 1];
+        if (releaseDate >= current.date && releaseDate <= next.date) {
+          const total = next.date.getTime() - current.date.getTime();
+          const progress = (releaseDate.getTime() - current.date.getTime()) / total;
+          return current.x + (next.x - current.x) * progress;
+        }
+      }
+
+      return slots[slots.length - 1].x;
+    }
+
+    function findAvailableLane(side, x, commit) {
       const lanes = sideLanes[side];
-      const minGap = 14;
+      const minGap = 196;
 
       for (let laneIndex = 0; laneIndex < lanes.length; laneIndex += 1) {
-        if (leftPercent - lanes[laneIndex] >= minGap) {
+        if (x - lanes[laneIndex] >= minGap) {
           if (commit) {
-            lanes[laneIndex] = leftPercent;
+            lanes[laneIndex] = x;
           }
           return laneIndex;
         }
       }
 
       if (commit) {
-        lanes.push(leftPercent);
+        lanes.push(x);
       }
 
       return lanes.length;
     }
 
-    const items = visible.map(({ project, deadlineValue }, index) => {
-      const releaseDate = getSaturdayOnOrAfter(new Date(deadlineValue));
-      let slot = slots.find((item) => item.date.getTime() === releaseDate.getTime());
-      if (!slot) {
-        slot = slots[slots.length - 1] || { leftPercent: 50, date: releaseDate, index: 0 };
-      }
+    const items = releases.map((item, index) => {
+      const releaseKey = item.releaseDate.toISOString().slice(0, 10);
+      const occurrenceIndex = dateUsage[releaseKey] || 0;
+      dateUsage[releaseKey] = occurrenceIndex + 1;
 
-      const slotIndex = slotUsage[slot.index] || 0;
-      slotUsage[slot.index] = slotIndex + 1;
+      const baseX = getReleaseX(item.releaseDate);
+      const shift = occurrenceIndex === 0
+        ? 0
+        : Math.ceil(occurrenceIndex / 2) * 20 * (occurrenceIndex % 2 === 1 ? -1 : 1);
+      const x = baseX + shift;
       const preferredSide = index % 2 === 0 ? "top" : "bottom";
       const alternateSide = preferredSide === "top" ? "bottom" : "top";
-      const preferredLaneIndex = findAvailableLane(preferredSide, slot.leftPercent, false);
-      const alternateLaneIndex = findAvailableLane(alternateSide, slot.leftPercent, false);
+      const preferredLaneIndex = findAvailableLane(preferredSide, x, false);
+      const alternateLaneIndex = findAvailableLane(alternateSide, x, false);
       const orientation = alternateLaneIndex < preferredLaneIndex ? alternateSide : preferredSide;
-      const laneIndex = findAvailableLane(orientation, slot.leftPercent, true);
-      const slotShift = slotIndex === 0
-        ? 0
-        : Math.ceil(slotIndex / 2) * 22 * (slotIndex % 2 === 1 ? -1 : 1);
+      const laneIndex = findAvailableLane(orientation, x, true);
 
       return {
-        project,
-        releaseDate: slot.date,
-        leftPercent: slot.leftPercent,
+        project: item.project,
+        releaseDate: item.releaseDate,
+        x,
         orientation,
-        laneIndex,
-        stackOffset: laneIndex * 82,
-        slotShift
+        stackOffset: laneIndex * 84
       };
     });
 
     const topLaneCount = Math.max(1, sideLanes.top.length);
     const bottomLaneCount = Math.max(1, sideLanes.bottom.length);
+    const lineTop = 228 + (topLaneCount - 1) * 98;
+    const shellHeight = lineTop + 246 + (bottomLaneCount - 1) * 98;
+    const focusItems = items.filter((item) => item.releaseDate >= today);
+    const focusSource = focusItems.length ? focusItems : items;
+    let focusCenterX = trackWidth / 2;
+
+    if (focusSource.length) {
+      const clusterStart = focusSource[0].releaseDate;
+      const cluster = focusSource.filter((item) => getDayDiff(item.releaseDate, clusterStart) <= 21);
+      const clusterCenter = cluster.reduce((sum, item) => sum + item.x, 0) / cluster.length;
+      focusCenterX = clusterCenter;
+    }
 
     return {
+      start,
+      end,
+      months,
+      slots,
       items,
-      lineTop: 120 + (topLaneCount - 1) * 82,
-      shellHeight: 320 + (topLaneCount - 1) * 82 + (bottomLaneCount - 1) * 82
+      trackWidth,
+      lineTop,
+      shellHeight,
+      focusCenterX
     };
   }
 
-  function renderUpcomingTimeline(projects) {
-    const { start } = getTimelineWindow();
-    const { months, slots } = getTimelineSaturdays();
-    const timelineLayout = getTimelineProjects(projects, slots);
-    const timelineProjects = timelineLayout.items;
-    document.getElementById("timeline-meta").textContent = "Saturday release schedule";
+  function focusTimelineViewport() {
+    const viewport = document.getElementById("timeline-viewport");
+    if (!viewport) return;
+    const focusCenter = Number(viewport.getAttribute("data-focus-center"));
+    const trackWidth = Number(viewport.getAttribute("data-track-width"));
+    if (!Number.isFinite(focusCenter) || !Number.isFinite(trackWidth)) return;
 
-    if (!timelineProjects.length) {
+    const maxScroll = Math.max(0, trackWidth - viewport.clientWidth);
+    viewport.scrollLeft = clamp(focusCenter - viewport.clientWidth / 2, 0, maxScroll);
+  }
+
+  function syncTimelineResetState() {
+    const viewport = document.getElementById("timeline-viewport");
+    const resetButton = document.getElementById("timeline-reset-btn");
+    if (!viewport || !resetButton) return;
+
+    const defaultScroll = Number(viewport.getAttribute("data-default-scroll")) || 0;
+    const hasMoved = Math.abs(viewport.scrollLeft - defaultScroll) > 18;
+    resetButton.classList.toggle("is-visible", hasMoved);
+  }
+
+  function bindTimelineViewport() {
+    const viewport = document.getElementById("timeline-viewport");
+    const resetButton = document.getElementById("timeline-reset-btn");
+    if (!viewport || !resetButton) return;
+
+    const onScroll = () => syncTimelineResetState();
+    viewport.addEventListener("scroll", onScroll, { passive: true });
+    resetButton.onclick = () => {
+      const defaultScroll = Number(viewport.getAttribute("data-default-scroll")) || 0;
+      viewport.scrollTo({ left: defaultScroll, behavior: "smooth" });
+      window.setTimeout(syncTimelineResetState, 220);
+    };
+    syncTimelineResetState();
+  }
+
+  function scheduleTimelineRefresh() {
+    if (window.__flutianoTimelineRefreshTimer) {
+      clearTimeout(window.__flutianoTimelineRefreshTimer);
+    }
+
+    const now = new Date();
+    const nextRefresh = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 1, 0);
+    window.__flutianoTimelineRefreshTimer = window.setTimeout(() => {
+      renderDashboard();
+      scheduleTimelineRefresh();
+    }, nextRefresh.getTime() - now.getTime());
+  }
+
+  function renderUpcomingTimeline(projects) {
+    const timeline = getTimelineModel(projects);
+    const yearLabel = timeline.start.getFullYear() === timeline.end.getFullYear()
+      ? String(timeline.start.getFullYear())
+      : `${timeline.start.getFullYear()}–${timeline.end.getFullYear()}`;
+    document.getElementById("timeline-meta").textContent = "Saturday Release Schedule";
+
+    if (!timeline.items.length) {
       document.getElementById("upcoming-timeline").innerHTML = `
         <div class="timeline-layout">
           <div class="timeline-side">
-            <div class="timeline-side-title">Three-month release roadmap</div>
             <div class="timeline-year-block">
               <span class="timeline-mini-label">Year</span>
-              <strong class="timeline-year-value">${start.getFullYear()}</strong>
+              <strong class="timeline-year-value">${yearLabel}</strong>
             </div>
             <div class="timeline-count-block">
               <span class="timeline-count-label">Upcoming Songs</span>
@@ -1354,7 +1647,7 @@
             </div>
           </div>
           <div class="timeline-main">
-            <div class="timeline-empty">No upcoming songs are scheduled in the next three months yet.</div>
+            <div class="timeline-empty">No upcoming songs are scheduled in the next six months yet.</div>
           </div>
         </div>
       `;
@@ -1364,63 +1657,76 @@
     document.getElementById("upcoming-timeline").innerHTML = `
       <div class="timeline-layout">
         <div class="timeline-side">
-          <div class="timeline-side-title">Three-month release roadmap</div>
           <div class="timeline-year-block">
             <span class="timeline-mini-label">Year</span>
-            <strong class="timeline-year-value">${start.getFullYear()}</strong>
+            <strong class="timeline-year-value">${yearLabel}</strong>
           </div>
           <div class="timeline-count-block">
             <span class="timeline-count-label">Upcoming Songs</span>
-            <strong class="timeline-count-number">${timelineProjects.length}</strong>
+            <strong class="timeline-count-number">${timeline.items.length}</strong>
           </div>
         </div>
         <div class="timeline-main">
-          <div class="timeline-scale">
-            ${months.map((month) => `
-              <div class="timeline-month">
-                <span class="timeline-month-number">${escapeHtml(month.monthLabel)}</span>
-                <div class="timeline-weeks" style="grid-template-columns: repeat(${month.saturdays.length || 1}, minmax(0, 1fr));">
-                  ${(month.saturdays.length
-                    ? month.saturdays
-                    : [new Date(month.monthDate.getFullYear(), month.monthDate.getMonth(), 1)]
-                  ).map((date, weekIndex) => `
-                    <div class="timeline-week">
-                      <span class="timeline-week-label">W${weekIndex + 1}</span>
-                      <span class="timeline-week-day">${String(date.getDate()).padStart(2, "0")}</span>
+          <div
+            class="timeline-viewport"
+            id="timeline-viewport"
+            data-track-width="${timeline.trackWidth}"
+            data-focus-center="${timeline.focusCenterX}">
+            <div class="timeline-track" style="--timeline-track-width:${timeline.trackWidth}px;">
+              <div class="timeline-scale">
+                ${timeline.months.map((month) => `
+                  <div class="timeline-month" style="left:${month.x}px; width:${month.width}px; --week-count:${month.weeks.length || 1};">
+                    <span class="timeline-month-number">${escapeHtml(month.monthLabel)}</span>
+                    <div class="timeline-weeks">
+                      ${month.weeks.map((slot, weekIndex) => `
+                        <div class="timeline-week ${slot.stateClass}">
+                          <span class="timeline-week-label">W${weekIndex + 1}</span>
+                          <span class="timeline-week-day">${String(slot.date.getDate()).padStart(2, "0")}</span>
+                        </div>
+                      `).join("")}
                     </div>
-                  `).join("")}
-                </div>
+                  </div>
+                `).join("")}
               </div>
-            `).join("")}
-          </div>
 
-          <div class="timeline-shell" style="--timeline-line-top:${timelineLayout.lineTop}px; --timeline-shell-height:${timelineLayout.shellHeight}px;">
-            <div class="timeline-line" aria-hidden="true"></div>
-            ${slots.map((slot) => `
-              <div class="timeline-slot" style="left:${slot.leftPercent}%;" aria-hidden="true"></div>
-            `).join("")}
+              <div class="timeline-shell" style="--timeline-track-width:${timeline.trackWidth}px; --timeline-line-top:${timeline.lineTop}px; --timeline-shell-height:${timeline.shellHeight}px;">
+                <div class="timeline-line" aria-hidden="true"></div>
+                ${timeline.slots.map((slot) => `
+                  <div class="timeline-slot" style="left:${slot.x}px;" aria-hidden="true"></div>
+                `).join("")}
 
-            ${timelineProjects.map((item) => `
-              <div
-                class="timeline-milestone is-${item.orientation}"
-                style="left:calc(${item.leftPercent}% + ${item.slotShift}px); --stack-offset:${item.stackOffset}px;">
-                <a class="timeline-card" href="${store.getDetailUrl(item.project.id)}">
-                  <span class="timeline-card-cover">
-                    <img src="${store.getThumbnail(item.project)}" alt="${escapeHtml(item.project.title)}">
-                  </span>
-                  <span class="timeline-card-copy">
-                    <span class="timeline-card-title">${escapeHtml(item.project.title)}</span>
-                  </span>
-                </a>
-                <a class="timeline-marker" href="${store.getDetailUrl(item.project.id)}" aria-label="Open ${escapeHtml(item.project.title)}">
-                  ${String(item.releaseDate.getDate()).padStart(2, "0")}
-                </a>
+                ${timeline.items.map((item) => `
+                  <div
+                    class="timeline-milestone is-${item.orientation}"
+                    style="left:${item.x}px; --stack-offset:${item.stackOffset}px;">
+                    <a class="timeline-card" href="${store.getDetailUrl(item.project.id)}">
+                      <span class="timeline-card-cover">
+                        <img src="${store.getThumbnail(item.project)}" alt="${escapeHtml(item.project.title)}">
+                      </span>
+                      <span class="timeline-card-copy">
+                        <span class="timeline-card-title">${escapeHtml(item.project.title)}</span>
+                      </span>
+                    </a>
+                    <span class="timeline-marker" aria-hidden="true">
+                      ${String(item.releaseDate.getDate()).padStart(2, "0")}
+                    </span>
+                  </div>
+                `).join("")}
               </div>
-            `).join("")}
+            </div>
           </div>
         </div>
       </div>
     `;
+
+    window.requestAnimationFrame(() => {
+      focusTimelineViewport();
+      const viewport = document.getElementById("timeline-viewport");
+      if (viewport) {
+        viewport.setAttribute("data-default-scroll", String(Math.round(viewport.scrollLeft)));
+      }
+      bindTimelineViewport();
+    });
   }
 
   function renderCreativeLibrary(projects) {
@@ -1500,8 +1806,6 @@
   function renderDashboard() {
     const projects = store.getProjects();
     renderUpcomingTimeline(projects);
-    renderTodoHub();
-    renderCreativeLibrary(projects);
   }
 
   document.addEventListener("click", (event) => {
@@ -1522,7 +1826,7 @@
   });
 
   document.addEventListener("keydown", (event) => {
-    const point = event.target.closest(".timeline-card, .timeline-marker");
+    const point = event.target.closest(".timeline-card");
     if (!point) return;
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
@@ -1538,6 +1842,7 @@
   });
 
   renderDashboard();
+  scheduleTimelineRefresh();
 </script>
 </body>
 </html>
